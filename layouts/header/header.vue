@@ -1,16 +1,19 @@
-<template >
-  <header class="header container_cc">
+<template>
+  <header class="header flex container_cc ">
     <div class="header_p">
       <NuxtLink :to="localePath('/')" class="logo">
-        <img src="/images/logo.png" />
+        <img src="/logo.svg" />
       </NuxtLink>
+
+      <div class="search">
+        <input type="text" placeholder="ابحث" />
+      </div>
 
       <nav class="menu">
         <ul>
           <li>
             <NuxtLink :to="localePath('/')">
-            <font-awesome-icon   far icon="house"  />
-              <!-- <fa icon="house" class="fa" /> -->
+            <font-awesome-icon   far icon="house" />
               {{ $t("Home") }}
             </NuxtLink>
           </li>
@@ -21,19 +24,18 @@
             }}</NuxtLink>
           </li>
 
-          <!-- <li v-if="this.$store.state.auth.checkAuth">
+          <li v-if="this.$store.state.auth.checkAuth">
             <NuxtLink :to="localePath('/tickets')">
-            
-              <fa icon="message" class="fa" />
+              <font-awesome-icon   far icon="message" />
               {{ $t("My Tickets") }}
             </NuxtLink>
-          </li> -->
+          </li>
 
           <li v-if="this.$store.state.auth.checkAuth">
             <v-menu bottom left>
               <template v-slot:activator="{ on, attrs }">
                 <div v-bind="attrs" v-on="on" color="primary" icon>
-                  <!-- <fa icon="user" class="fa" /> -->
+              <font-awesome-icon   far icon="user" />
                   {{ $t("My Account") }}
                 </div>
               </template>
@@ -48,30 +50,6 @@
             </v-menu>
           </li>
 
-          <li>
-            <v-menu bottom left>
-              <template v-slot:activator="{ on, attrs }">
-                <div v-bind="attrs" v-on="on" color="primary" icon>
-                  <font-awesome-icon icon="globe" class="fa" />
-                  {{ $t("Language") }}
-                </div>
-              </template>
-
-              <v-list>
-                <v-list-item >
-                  <NuxtLink :to="switchLocalePath('ar')">
-                    <v-list-item-title>English</v-list-item-title>
-                  </NuxtLink>
-                </v-list-item>
-
-                <v-list-item >
-                  <NuxtLink :to="switchLocalePath('en')">
-                    <v-list-item-title>العربية</v-list-item-title>
-                  </NuxtLink>
-                </v-list-item>
-              </v-list>
-            </v-menu>
-          </li>
         </ul>
       </nav>
       <div class="mob_nav">
@@ -85,10 +63,7 @@
 import Menu from "./menu.vue";
 import { mapActions } from "vuex";
 export default {
-  data: () => ({
-    // lang: this.$i18n.locales.code,
-  }),
-  
+  data: () => ({}),
   methods: {
     ...mapActions(["Logout"]),
     handleClick(index) {
@@ -96,24 +71,22 @@ export default {
     },
   },
   components: {
-    Menu,
+    Menu
   },
-  computed: {
-        availableLocales () {
-            // console.log(this.$i18n.locales)
-            return this.$i18n.locales.filter(i => i.code !== this.$i18n.locale)
-  },
-  }
 };
-</script>
+ </script>
 
 
 <style scoped>
+header{
+      padding: 0px 100px;
+    box-shadow: 0 3px 4px 0 rgb(0 0 0 / 5%);
+    z-index: 99;
+}
 .header_p {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 140px;
+    display: flex;
+    align-items: center;
+    height: 80px;
 }
 
 .header_p li a.nuxt-link-exact-active {
@@ -128,6 +101,11 @@ a.nuxt-link-exact-active.login_ {
   border: 1px solid #ccc;
   padding: 7px 30px;
   border-radius: 5px;
+}
+.menu{
+  display: flex;
+    justify-content: flex-end;
+    flex: 1;
 }
 
 .menu ul {
@@ -147,9 +125,17 @@ a.nuxt-link-exact-active.login_ {
 }
 
 .logo img {
-  width: 11em;
+    height: 50px;
+    align-items: center;
+    display: flex;
 }
-
+.search input {
+  border: 1px solid #ccc;
+  padding: 10px 20px;
+  border-radius: 22px;
+  width: 300px;
+      margin: 0px 30px;
+}
 .mob_nav {
   display: none;
   font-size: 20px;

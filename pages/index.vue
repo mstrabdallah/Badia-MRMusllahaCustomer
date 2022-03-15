@@ -1,44 +1,22 @@
 <template>
   <div class="head_p container_cc">
     <div class="head">
-      <v-row no-gutters>
-        <v-col md="6" xs="12" sm="12">
-          <div class="head_left">
-            <NuxtLink
-              v-if="!this.$store.state.auth.checkAuth"
-              :to="localePath('/login')"
-              ><button>{{ $t("Login") }}</button></NuxtLink
-            >
-            <!-- <NuxtLink
-              v-if="this.$store.state.auth.checkAuth"
-              :to="localePath('/tickets')"
-              ><button>
-                {{ $t("Create a new support ticket") }}
-              </button></NuxtLink
-            > -->
-          </div>
-        </v-col>
-  
-        <v-col md="6" sm="12" class="d-none d-md-flex" xs="12">
-          <div class="head_right">
-            <img src="/images/background_bg.png" class="head_img" />
-          </div>
-        </v-col>
-      </v-row>
+ 
+ 
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'IndexPage',
- head() {
-   return this.$nuxtI18nHead({ addSeoAttributes: true });
+  name: "IndexPage",
+  head() {
+    return this.$nuxtI18nHead({ addSeoAttributes: true });
   },
-  }
+};
 </script>
-
-<style lang='scss' scoped>
+ 
+ <style scoped>
 .head {
   min-height: calc(100vh - 140px);
   display: flex;

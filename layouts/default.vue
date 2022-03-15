@@ -1,6 +1,7 @@
 <template>
   <div class="app">
     <v-app>
+       <HeaderTop />
       <Header />
       <Nuxt />
       <Footer />
@@ -8,6 +9,7 @@
   </div>
 </template>
 <script>
+import HeaderTop from './header/header-top.vue'
 import Header from "./header/header.vue";
 import Footer from "./footer/footer.vue";
 import { mapActions } from "vuex";
@@ -18,9 +20,10 @@ export default {
   components: {
     Header,
     Footer,
+    HeaderTop
   },
   mounted() {
-    this.$vuetify.rtl = this.$i18n.locale === 'en' ? true:false;
+    this.$vuetify.rtl = this.$i18n.locale === 'ar' ? true:false;
     this.getAuth();
   },
   methods: {
@@ -33,7 +36,7 @@ export default {
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Almarai:wght@300;400&display=swap');
 
-.app:lang('ar') {
+.app:lang(ar) {
   direction: rtl;
 }
 * {
@@ -43,7 +46,7 @@ export default {
 body,.v-application {
   font-size: 14px;
 font-family: 'Almarai', sans-serif;
-  color: #2b4749;
+  color: #444;
 }
 ul {
   list-style-type: none;
@@ -56,7 +59,7 @@ p {
 }
 a,
 .v-application a {
-  color: #2b4749;
+  color: #444;
   text-decoration: none;
 }
 .container_cc {
@@ -64,7 +67,7 @@ a,
 }
 
 .page {
-  margin-top: 40px;
+  margin-top: 70px;
 }
 .page_cc {
   position: relative;
