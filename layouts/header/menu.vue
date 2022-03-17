@@ -1,8 +1,8 @@
 <template>
-  <v-sheet height="400" class="overflow-hidden">
+  <v-sheet class="overflow-hidden">
     <v-container class="fill-height">
       <v-row align="center" justify="center">
-        <v-btn   dark @click.stop="drawer = !drawer"> <font-awesome-icon   far icon="bars" /> </v-btn>
+        <v-btn   dark @click.stop="drawer = !drawer"> <fa icon="bars"  /> </v-btn>
       </v-row>
     </v-container>
 
@@ -23,21 +23,21 @@
 
        <v-list-item>
         <NuxtLink :to="localePath('/')">
-          <font-awesome-icon   far icon="house" />
+          <fa icon="house" class="fa" />
           {{ $t("Home") }}
         </NuxtLink>
       </v-list-item>
 
       <v-list-item v-if="!this.$store.state.auth.checkAuth">
         <NuxtLink class="login_" :to="localePath('/login')">
-          <font-awesome-icon   far icon="user" />
+         <fa icon="user" class="fa" />
         {{$t("Login")}}
         </NuxtLink>
       </v-list-item>
 
       <v-list-item v-if="this.$store.state.auth.checkAuth">
         <NuxtLink :to="localePath('/tickets')">
-          <font-awesome-icon   far icon="message" />
+          <fa icon="message" class="fa" />
           {{ $t("My Tickets") }}
         </NuxtLink>
       </v-list-item>
@@ -46,7 +46,7 @@
         <v-menu bottom left>
           <template v-slot:activator="{ on, attrs }">
             <div v-bind="attrs" v-on="on" color="primary" icon>
-          <font-awesome-icon   far icon="user" />
+              <fa icon="user" class="fa" />
               {{ $t("My Account") }}
             </div>
           </template>
@@ -65,7 +65,7 @@
         <v-menu bottom left>
           <template v-slot:activator="{ on, attrs }">
             <div v-bind="attrs" v-on="on" color="primary" icon>
-          <font-awesome-icon   far icon="globe" />
+              <fa icon="globe" class="fa" />
               {{ $t("Language") }}
             </div>
           </template>

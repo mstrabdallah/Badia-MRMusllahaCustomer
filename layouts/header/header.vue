@@ -1,41 +1,53 @@
 <template>
-  <header class="header flex container_cc ">
+  <header class="header container_cc" :class="scrolled ? 'headerFixed':''">
     <div class="header_p">
       <NuxtLink :to="localePath('/')" class="logo">
         <img src="/logo.svg" />
       </NuxtLink>
 
       <div class="search">
-        <input type="text" placeholder="ابحث" />
+        <input type="text" placeholder="Search For Services" />
+
+        <v-select
+          class="select_head"
+          :items="items"
+          label="Location"
+          outlined
+          dense
+          prepend-inner-icon="mdi-map-marker"
+        ></v-select>
       </div>
 
       <nav class="menu">
         <ul>
           <li>
             <NuxtLink :to="localePath('/')">
-            <font-awesome-icon   far icon="house" />
+              <font-awesome-icon icon="house" class="fa" />
               {{ $t("Home") }}
             </NuxtLink>
           </li>
 
-          <li v-if="!this.$store.state.auth.checkAuth">
-            <NuxtLink class="login_" :to="localePath('/login')">{{
-              $t("Login")
-            }}</NuxtLink>
-          </li>
-
           <li v-if="this.$store.state.auth.checkAuth">
             <NuxtLink :to="localePath('/tickets')">
-              <font-awesome-icon   far icon="message" />
+              <font-awesome-icon icon="message" class="fa" />
               {{ $t("My Tickets") }}
             </NuxtLink>
           </li>
+
+          <li v-if="!this.$store.state.auth.checkAuth">
+            <NuxtLink :to="localePath('/catogries')"><font-awesome-icon icon="square-phone"  />{{ $t("catogries") }}</NuxtLink>
+          </li>
+
+          <li v-if="!this.$store.state.auth.checkAuth">
+            <NuxtLink :to="localePath('/about')"><font-awesome-icon icon="id-card-clip"  />{{ $t("About") }}</NuxtLink>
+          </li>
+
 
           <li v-if="this.$store.state.auth.checkAuth">
             <v-menu bottom left>
               <template v-slot:activator="{ on, attrs }">
                 <div v-bind="attrs" v-on="on" color="primary" icon>
-              <font-awesome-icon   far icon="user" />
+                  <font-awesome-icon icon="user" class="fa" />
                   {{ $t("My Account") }}
                 </div>
               </template>
@@ -50,6 +62,11 @@
             </v-menu>
           </li>
 
+          <li v-if="!this.$store.state.auth.checkAuth">
+            <NuxtLink class="login_" :to="localePath('/login')">{{
+              $t("Login")
+            }}</NuxtLink>
+          </li>
         </ul>
       </nav>
       <div class="mob_nav">
@@ -63,35 +80,73 @@
 import Menu from "./menu.vue";
 import { mapActions } from "vuex";
 export default {
-  data: () => ({}),
+  data: () => ({
+    items: ["Foo", "Bar", "Fizz", "Buzz"],
+    scrolled: false,
+  }),
+
+  mounted() {
+    // Note: do not add parentheses () for this.handleScroll
+    window.addEventListener('scroll', this.handleScroll);
+  },
+
   methods: {
     ...mapActions(["Logout"]),
     handleClick(index) {
       this.items[index].click.call(this);
     },
+
+    handleScroll() {
+      if (window.scrollY < 41) {
+        this.scrolled = false;
+      } else {
+        this.scrolled = true;
+      }
+
+      console.log(window.scrollY);
+    },
   },
   components: {
-    Menu
+    Menu,
   },
 };
- </script>
+</script>
 
 
 <style scoped>
-header{
-      padding: 0px 100px;
-    box-shadow: 0 3px 4px 0 rgb(0 0 0 / 5%);
-    z-index: 99;
+header {
+  padding: 0px 100px;
+  box-shadow: 0 3px 4px 0 rgb(0 0 0 / 5%);
+  z-index: 99;
+  background: #fff;
+    position: absolute;
+    top: 41px;
+    width: 100%;
 }
-.header_p {
-    display: flex;
-    align-items: center;
-    height: 80px;
+.headerFixed {
+  position: fixed;
+  background: #fff;
+  width: 100%;
+   top: 0px;
 }
 
+.header_p {
+  display: flex;
+  align-items: center;
+  height: 80px;
+
+}
+.headerFixed .header_p{
+  height: 60px;
+  transition:  1s;
+}
 .header_p li a.nuxt-link-exact-active {
   color: #bf804b;
   padding-bottom: 10px;
+}
+.menu ul li[data-v-f21a83aa]{
+  text-align: center;
+  line-height: normal;
 }
 
 a.nuxt-link-exact-active.login_ {
@@ -102,10 +157,10 @@ a.nuxt-link-exact-active.login_ {
   padding: 7px 30px;
   border-radius: 5px;
 }
-.menu{
+.menu {
   display: flex;
-    justify-content: flex-end;
-    flex: 1;
+  justify-content: flex-end;
+  flex: 1;
 }
 
 .menu ul {
@@ -125,16 +180,35 @@ a.nuxt-link-exact-active.login_ {
 }
 
 .logo img {
-    height: 50px;
-    align-items: center;
-    display: flex;
+  height: 50px;
+  align-items: center;
+  display: flex;
 }
+.search {
+  display: flex;
+  align-items: center;
+}
+.search:lang(en) {
+  margin-left: 30px;
+}
+.search:lang(ar) {
+  margin-right: 30px;
+}
+.select_head {
+  margin: 0px 3px;
+}
+
 .search input {
-  border: 1px solid #ccc;
-  padding: 10px 20px;
-  border-radius: 22px;
+  border: 1px solid #9e9e9e;
+  padding: 9px 20px;
+  border-radius: 8px;
   width: 300px;
-      margin: 0px 30px;
+  margin: 0px;
+}
+
+.select_head {
+  height: 40px;
+  border-radius: 6px;
 }
 .mob_nav {
   display: none;
@@ -148,6 +222,9 @@ a.nuxt-link-exact-active.login_ {
 }
 
 @media (max-width: 768px) {
+  .search {
+    display: none;
+  }
   .mob_nav {
     display: block;
   }

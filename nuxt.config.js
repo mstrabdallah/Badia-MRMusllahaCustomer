@@ -3,7 +3,7 @@ export default {
   head: {
     title: 'Mr.Musllaha',
     htmlAttrs: {
-      lang: 'en',
+      lang: 'ar',
     },
     meta: [
       { charset: 'utf-8' },
@@ -29,7 +29,8 @@ export default {
   plugins: [
     '~/plugins/axios.js',
     '~/plugins/vuetify.js',
-    '~/plugins/fontawesome.js'
+    '~/plugins/fontawesome.js',
+    '~/plugins/VuePhoneNumberInput.js'
   ],
   router: {
     middleware: ['auth'],
