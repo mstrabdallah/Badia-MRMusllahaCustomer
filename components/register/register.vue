@@ -1,7 +1,7 @@
 <template>
   <div class="page container_cc">
     <div class="login">
-      <h1>{{ $t("Login") }}</h1>
+      <h1>{{ $t("Register") }}</h1>
 
       <div class="form_login_cc">
         <div class="form_login">
@@ -9,23 +9,34 @@
             <div class="mb-5">
               {{ $t("Enter Phone Number") }}
             </div>
- 
           </div>
 
           <div class="form">
-            <v-form
-              ref="form"
-              @submit="Login"
-              v-model="valid"
-              lazy-validation
-            >
+            <v-form ref="form" @submit="Login" v-model="valid" lazy-validation>
               <v-text-field
-                v-model="phone"
-                :counter="11"
-                :rules="phoneRules"
-                :label="$t('Phone')"
+                v-model="name"
+                :counter="200"
+                :label="$t('Name')"
                 required
                 outlined
+                dense
+              ></v-text-field>
+
+              <vue-phone-number-input
+                v-model="phone"
+                :label="$t('Phone')"
+                class="mb-7"
+                default-country-code="SA"
+                required="true"
+              />
+
+              <v-text-field
+                v-model="email"
+                :rules="emailRules"
+                label="E-mail"
+                required
+                outlined
+                dense
               ></v-text-field>
 
               <v-text-field
@@ -36,7 +47,47 @@
                 :label="$t('Password')"
                 @click:append="showPasswordLogin = !showPasswordLogin"
                 outlined
+                dense
               ></v-text-field>
+
+              <v-expansion-panels class="mb-6">
+                <v-expansion-panel>
+                  <v-expansion-panel-header expand-icon="mdi-menu-down">
+                    More Options
+                  </v-expansion-panel-header>
+                  <v-expansion-panel-content>
+                    <v-text-field
+                      v-model="referral"
+                      :label="$t('Referral Code')"
+                      required
+                      outlined
+                      dense
+                    ></v-text-field>
+                  </v-expansion-panel-content>
+                </v-expansion-panel>
+              </v-expansion-panels>
+
+              <v-checkbox v-model="checkbox">
+                <template v-slot:label>
+                  <div>
+                    I agree that
+                    <v-tooltip bottom>
+                      <template v-slot:activator="{ on }">
+                        <a
+                          target="_blank"
+                          href="https://vuetifyjs.com"
+                          @click.stop
+                          v-on="on"
+                        >
+                          Vuetify
+                        </a>
+                      </template>
+                      Opens in new window
+                    </v-tooltip>
+                    is awesome
+                  </div>
+                </template>
+              </v-checkbox>
 
               <div class="msg" v-if="msg">
                 <p>{{ $t(msg) }}</p>
@@ -49,7 +100,7 @@
                 @click="Login"
                 :loading="loading"
               >
-                {{ $t("Login") }}
+                {{ $t("Register") }}
               </v-btn>
             </v-form>
           </div>
@@ -64,7 +115,7 @@
 export default {
   head() {
     return {
-      title: this.$i18n.t("Login-page"),
+      title: this.$i18n.t("Register-page"),
       meta: [
         // hid is used as unique identifier. Do not use `vmid` for it as it will not work
         {

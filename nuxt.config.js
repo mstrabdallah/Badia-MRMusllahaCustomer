@@ -3,7 +3,7 @@ export default {
   head: {
     title: 'Mr.Musllaha',
     htmlAttrs: {
-      lang: 'en',
+      lang: 'ar',
     },
     meta: [
       { charset: 'utf-8' },
@@ -22,14 +22,15 @@ export default {
 
   script: [
     {
-      
+
     }
   ],
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     '~/plugins/axios.js',
     '~/plugins/vuetify.js',
-    '~/plugins/fontawesome.js'
+    '~/plugins/fontawesome.js',
+    '~/plugins/VuePhoneNumberInput.js'
   ],
   router: {
     middleware: ['auth'],
@@ -41,15 +42,8 @@ export default {
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
     // With options
-    ['@nuxtjs/vuetify', { 
-      // src/plugins/vuetify.js
+    ['@nuxtjs/vuetify']
 
-
-  rtl: true,
-
-
-     }]
-  
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -78,7 +72,7 @@ export default {
     lazy: true,
     langDir: 'lang/',
   },
-  
+
   styleResources: {
     scss: [
       '~assets/scss/mixins.scss',

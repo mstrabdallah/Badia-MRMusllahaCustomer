@@ -5,29 +5,29 @@
                 <div class="col-md-4">
                     <a href="#" class="footer-site-logo">
                         <div class="img-logo">
-                            <img src="/images/onlinepngtools.png" alt="">
+                            <img src="/logo.svg" alt="">
                         </div>
                     </a>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit officiis corporis optio natus. </p>
+                <p>{{$t('footer-h')}} </p>
                 </div>
                 <div class="col-md-4 mr-auto footer-menu">
-                    <h3>Shop</h3>
+                    <h3>{{$t('sections')}}</h3>
                     <ul class="list-unstyled links">
-                        <li><a href="#">Services</a></li>
-                        <li><a href="#">Clients</a></li>
-                        <li><a href="#">Features</a></li>
-                        <li><a href="#">Manassat</a></li>
-                        <li><a href="#">Online retail</a></li>
+                        <li><a href="#">{{$t('home')}}</a></li>
+                        <li><a href="#">{{$t('events')}}</a></li>
+                        <li><a href="#">{{$t('awards')}}</a></li>
+                        <li><a href="#">{{$t('testimonials')}}</a></li>
                     </ul>
                 </div>
-                <div class="col-md-4 mr-auto footer-menu">
-                    <h3>Press</h3>
+
+				<div class="col-md-4 mr-auto footer-menu">
+                    <h3>{{$t('contact')}}</h3>
                     <ul class="list-unstyled links">
-                        <li><a href="#">Events</a></li>
-                        <li><a href="#">News</a></li>
-                        <li><a href="#">Awards</a></li>
-                        <li><a href="#">Testimonials</a></li>
-                        <li><a href="#">Online retail</a></li>
+                        <li><a href="#">{{$t('menasat')}}</a></li>
+                        <li><a href="#">{{$t('services')}}</a></li>
+                        <li><a href="#">{{$t('clients')}}</a></li>
+                        <li><a href="#">{{$t('register')}}</a></li>
+                        <!-- <li><a href="#">Features</a></li> -->
                     </ul>
                 </div>
             </div>
@@ -46,7 +46,8 @@
                 <div class="col-md-6 text-md-right text-center">
                     <ul class="list-unstyled link-menu nav-left">
                         <li>Copyright © 2000-2022 Badia Inc. All Rights Reserved.</li>
-                        
+                        <!-- <li><a href="#">Terms &amp; Conditions</a></li>
+                        <li><a href="#">Code of Conduct</a></li> -->
                     </ul>
                 </div>
             </div>
@@ -57,14 +58,18 @@
 <style lang="scss" scoped >
 
 
+// body {
+// 	font-family: $font-family-sans-serif;
+// }
+// h1, h2, h3, h4, h5, h6,
+// .h1, .h2, .h3, .h4, .h5, .h6 {
+// 	font-family: $font-family-sans-serif;
+// }
 a {
 	transition: .3s all ease;
 	&, &:hover {
 		text-decoration: none!important;
 	}
-}
-.list-unstyled{
-		list-style: none;
 }
 .v-application ul, .v-application ol{
 	padding-left: 0px;
@@ -74,7 +79,7 @@ a {
 }
 .footer-14398 {
 	padding: 3rem 0 1rem;
-	background: #E0B855;	
+	background: #e0b755;
 	color: #ffffff;
 	.footer-site-logo {
 		color: white;
@@ -122,7 +127,7 @@ a {
 				&:first-child {
 					a {
 						padding-left: 0;
-					}	
+					}
 				}
 			}
 		}
@@ -131,11 +136,11 @@ a {
 				&:last-child {
 					a {
 						padding-left: 0;
-					}	
+					}
 				}
 			}
 		}
-		
+
 	}
 	.social {
 		li {
@@ -153,9 +158,9 @@ a {
 		}
 	}
 	.social a:hover {
-		
+
 			color: #c1804c;
-		
+
 	}
 	.line {
 		border-top: 1px solid rgba(white, .2);

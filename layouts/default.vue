@@ -1,13 +1,17 @@
 <template>
   <div class="app">
     <v-app>
+       <HeaderTop />
       <Header />
+      <div class="pages">
       <Nuxt />
+      </div>
       <Footer />
     </v-app>
   </div>
 </template>
 <script>
+import HeaderTop from './header/header-top.vue'
 import Header from "./header/header.vue";
 import Footer from "./footer/footer.vue";
 import { mapActions } from "vuex";
@@ -18,9 +22,10 @@ export default {
   components: {
     Header,
     Footer,
+    HeaderTop
   },
   mounted() {
-    this.$vuetify.rtl = this.$i18n.locale === 'en' ? true:false;
+    this.$vuetify.rtl = this.$i18n.locale === 'ar' ? true:false;
     this.getAuth();
   },
   methods: {
@@ -33,17 +38,19 @@ export default {
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Almarai:wght@300;400&display=swap');
 
-.app:lang('ar') {
+.app:lang(ar) {
   direction: rtl;
 }
 * {
   margin: 0px;
   padding: 0px;
 }
+html { scroll-behavior: smooth; } 
+
 body,.v-application {
   font-size: 14px;
 font-family: 'Almarai', sans-serif;
-  color: #2b4749;
+  color: #444;
 }
 ul {
   list-style-type: none;
@@ -56,42 +63,25 @@ p {
 }
 a,
 .v-application a {
-  color: #2b4749;
+  color: #444;
   text-decoration: none;
+}
+img{
+  max-width: 100%;
 }
 .container_cc {
   padding: 0px 100px;
 }
 
+/* body of pages */
+.pages{
+margin-top: 80px;
+}
 .page {
-  margin-top: 40px;
+  margin-top: 70px;
+  min-height:calc(100vh - 300px);
 }
-.page_cc {
-  position: relative;
-
-  min-height: 550px;
-  border-radius: 4px;
-  border: 1px solid #bf804b;
-  padding-bottom: 30px;
-  background: #f5f5f5;
-}
-.page h1 {
-      min-height: 40px;
-    min-width: 130px;
-  text-align: center;
-  background: #bf804b;
-  width: max-content;
-  margin-left: 20px;
-  margin-top: -20px;
-  padding: 5px 35px;
-  border-radius: 4px;
-  color: #fff;
-  margin-bottom: 30px;
-  font-size: 26px;
-}
-.page h1:lang(ar){
- margin-right: 20px;
-}
+ 
 .span_color {
   color: #bf804b;
 }
@@ -144,8 +134,8 @@ select {
 /* vuetify */
 
 .v-application .success {
-  background-color: #2c4d4d !important;
-  border-color: #2c4d4d !important;
+  background-color: #dfb755 !important;
+  border-color: #dfb755 !important;
 }
 .v-application .green--text.text--darken-1 {
     color: #2c4b4c !important;

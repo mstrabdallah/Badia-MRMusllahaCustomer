@@ -10,11 +10,23 @@ import ticket from "./modules/ticket";
 Vue.use(Vuex);
 
 // Create store
-export default () => new Vuex.Store({
-  modules: {
-    todos,
-    auth,
-    tickets,
-    ticket
-  }
+const store = () =>{
+  return new Vuex.Store({
+    modules: {
+      todos,
+      auth,
+      tickets,
+      ticket
+    },
 });
+}
+
+export default store ;
+// () => new Vuex.Store({
+//   modules: {
+//     todos,
+//     auth,
+//     tickets,
+//     ticket
+//   }
+// });

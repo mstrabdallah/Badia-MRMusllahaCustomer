@@ -1,5 +1,5 @@
 <template>
-  <v-sheet height="400" class="overflow-hidden">
+  <v-sheet class="overflow-hidden">
     <v-container class="fill-height">
       <v-row align="center" justify="center">
         <v-btn   dark @click.stop="drawer = !drawer"> <fa icon="bars"  /> </v-btn>

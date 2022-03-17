@@ -2,7 +2,7 @@
 export default function ({ route, store, redirect, app, i18n }) {
 
   // check cookie
-
+  return false;
   if (app.$cookies.get('token')) {
     store.state.auth.checkAuth = true;
     store.state.auth.token = app.$cookies.get('token');
@@ -13,7 +13,7 @@ export default function ({ route, store, redirect, app, i18n }) {
 
 
   // Visitor Access
-  if (!checkUser && ['/login', '/', '/en', '/en/login'].includes(route.path)) {
+  if (!checkUser && ['/login', '/', '/ar', '/ar/login'].includes(route.path)) {
     return false
   }
 
@@ -23,11 +23,11 @@ export default function ({ route, store, redirect, app, i18n }) {
     if (i18n.locale === 'ar')
     return redirect('/login')
   else
-    return redirect('/en/login')
+    return redirect('/ar/login')
   }
 
   //  Invalid Access For User
-  if (checkUser && ['/login', '/en/login'].includes(route.path)) {
+  if (checkUser && ['/login', '/ar/login'].includes(route.path)) {
     if (i18n.locale === 'ar')
       return redirect('/')
     else
