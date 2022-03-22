@@ -43,6 +43,12 @@
             <NuxtLink :to="localePath('/about')">{{ $t("About") }}</NuxtLink>
           </li>
 
+          <li v-if="!this.$store.state.auth.checkAuth">
+            <NuxtLink :to="localePath('/card')">
+              <Checkout />
+            </NuxtLink>
+          </li>
+
           <li v-if="this.$store.state.auth.checkAuth">
             <v-menu bottom left>
               <template v-slot:activator="{ on, attrs }">
@@ -78,6 +84,7 @@
 
 <script>
 import Menu from "./menu.vue";
+import Checkout from "../../components/checkout/checkout.vue"
 import { mapActions } from "vuex";
 export default {
   data: () => ({

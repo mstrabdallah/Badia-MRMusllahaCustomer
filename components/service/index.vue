@@ -1,51 +1,56 @@
 <template>
   <section>
-
     <v-item-group>
       <v-container>
         <v-row>
-          <v-col
-            v-for="n in 6"
-            :key="n"
-            cols="12"
-            md="4"
-          >
-
-            <v-card
-              class="mx-auto"
-              max-width="344"
-            >
+          <v-col v-for="n in 2" :key="n" cols="12" md="4">
+            <v-card class="mx-auto" max-width="344">
               <v-img
                 src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
                 height="200px"
               ></v-img>
 
-              <v-card-title>
-                Top western road trips
-              </v-card-title>
+              <v-card-title> Top western road trips </v-card-title>
 
-              <v-card-subtitle>
-                1,000 miles of wonder
-              </v-card-subtitle>
+              <v-card-subtitle> 1,000 miles of wonder </v-card-subtitle>
+              <v-card-subtitle> <span bold>Price:</span> 1,000 EGP </v-card-subtitle>
+
               <v-card-actions>
-                <v-btn
-                  text
-                  color="deep-purple accent-4"
-                  nuxt
-                  to="/servies"
-                >
-                  GO To Services
+
+                <v-spacer></v-spacer>
+
+                <v-btn class="mx-2" fab dark  color="indigo"  >
+                  <v-icon
+                    dark
+                    > mdi-cart-outline </v-icon>
                 </v-btn>
+
+
+
               </v-card-actions>
             </v-card>
           </v-col>
         </v-row>
       </v-container>
     </v-item-group>
-
   </section>
 </template>
 
+<script>
+
+export default {
+// computed: {
+//     ...mapGetters(["products"]),
+//     product() {
+//       return this.products.filter(
+//         (product) => product.id === parseInt(this.$route.params.id)
+//       )[0];
+//     },
+//   },
+//   methods: mapActions(["addToCart"]),
+};
+
+</script>
 <style scoped>
 .head_ps {
   min-height: 300px;
@@ -65,9 +70,8 @@
   border: 1px solid #f5f5f5;
   padding: 20px;
 }
-</style>
-<script>
-export default {
-
+.v-card__actions{
+  margin-top:0px;
 }
-</script>
+</style>
+

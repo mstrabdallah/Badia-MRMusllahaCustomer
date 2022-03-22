@@ -30,7 +30,7 @@
                   text
                   color="deep-purple accent-4"
                   nuxt
-                  to="/service"
+                  to="/Categories/services/1"
                 >
                   single service
                 </v-btn>

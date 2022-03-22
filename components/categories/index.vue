@@ -2,7 +2,7 @@
   <div>
 
 
-    <h1 
+    <h1
     center
     >Categories</h1>
     <v-item-group>
@@ -54,6 +54,9 @@ export default {
    data: () => ({
        show: false,
     }),
+    mounted:{
+
+    }
 }
 </script>
 
