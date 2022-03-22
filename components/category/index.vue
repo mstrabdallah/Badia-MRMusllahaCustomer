@@ -5,7 +5,7 @@
       <v-container>
         <v-row>
           <v-col
-            v-for="n in 6"
+            v-for="n in 3"
             :key="n"
             cols="12"
             md="4"

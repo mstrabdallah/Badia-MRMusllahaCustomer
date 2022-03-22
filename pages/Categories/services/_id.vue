@@ -2,7 +2,7 @@
     <Service />
 </template>
 <script>
-import Service from '../../components/service/index.vue'
+import Service from '../../../components/service/index.vue'
 export default {
      
 }

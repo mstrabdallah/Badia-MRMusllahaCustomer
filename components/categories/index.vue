@@ -2,7 +2,9 @@
   <div>
 
 
-
+    <h1 
+    center
+    >Categories</h1>
     <v-item-group>
       <v-container>
         <v-row>
@@ -34,7 +36,7 @@
                   text
                   color="deep-purple accent-4"
                   nuxt
-                  to="/servies"
+                  to="/Categories/services"
                 >
                   GO To Services
                 </v-btn>
