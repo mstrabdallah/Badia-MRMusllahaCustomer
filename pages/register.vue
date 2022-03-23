@@ -2,20 +2,14 @@
   <Register />
 </template>
 
-
 <script>
 import Register from "../components/register/register.vue";
 export default {
-  data: () => ({
-
-  }),
-  mounted(){
-
-},
+  data: () => ({}),
+  mounted() {},
 
   components: {
     Register,
   },
 };
 </script>
-   

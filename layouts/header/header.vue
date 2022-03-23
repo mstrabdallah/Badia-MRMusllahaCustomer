@@ -69,10 +69,18 @@
           </li>
 
           <li v-if="!this.$store.state.auth.checkAuth">
+            <NuxtLink class="login_" :to="localePath('/register')">{{
+              $t("Register'")
+            }}</NuxtLink>
+          </li>
+
+          <li v-if="!this.$store.state.auth.checkAuth">
             <NuxtLink class="login_" :to="localePath('/login')">{{
               $t("Login")
             }}</NuxtLink>
           </li>
+
+
         </ul>
       </nav>
       <div class="mob_nav">
@@ -156,6 +164,12 @@ a.nuxt-link-exact-active.login_ {
   border: 1px solid #bf804b;
 }
 .login_ {
+  border: 1px solid #ccc;
+  padding: 7px 30px;
+  border-radius: 5px;
+}
+
+.signup_ {
   border: 1px solid #ccc;
   padding: 7px 30px;
   border-radius: 5px;

@@ -5,6 +5,7 @@ import todos from "./modules/todos";
 import auth from "./modules/auth";
 import tickets from "./modules/tickets";
 import ticket from "./modules/ticket";
+import register from "./modules/register";
 
 // Load Vuex
 Vue.use(Vuex);
@@ -16,7 +17,8 @@ const store = () =>{
       todos,
       auth,
       tickets,
-      ticket
+      ticket,
+      register
     },
 });
 }
