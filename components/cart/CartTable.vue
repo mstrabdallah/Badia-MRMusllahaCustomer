@@ -1,12 +1,12 @@
 <template>
-  <v-simple-table
+ <v-simple-table
     fixed-header
   >
     
-      <tbody>
+      <!-- <tbody>
         <Cart v-for="item in cart" :item="item" :key="item.id"/>
       </tbody>
-  
+   -->
   </v-simple-table>
 </template>
 

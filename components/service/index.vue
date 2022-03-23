@@ -36,21 +36,6 @@
   </section>
 </template>
 
-<script>
-
-export default {
-// computed: {
-//     ...mapGetters(["products"]),
-//     product() {
-//       return this.products.filter(
-//         (product) => product.id === parseInt(this.$route.params.id)
-//       )[0];
-//     },
-//   },
-//   methods: mapActions(["addToCart"]),
-};
-
-</script>
 <style scoped>
 .head_ps {
   min-height: 300px;
@@ -70,8 +55,9 @@ export default {
   border: 1px solid #f5f5f5;
   padding: 20px;
 }
-.v-card__actions{
-  margin-top:0px;
-}
 </style>
+<script>
+export default {
 
+}
+</script>
