@@ -9,7 +9,7 @@
       class="mx-4"
       vertical
     ></v-divider>
-    
+
       <li :class="[this.$i18n.locale === 'en' && 'active']">
         <a :href="switchLocalePath('en')"> English </a>
       </li>
@@ -20,13 +20,13 @@
 <script>
 export default {};
 </script>
- 
+
  <style scoped>
 .header-top {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #e0b755;
+  background: #30c88d;
     padding-top: 10px;
     padding-bottom: 10px;
 }

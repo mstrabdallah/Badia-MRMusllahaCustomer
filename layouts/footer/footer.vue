@@ -79,7 +79,7 @@ a {
 }
 .footer-14398 {
 	padding: 3rem 0 1rem;
-	background: #e0b755;
+	background: #30c88d;
 	color: #ffffff;
 	.footer-site-logo {
 		color: white;

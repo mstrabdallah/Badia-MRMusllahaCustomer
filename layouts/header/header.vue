@@ -70,7 +70,7 @@
 
           <li v-if="!this.$store.state.auth.checkAuth">
             <NuxtLink class="login_" :to="localePath('/register')">{{
-              $t("Register'")
+              $t("Register")
             }}</NuxtLink>
           </li>
 

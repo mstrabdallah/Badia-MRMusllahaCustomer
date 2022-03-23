@@ -1,7 +1,9 @@
 const state = {
   cart: [],
 };
-const getters = {};
+const getters = {
+  addCart: state.cart
+};
 
 const actions = {
   addToCart({ commit }, product) {
@@ -32,6 +34,9 @@ const mutations = {
     }
   },
   addToCart: (state, product) => {
+     this.$axios.post("/cart/add", product).then((res)=>{
+      console.log(res);
+     })
     let itemFound = state.cart.find((p) => p.product.id === product.id);
     if (!itemFound) {
       state.cart.push({ product, quantity: 1 });

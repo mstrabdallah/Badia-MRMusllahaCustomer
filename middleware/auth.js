@@ -1,12 +1,26 @@
 
 export default function ({ route, store, redirect, app, i18n }) {
 
-  // check cookie
-  return false;
+
+
+  const user = app.$cookies.get('user');
+
   if (app.$cookies.get('token')) {
-    store.state.auth.checkAuth = true;
     store.state.auth.token = app.$cookies.get('token');
+    store.state.auth.user = user;
+    store.state.auth.is_online = user.is_online;
+
   }
+  if (app.$cookies.get('iA') === 1) {
+
+    store.state.auth.checkAuth = true;
+  }
+
+  return false;
+
+  // check cookie
+
+
 
   const checkUser = store.state.auth.checkAuth;
   //---------------
@@ -21,9 +35,9 @@ export default function ({ route, store, redirect, app, i18n }) {
 
   if (!checkUser) {
     if (i18n.locale === 'ar')
-    return redirect('/login')
-  else
-    return redirect('/ar/login')
+      return redirect('/login')
+    else
+      return redirect('/en/login')
   }
 
   //  Invalid Access For User

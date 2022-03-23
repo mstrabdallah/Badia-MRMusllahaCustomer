@@ -57,7 +57,7 @@ export default {
   margin: 0px;
 }
 .mesalah-h{
-  color: #e0b755;
+  color: #30c88d;
 }
  p{
     font-size: 20px;
