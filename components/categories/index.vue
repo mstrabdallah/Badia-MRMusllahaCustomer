@@ -2,34 +2,34 @@
   <div>
 
 
-    <h1 
-    center
+    <h1
+    class="text-center mt-5"
     >Categories</h1>
     <v-item-group>
       <v-container>
         <v-row>
           <v-col
-            v-for="n in 6"
-            :key="n"
-            cols="12"
+            v-for="(Proudcts,i) in allProudcts.data" :key="i"
+            :cols="i"
             md="4"
           >
 
             <v-card
               class="mx-auto"
               max-width="344"
+
             >
               <v-img
-                src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
+                :src="Proudcts.image"
                 height="200px"
               ></v-img>
 
-              <v-card-title>
-                Top western road trips
+              <v-card-title class="text-truncate">
+                {{Proudcts.title}}
               </v-card-title>
 
-              <v-card-subtitle>
-                1,000 miles of wonder
+              <v-card-subtitle class="text-truncate">
+                {{Proudcts.description}}
               </v-card-subtitle>
               <v-card-actions>
                 <v-btn
@@ -50,10 +50,23 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex';
+
 export default {
    data: () => ({
        show: false,
     }),
+
+    computed:{
+    ...mapGetters(['allProudcts'])
+
+  },
+  methods:{
+    ...mapActions(['getProducts'])
+  },
+  mounted(){
+    this.getProducts();
+  }
 }
 </script>
 

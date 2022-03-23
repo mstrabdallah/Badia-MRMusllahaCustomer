@@ -93,7 +93,7 @@
 <script>
 import Menu from "./menu.vue";
 import Checkout from "../../components/checkout/checkout.vue"
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 export default {
   data: () => ({
     items: ["Foo", "Bar", "Fizz", "Buzz"],
@@ -103,7 +103,9 @@ export default {
   mounted() {
     window.addEventListener('scroll', this.handleScroll);
   },
-
+// computed:{
+// ...mapGetters(['all'])
+// },
   methods: {
     ...mapActions(["Logout"]),
     handleClick(index) {

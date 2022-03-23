@@ -21,6 +21,7 @@
         :rounded='false'
         small
 
+        @click="decrement"
       >
         <v-icon>mdi-minus</v-icon>
       </v-btn>
@@ -29,11 +30,11 @@
       <span class="counter"
 
       >
-        1
+        {{counter}}
       </span>
       <v-btn
         fab
-
+        @click="increment"
         small
 
       >
@@ -46,44 +47,14 @@
         small
         :rounded='false'
         color="red"
+        @click="increaseValue"
       >
         <v-icon>mdi-delete</v-icon>
       </v-btn>
     </template>
   </v-banner>
   </v-container>
-   <!-- <v-container class="">
-    <v-row >
-      <v-col
-        cols="12"
-        sm="6"
-        md="8"
-      >
-        <div
-          class="pa-2"
-          tile
-        >
 
-
-        </div>
-      </v-col>
-
-
-
-      <v-col
-        cols="6"
-        md="4"
-      >
-        <div
-          class="pa-2"
-
-          tile
-        >
-          Process to card
-        </div>
-      </v-col>
-    </v-row>
-  </v-container> -->
 </template>
 
 <script>
@@ -92,8 +63,23 @@ export default {
 
    data () {
       return {
-
+        counter:null
       }
+    },
+    methods:{
+      increment () {
+
+          this.counter += 1;
+    },
+    decrement () {
+
+      while(this.counter >0){
+        this.counter -= 1;
+      }
+
+
+      // this.counter -= 1;
+    }
     },
   computed: {
     items() {

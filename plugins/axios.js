@@ -9,10 +9,11 @@ export default function ({ $axios,app }, inject) {
         }
       }
     })
-  
+
     // Set baseURL to something different
-    axios.setBaseURL('https://support.tecbadia.com/api')
+    // axios.setBaseURL('https://support.tecbadia.com/api')
     //axios.setBaseURL('http://192.168.1.26/api')
+    axios.setBaseURL('https://fakestoreapi.com')
 
     // Inject to context as $api
     inject('axios', axios)

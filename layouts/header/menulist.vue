@@ -2,7 +2,7 @@
   <v-menu bottom left>
           <template v-slot:activator="{ on, attrs }">
             <div v-bind="attrs" v-on="on" color="primary" icon>
-              <fa icon="globe" class="fa" />
+             <font-awesome-icon icon="globe" class="fa" />
               {{ $t("Language") }}
             </div>
           </template>

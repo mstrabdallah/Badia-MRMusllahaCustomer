@@ -6,6 +6,7 @@ import auth from "./modules/auth";
 import tickets from "./modules/tickets";
 import ticket from "./modules/ticket";
 import register from "./modules/register";
+import categories from "./modules/categories";
 
 // Load Vuex
 Vue.use(Vuex);
@@ -18,7 +19,8 @@ const store = () =>{
       auth,
       tickets,
       ticket,
-      register
+      register,
+      categories
     },
 });
 }

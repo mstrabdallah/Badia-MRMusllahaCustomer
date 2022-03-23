@@ -3,17 +3,18 @@
     <v-item-group>
       <v-container>
         <v-row>
-          <v-col v-for="n in 2" :key="n" cols="12" md="4">
+          <v-col v-for="(Proudcts,i) in allProudcts.data" :key="i"
+            :cols="i" md="4">
             <v-card class="mx-auto" max-width="344">
               <v-img
-                src="https://cdn.vuetifyjs.com/images/cards/sunshine.jpg"
+                 :src="Proudcts.image"
                 height="200px"
               ></v-img>
 
-              <v-card-title> Top western road trips </v-card-title>
+              <v-card-title> {{Proudcts.title}} </v-card-title>
 
-              <v-card-subtitle> 1,000 miles of wonder </v-card-subtitle>
-              <v-card-subtitle> <span bold>Price:</span> 1,000 EGP </v-card-subtitle>
+              <v-card-subtitle>  {{Proudcts.description}} </v-card-subtitle>
+              <v-card-subtitle> <span bold>Price:</span> {{Proudcts.price}} </v-card-subtitle>
 
               <v-card-actions>
 
@@ -29,6 +30,10 @@
 
               </v-card-actions>
             </v-card>
+
+
+
+
           </v-col>
         </v-row>
       </v-container>
@@ -57,7 +62,20 @@
 }
 </style>
 <script>
+import { mapActions, mapGetters } from 'vuex';
+
 export default {
+
+    computed:{
+    ...mapGetters(['allProudcts'])
+
+  },
+  methods:{
+    ...mapActions(['getProducts'])
+  },
+  mounted(){
+    this.getProducts();
+  }
 
 }
 </script>
