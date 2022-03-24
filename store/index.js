@@ -8,6 +8,7 @@ import ticket from "./modules/ticket";
 import register from "./modules/register";
 import categories from "./modules/categories";
 import cart from './modules/cart'
+import servieses from './modules/servieses'
 // Load Vuex
 Vue.use(Vuex);
 
@@ -21,7 +22,8 @@ const store = () =>{
       ticket,
       register,
       categories,
-      cart
+      cart,
+      servieses
     },
 });
 }

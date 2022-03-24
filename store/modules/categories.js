@@ -3,8 +3,6 @@ const state = {
   loading: true,
   data: [],
   subCat:[]
-
-
 };
 
 const getters = {
