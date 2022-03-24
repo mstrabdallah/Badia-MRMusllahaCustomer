@@ -3,7 +3,7 @@
     <div class="register">
       <h1>{{ $t("Register") }}</h1>
 
-      <div class="loadingReg" v-if="this.$store.state.register.loading">
+      <div class="loadingReg" v-if="this.$store.state.auth.loading">
         <v-progress-circular
           :size="50"
           color="primary"
@@ -11,7 +11,7 @@
         ></v-progress-circular>
       </div>
       <div v-else>
-        <Step1 v-if="this.$store.state.register.step === 1" />
+        <Step1 v-if="this.$store.state.auth.step === 1" />
         <Step2 v-else />
       </div>
     </div>

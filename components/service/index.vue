@@ -20,7 +20,7 @@
 
                 <v-spacer></v-spacer>
 
-                <v-btn class="mx-2" fab dark  color="indigo" @click="addToCart">
+                <v-btn class="mx-2" fab dark  color="indigo" @click="addToCart(Proudcts.id)">
                   <v-icon
                     dark
                     > mdi-cart-outline </v-icon>
@@ -78,8 +78,7 @@ export default {
   },
   mounted(){
     this.getProducts();
-    this.addToCart();
-  }
+   }
 
 }
 </script>

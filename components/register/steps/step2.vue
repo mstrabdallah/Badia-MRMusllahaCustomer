@@ -1,5 +1,5 @@
 <template>
-  <div class="form_register" v-if="this.$store.state.register.step === 2">
+  <div class="form_register" >
     <!-- Form Heading and Progress -->
     <h3 class="mb-5">
       <span>{{ $t("Verify phone number") }}</span>
@@ -11,7 +11,7 @@
       ></v-avatar>
     </h3>
     <!-- Form -->
-    <v-form ref="form" @submit="Register" v-model="valid" lazy-validation>
+    <v-form ref="form"  v-model="valid" lazy-validation>
       <p class="mb-4 mt-4 text-center">
         We sent you the activation code over the phone
       </p>
@@ -60,10 +60,9 @@ export default {
   }),
   computed: {},
   methods: {
-    ...mapActions(["Register"]),
+    ...mapActions(["registerAction"]),
     onFinish(e) {
-      e.preventDefault();
-      this.register(this.otp);
+      this.registerAction(this.otp);
     },
   },
 };

@@ -26,15 +26,19 @@ export default {
   },
   mounted() {
     this.$vuetify.rtl = this.$i18n.locale === 'ar' ? true:false;
-    this.getAuth();
+
+     if (!this.$cookies.get("token")) {
+      this.getToken();
+    }
+    this.getMe();
   },
   methods: {
-    ...mapActions(["getAuth"]),
+    ...mapActions(["getToken", "getMe", "setAuth"]),
   },
 };
 </script>
 
- 
+
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Almarai:wght@300;400&display=swap');
 
@@ -45,7 +49,7 @@ export default {
   margin: 0px;
   padding: 0px;
 }
-html { scroll-behavior: smooth; } 
+html { scroll-behavior: smooth; }
 
 body,.v-application {
   font-size: 14px;
@@ -81,7 +85,7 @@ margin-top: 80px;
   margin-top: 70px;
   min-height:calc(100vh - 300px);
 }
- 
+
 .span_color {
   color: #bf804b;
 }
@@ -175,4 +179,3 @@ select {
   }
 }
 </style>
- 

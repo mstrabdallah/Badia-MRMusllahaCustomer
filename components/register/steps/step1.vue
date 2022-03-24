@@ -11,16 +11,28 @@
       ></v-avatar>
     </h3>
     <!-- Form -->
-    <v-form ref="form" @submit="Register" v-model="valid" lazy-validation>
+    <v-form ref="form"
+    v-model="valid"
+     lazy-validation>
       <v-text-field
         :label="$t('Name')"
         type="text"
         v-model="data.name"
         :counter="200"
-        :rules="[rules.required, rules.min]"
+        :rules="[rules.required]"
         outlined
         dense
       ></v-text-field>
+
+
+
+      <vue-phone-number-input
+        v-model="data.phone"
+        :label="$t('Phone')"
+        class="mb-7"
+        default-country-code="SA"
+      />
+
 
       <v-text-field
         :label="$t('E-mail')"
@@ -37,7 +49,7 @@
         :type="showPassword ? 'text' : 'password'"
         :label="$t('Password')"
         :rules="[rules.required, rules.min]"
-        hint="At least 8 characters"
+        hint="At least 6 characters"
         @click:append="showPassword = !showPassword"
         outlined
         dense
@@ -54,14 +66,6 @@
         outlined
         dense
       ></v-text-field>
-
-      <vue-phone-number-input
-        v-model="data.phone"
-        :label="$t('Phone')"
-        class="mb-7"
-        default-country-code="SA"
-        :rules="[rules.required, rules.phoneVal, rules.phoneNum]"
-      />
 
       <v-expansion-panels class="mb-6">
         <v-expansion-panel>
@@ -85,10 +89,11 @@
 
       <div class="buttons">
         <v-btn
-          :disabled="valid"
+          :disabled="!valid"
           color="primary"
           :loading="this.$store.state.auth.loading"
-          @click="Register"
+          @click="RegisterFunction"
+          type="submit"
         >
           {{ $t("Register") }}
         </v-btn>
@@ -126,13 +131,14 @@ export default {
     },
   },
   methods: {
-    ...mapActions(["register"]),
-    Register(e) {
+    ...mapActions(["registerAction"]),
+    RegisterFunction(e) {
       e.preventDefault();
-      this.$refs.form.validate();
       if (this.$refs.form.validate() === false) return false;
-      this.register(data);
+      // console.log(this.data);
+      this.registerAction(this.data);
     },
+
   },
 };
 </script>

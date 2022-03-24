@@ -4,7 +4,6 @@ import axios from "axios";
 const state = {
   checkAuth: false,
   step: 1,
-  stepSub: 1,
   is_active: 0,
   token: '',
   device: 'website',
@@ -48,6 +47,46 @@ const actions = {
   },
 
 
+  registerAction({ state, dispatch }, arrayData) {
+    var data = new FormData();
+
+    if (state.step === 2)
+      data.append("verification_code", arrayData);
+    else
+      state.register = arrayData;
+
+    data.append("name", state.register.name);
+    data.append("phone", state.register.phone.replace(/\s/g, ''));
+    data.append("email", state.register.email);
+    data.append("referral", state.register.referral);
+    data.append("password", state.register.password);
+    data.append("password_confirmation", state.register.password);
+
+    this.$axios.post("/register", data).then((res) => {
+      state.loading = false;
+      console.log(res.data.status)
+      if (res.data.status === 200) {
+        if (state.step === 1)
+          state.step = 2;
+        else {
+          this.$cookies.set("iA", 1, { path: "/", maxAge: 365 * 24 * 60 * 60 });
+          if (this.$i18n.locale === "en") {
+            window.location.href = "/";
+          } else {
+            window.location.href = "/ar";
+          }
+        }
+      }
+      else {
+        alert(res.data.msg)
+      }
+
+
+
+    }).catch((error) => {
+      state.loading = false;
+    });
+  },
 
   // getAuth({ commit, state ,dispatch}) {
 
@@ -96,9 +135,9 @@ const actions = {
         state.token = res.token;
         this.$cookies.set("user", res.data, { path: "/", maxAge: 365 * 24 * 60 * 60 });
       }
-      }).catch(function (error) {
+    }).catch(function (error) {
 
-      });
+    });
   },
   Login({ app, state, dispatch }, arrayData) {
 

@@ -2,12 +2,17 @@ const state = {
   cart: [],
 };
 const getters = {
-  addCart: state.cart
+//  addCart: state.cart
 };
 
 const actions = {
-  addToCart({ commit }, product) {
-    commit("addToCart", product);
+  addToCart({state, commit }, id) {
+       this.$axios.post("/cart/add", id).then((res)=>{
+       console.log(res);
+      })
+
+
+   // commit("addToCart", product);
   },
   DecreaseItemCount({ commit }, index) {
     commit("DecreaseItemCount", index);
