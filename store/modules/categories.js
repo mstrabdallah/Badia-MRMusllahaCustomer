@@ -4,11 +4,11 @@ const state = {
   data: [],
   subCat:[]
 
+
 };
 
 const getters = {
-
-  Categories: state => state,
+  AllCategories: state => state,
 
 };
 
