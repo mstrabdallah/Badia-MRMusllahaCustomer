@@ -5,7 +5,7 @@
     <v-container>
       <v-row>
         <v-col
-          v-for="(Proudcts, i) in Categories.data.data"
+          v-for="(Proudcts, i) in AllCategories.data.data"
           :key="i"
           :cols="i"
           md="4"
@@ -39,7 +39,7 @@ import { mapActions, mapGetters } from 'vuex'
 
 export default {
   computed: {
-    ...mapGetters(['Categories']),
+    ...mapGetters(['AllCategories']),
   },
   methods: {
     ...mapActions(['getCategories']),

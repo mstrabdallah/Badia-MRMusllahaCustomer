@@ -3,7 +3,7 @@
     <v-item-group>
       <v-container>
         <v-row>
-          <v-col v-for="(Proudcts, i) in allservices" :key="i" :cols="i" md="4">
+          <v-col v-for="(Proudcts, i) in allservices.data" :key="i" :cols="i" md="4">
             <v-card class="mx-auto" max-width="344">
               <v-img :src="Proudcts.image" height="200px"></v-img>
 

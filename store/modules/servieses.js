@@ -1,5 +1,3 @@
-
-
 const state = {
   loading: true,
   data: [],
