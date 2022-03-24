@@ -9,7 +9,7 @@ const state = {
 };
 
 const getters = {
-  allAuth: (state) => state,
+  // allAuth: (state) => state,
 };
 
 const actions = {

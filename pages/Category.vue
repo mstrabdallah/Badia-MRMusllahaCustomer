@@ -3,20 +3,15 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex'
  export default {
-    computed: {
-    ...mapGetters(['Categories']),
-  },
+
   methods: {
     ...mapActions(['getSubCategories']),
+  },
+  mounted() {
+    this.getSubCategories(this.$route.query.parent)
 
-     get(){
-      // const params = new URLSearchParams(['parent']);
-        alert(this.$route.query.parent)
-     }
-    // onSubmit(){
-    //   this.addToCart(this.prodName)
-    // }
   },
 
 }
