@@ -4,14 +4,20 @@
 
 <script>
  export default {
-   mounted(){
-    this.get()
+    computed: {
+    ...mapGetters(['Categories']),
   },
-   methods:{
+  methods: {
+    ...mapActions(['getSubCategories']),
+
      get(){
       // const params = new URLSearchParams(['parent']);
         alert(this.$route.query.parent)
      }
-   }
+    // onSubmit(){
+    //   this.addToCart(this.prodName)
+    // }
+  },
+
 }
 </script>
