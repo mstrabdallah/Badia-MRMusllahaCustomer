@@ -1,10 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
 
-import todos from "./modules/todos";
 import auth from "./modules/auth";
-import tickets from "./modules/tickets";
-import ticket from "./modules/ticket";
 import register from "./modules/register";
 import categories from "./modules/categories";
 import cart from './modules/cart'
@@ -17,10 +14,7 @@ Vue.use(Vuex);
 const store = () =>{
   return new Vuex.Store({
     modules: {
-      todos,
       auth,
-      tickets,
-      ticket,
       register,
       categories,
       cart,

@@ -3,7 +3,9 @@
     <v-row>
       <v-col md="4">
         <div class="">
-          <v-card class="mx-auto text-end" max-width="344">
+          <v-card class="mx-auto text-end" max-width="344" active-class=""
+
+          >
             <div class="pa-7 rounded-circle d-inline-block">
               <img src="/images/07.png" class="relative" />
             </div>
@@ -12,18 +14,18 @@
               <v-list-item-icon>
                 <font-awesome-icon far icon="user" class="mr-5" />
               </v-list-item-icon>
-              <v-list-item-title text="title" class="text-start">{{
-                UserFirstName + ' ' + UserLastName
-              }}</v-list-item-title>
+              <v-list-item-title text="title" class="text-start">
+                {{allAuth.user.name}}
+              </v-list-item-title>
             </v-list-item>
 
             <v-list-item>
               <v-list-item-icon>
                 <font-awesome-icon far icon="envelope" class="mr-5" />
               </v-list-item-icon>
-              <v-list-item-title text="title">{{
-                UserEmail
-              }}</v-list-item-title>
+              <v-list-item-title text="title">
+                {{  allAuth.user.email}}
+              </v-list-item-title>
             </v-list-item>
 
             <v-list-item>
@@ -35,11 +37,13 @@
                 />
               </v-list-item-icon>
               <v-list-item-title text="title"
-                >+ 96 {{ PersonalUserMobile }}</v-list-item-title
+                >
+                {{ allAuth.user.phone }}
+                </v-list-item-title
               >
             </v-list-item>
 
-            <v-list-item>
+            <!-- <v-list-item>
               <v-list-item-icon>
                 <font-awesome-icon far icon="earth-asia" class="mr-5" />
               </v-list-item-icon>
@@ -48,7 +52,7 @@
                   country
                 }}</v-list-item-title
               >
-            </v-list-item>
+            </v-list-item> -->
           </v-card>
         </div>
       </v-col>
@@ -196,40 +200,53 @@
 
 <script>
 import editUserDetails from '../components/user/vue/editUserDetails.vue'
+import { mapActions, mapGetters } from 'vuex'
+
+
 export default {
-  data: () => ({
-    date: new Date().toISOString().substr(0, 7),
-    menu: false,
-    modal: false,
+  // data: () => ({
+  //   date: new Date().toISOString().substr(0, 7),
+  //   menu: false,
+  //   modal: false,
 
-    name: null,
-    address: null,
-    city: null,
-    state: null,
-    zip: null,
-    country: null,
+  //   name: null,
+  //   address: null,
+  //   city: null,
+  //   state: null,
+  //   zip: null,
+  //   country: null,
 
-    dialog: false,
-    hidden: false,
-    panel: [0, 1],
-    WorkUserEmail: null,
-    UserEmail: null,
-    WorkUserMobile: null,
-    PersonalUserMobile: '',
-    UserLastName: '',
-    UserFirstName: '',
+  //   dialog: false,
+  //   hidden: false,
+  //   panel: [0, 1],
+  //   WorkUserEmail: null,
+  //   UserEmail: null,
+  //   WorkUserMobile: null,
+  //   PersonalUserMobile: '',
+  //   UserLastName: '',
+  //   UserFirstName: '',
 
-    switch1: true,
-    switch2: false,
-  }),
+  //   switch1: true,
+  //   switch2: false,
+  // }),
   components: {
     editUserDetails,
   },
-  computed: {},
 
-  watch: {},
 
-  methods: {},
+ computed: {
+    ...mapGetters(['allAuth']),
+  },
+  methods: {
+    ...mapActions(['getMe']),
+    // onSubmit(){
+    //   this.addToCart(this.prodName)
+    // }
+  },
+  mounted() {
+    // this.getMe()
+
+  },
 }
 </script>
 

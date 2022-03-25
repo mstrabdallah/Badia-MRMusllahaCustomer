@@ -64,7 +64,7 @@ const actions = {
 
     this.$axios.post("/register", data).then((res) => {
       state.loading = false;
-      console.log(res.data.status)
+      // console.log(res.data.status)
       if (res.data.status === 200) {
         if (state.step === 1)
           state.step = 2;
@@ -122,7 +122,9 @@ const actions = {
   getMe({ state }) {
 
     //  state.loadingReg = true;
+
     const response = this.$axios.$get('/me').then((res) => {
+      console.log(state.user)
       state.loadingReg = false;
       if (res.data === 401) {
         state.step = 1;
