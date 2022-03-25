@@ -124,7 +124,6 @@ const actions = {
     //  state.loadingReg = true;
 
     const response = this.$axios.$get('/me').then((res) => {
-      console.log(state.user)
       state.loadingReg = false;
       if (res.data === 401) {
         state.step = 1;

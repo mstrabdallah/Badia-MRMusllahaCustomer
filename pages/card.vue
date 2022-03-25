@@ -1,14 +1,23 @@
 <template>
   <v-container>
+    <h1 class="text-center">Your Cart Items</h1>
     <div>
       <v-banner
-        single-line
+        two-line
         v-for="(SingleCart, j) in AllListOfCarts.data.services"
         :key="j"
       >
-        <v-avatar slot="icon" color=" accent-4" size="100">
+        <v-avatar slot="icon" size="200" tile color=" accent-4" >
           <img :src="SingleCart.image" />
         </v-avatar>
+        <!-- <v-avatar
+            class="profile"
+            color="grey"
+            size="164"
+            tile
+          >
+            <v-img :src="SingleCart.image"></v-img>
+          </v-avatar> -->
 
         <h4>{{ SingleCart.title }}</h4>
         <span>Price: {{ SingleCart.price }}</span>
@@ -46,6 +55,18 @@
         </template>
       </v-banner>
     </div>
+     <v-fab-transition>
+      <v-btn
+
+        color="#cd3"
+        dark
+        bottom
+        right
+        class="v-btn--example"
+      >
+        Check Out
+      </v-btn>
+    </v-fab-transition>
   </v-container>
 </template>
 
