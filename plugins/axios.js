@@ -18,7 +18,7 @@ export default function ({ $axios, app, store }, inject) {
   // Set baseURL to something different
   // axios.setBaseURL('https://support.tecbadia.com/api')
   //axios.setBaseURL('http://192.168.1.26/api')
-  axios.setBaseURL('https://5b06-102-184-78-248.ngrok.io/')
+   axios.setBaseURL('https://5b06-102-184-78-248.ngrok.io/')
   // axios.setBaseURL('http://192.168.1.26:81')
 
 

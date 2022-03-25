@@ -22,7 +22,7 @@
               <v-card-actions>
                 <v-spacer></v-spacer>
 
-                <v-btn class="mx-2" fab dark color="indigo" @click="addToCart(Proudcts.id)">
+                <v-btn class="mx-2" fab dark color="indigo" @click="onSubmit(Proudcts.id)">
                   <v-icon dark> mdi-cart-outline </v-icon>
                 </v-btn>
               </v-card-actions>
@@ -66,8 +66,8 @@ export default {
   },
   methods: {
     ...mapActions(['getservices', 'addToCart']),
-    onSubmit(){
-      this.addToCart(this.id)
+    onSubmit(id){
+      this.addToCart(id)
     }
     // addToCart(id){
     //   alert("what is",id)
@@ -76,7 +76,6 @@ export default {
   mounted() {
     // alert(this.$route.params.id)
     this.getservices(this.$route.params.id)
-    this.addToCart(this.id)
   },
 }
 </script>

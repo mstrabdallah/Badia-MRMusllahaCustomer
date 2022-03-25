@@ -1,51 +1,47 @@
+import 'axios';
 const state = {
   loading: true,
   data: [],
-  cart:[],
-};
+  cart: [],
+}
 
 const getters = {
-  allservices: state => state
-};
+  allservices: (state) => state,
+}
 
 const actions = {
-
   async getservices({ state }, id) {
     // alert(id)
-    state.loading = true;
-    state.data = [];
-    await this.$axios
-      .get("/Service/" + id).then((res) => {
-        state.data = res.data.data;
-        state.loading = false;
-      });
+    state.loading = true
+    state.data = []
+    await this.$axios.get('/Service/' + id).then((res) => {
+      state.data = res.data.data
+      state.loading = false
+    })
   },
 
-  async addToCart({state}, dataObj){
+  async addToCart({ state }, dataObj) {
 
-    var dataObj = new FormData();
-    dataObj.append("service_id", state.cart.id);
+    var data = new FormData()
+    data.append('service_id', dataObj)
 
-
-    state.loading = true;
-    console.log(dataObj);
-    await this.$axios.post('/cart/add'+ dataObj).then((res)=>{
-      state.cart = res.data;
-      state.loading = false;
-    })
-  }
-
+    state.loading = true
+     this.$axios.post('/cart/add', data).then((res) => {
+       state.cart = res.data
+       if (res.data.status === 200) {
+         alert(res.data.msg)
+       } else {
+         alert(res.data.msg)
+       }
+       state.loading = false
+     })
+  },
 }
 
-const mutations = {
-
-}
+const mutations = {}
 export default {
   state,
   getters,
   actions,
-  mutations
-};
-
-
-
+  mutations,
+}
