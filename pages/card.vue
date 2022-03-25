@@ -1,68 +1,115 @@
 <template>
   <v-container>
-    <v-banner single-line>
-      <v-avatar slot="icon" color=" accent-4" size="100">
-        <img src="/images/02.png" />
-      </v-avatar>
+    <div>
+      <v-banner
+        single-line
+        v-for="(SingleCart, j) in AllListOfCarts.data.services"
+        :key="j"
+      >
+        <v-avatar slot="icon" color=" accent-4" size="100">
+          <img :src="SingleCart.image" />
+        </v-avatar>
 
-      <h4>Title</h4>
-      <span>Price</span>
-      <template v-slot:actions>
-        <v-btn fab :rounded="false" small @click="decrement">
-          <v-icon>mdi-minus</v-icon>
-        </v-btn>
+        <h4>{{ SingleCart.title }}</h4>
+        <span>Price: {{ SingleCart.price }}</span>
+        <template v-slot:actions>
+          <v-btn
+            fab
+            :rounded="false"
+            small
+            @click="decrement(SingleCart.quantity, SingleCart.id)"
+          >
+            <v-icon>mdi-minus</v-icon>
+          </v-btn>
 
-        <span class="counter">
-          {{ counter }}
-        </span>
-        <v-btn fab @click="increment" small>
-          <v-icon>mdi-plus</v-icon>
-        </v-btn>
+          <span class="counter">
+            {{ SingleCart.quantity }}
+          </span>
+          <v-btn
+            fab
+            @click="increment(SingleCart.quantity, SingleCart.id)"
+            small
+          >
+            <v-icon>mdi-plus</v-icon>
+          </v-btn>
 
-        <v-btn
-          fab
-          dark
-          small
-          :rounded="false"
-          color="red"
-
-        >
-          <v-icon>mdi-delete</v-icon>
-        </v-btn>
-      </template>
-    </v-banner>
+          <v-btn
+            fab
+            dark
+            small
+            :rounded="false"
+            @click="Delete(SingleCart.id)"
+            color="red"
+          >
+            <v-icon>mdi-delete</v-icon>
+          </v-btn>
+        </template>
+      </v-banner>
+    </div>
   </v-container>
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex'
+
 export default {
   data() {
     return {
       counter: null,
+      cartQuantity: {
+        quantity: 0,
+        id: '',
+      },
     }
   },
+
+  computed: {
+    ...mapGetters(['AllListOfCarts']),
+  },
   methods: {
-    increment() {
-      this.counter += 1
+    ...mapActions(['getListCart', 'DeleteCart', 'UpdateCart']),
+
+    increment(quantity, id) {
+      this.cartQuantity.quantity = quantity - 1 + 2
+
+      this.cartQuantity.id = id
+      this.UpdateCart(this.cartQuantity)
+      setTimeout(() => this.getListCart(), 1000)
+
+      // this.getListCart()
     },
-    decrement() {
-      if (this.counter <= 0) {
+
+    decrement(quantity, id) {
+      if (quantity <= 0) {
         return
       } else {
-        this.counter -= 1
+        this.cartQuantity.quantity = quantity - 1
+
+        this.cartQuantity.id = id
+        this.UpdateCart(this.cartQuantity)
+
+        setTimeout(() => this.getListCart(), 1000)
+
+        // setTimeout(, 1000)
       }
     },
-  },
-  computed: {
-    items() {
-      return this.$store.getters.getItems
-    },
-    cart() {
-      return this.$store.getters.getCart
+
+    Delete(id) {
+      this.DeleteCart(id)
+      setTimeout(() => this.getListCart(), 1000)
+
+      // this.getListCart()
     },
     totalPrice() {
       return this.$store.getters.getTotalPrice
     },
+
+    // onSubmit(){
+    //   this.addToCart(this.prodName)
+    // }
+  },
+  mounted() {
+    this.getListCart()
   },
 }
 </script>

@@ -1,7 +1,7 @@
 <template>
 <v-badge
       overlap
-      :content="`${$store.state.cart}`"
+      :content="`${$store.state.carts.cartLength}`"
     >
       <v-btn nuxt to="/card" icon>
         <v-icon size="20">mdi-cart-outline</v-icon>
