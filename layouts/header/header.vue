@@ -28,9 +28,8 @@
           </li>
 
           <li v-if="this.$store.state.auth.checkAuth">
-            <NuxtLink :to="localePath('/tickets')">
-              <font-awesome-icon icon="message" class="fa" />
-              {{ $t("My Tickets") }}
+            <NuxtLink :to="localePath('/card')">
+              <Checkout />
             </NuxtLink>
           </li>
 

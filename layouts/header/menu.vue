@@ -35,13 +35,17 @@
         </NuxtLink>
       </v-list-item>
 
-      <v-list-item v-if="this.$store.state.auth.checkAuth">
+      <!-- <v-list-item v-if="this.$store.state.auth.checkAuth">
         <NuxtLink :to="localePath('/tickets')">
          <font-awesome-icon icon="message" class="fa" />
           {{ $t("My Tickets") }}
         </NuxtLink>
-      </v-list-item>
-
+      </v-list-item> -->
+        <v-list-item v-if="this.$store.state.auth.checkAuth">
+            <NuxtLink :to="localePath('/card')">
+              <Checkout />
+            </NuxtLink>
+          </v-list-item>
       <v-list-item v-if="this.$store.state.auth.checkAuth">
         <v-menu bottom left>
           <template v-slot:activator="{ on, attrs }">
@@ -90,6 +94,7 @@
 </template>
  <script>
  import {mapActions} from 'vuex'
+import Checkout from "../../components/checkout/checkout.vue"
 export default {
   data() {
     return {
