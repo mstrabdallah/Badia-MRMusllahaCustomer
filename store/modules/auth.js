@@ -22,70 +22,66 @@ const getters = {
 };
 
 const actions = {
-
   setAuth({ state }, data) {
-
-    state.sessionId = data;
+    state.sessionId = data
   },
 
   routerTo() {
-    if (this.$i18n.locale === "en") {
-      window.location.href = "/";
+    if (this.$i18n.locale === 'en') {
+      window.location.href = '/'
     } else {
-      window.location.href = "/ar";
+      window.location.href = '/ar'
     }
   },
 
   Logout() {
-    this.$cookies.remove('token');
-    this.$cookies.remove('user');
-    if (this.$i18n.locale === "ar") {
-      window.location.href = "/";
+    this.$cookies.remove('user')
+    this.$cookies.remove('iA')
+    if (this.$i18n.locale === 'ar') {
+      window.location.href = '/'
     } else {
-      window.location.href = "/";
+      window.location.href = '/'
     }
   },
 
-
   registerAction({ state, dispatch }, arrayData) {
-    var data = new FormData();
+    var data = new FormData()
 
-    if (state.step === 2)
-      data.append("verification_code", arrayData);
-    else
-      state.register = arrayData;
+    if (state.step === 2) data.append('verification_code', arrayData)
+    else state.register = arrayData
 
-    data.append("name", state.register.name);
-    data.append("phone", state.register.phone.replace(/\s/g, ''));
-    data.append("email", state.register.email);
-    data.append("referral", state.register.referral);
-    data.append("password", state.register.password);
-    data.append("password_confirmation", state.register.password);
+    data.append('name', state.register.name)
+    data.append('phone', state.register.phone.replace(/\s/g, ''))
+    data.append('email', state.register.email)
+    data.append('referral', state.register.referral)
+    data.append('password', state.register.password)
+    data.append('password_confirmation', state.register.password)
 
-    this.$axios.post("/register", data).then((res) => {
-      state.loading = false;
-      // console.log(res.data.status)
-      if (res.data.status === 200) {
-        if (state.step === 1)
-          state.step = 2;
-        else {
-          this.$cookies.set("iA", 1, { path: "/", maxAge: 365 * 24 * 60 * 60 });
-          if (this.$i18n.locale === "en") {
-            window.location.href = "/";
-          } else {
-            window.location.href = "/ar";
+    this.$axios
+      .post('/register', data)
+      .then((res) => {
+        state.loading = false
+        // console.log(res.data.status)
+        if (res.data.status === 200) {
+          if (state.step === 1) state.step = 2
+          else {
+            this.$cookies.set('iA', 1, {
+              path: '/',
+              maxAge: 365 * 24 * 60 * 60,
+            })
+            if (this.$i18n.locale === 'en') {
+              window.location.href = '/'
+            } else {
+              window.location.href = '/ar'
+            }
           }
+        } else {
+          alert(res.data.msg)
         }
-      }
-      else {
-        alert(res.data.msg)
-      }
-
-
-
-    }).catch((error) => {
-      state.loading = false;
-    });
+      })
+      .catch((error) => {
+        state.loading = false
+      })
   },
 
   // getAuth({ commit, state ,dispatch}) {
@@ -102,66 +98,71 @@ const actions = {
   // },
 
   getToken({ app, state, dispatch }) {
-    if (state.checkAuth === true) return false;
-    const response = this.$axios.$get('/check_token').then((res) => {
-      if (res.status === 200) {
-        state.token = res.token;
-        this.$cookies.set("token", res.token, {
-          path: "/",
-          maxAge: 365 * 24 * 60 * 60
-        });
-      }
-      else {
-      }
-
-    }).catch(function (error) {
-      // if (error.response.status === 401) {
-      // }
-    });
+    if (state.checkAuth === true) return false
+    const response = this.$axios
+      .$get('/check_token')
+      .then((res) => {
+        if (res.status === 200) {
+          state.token = res.token
+          this.$cookies.set('token', res.token, {
+            path: '/',
+            maxAge: 365 * 24 * 60 * 60,
+          })
+          dispatch('getMe')
+        } else {
+        }
+      })
+      .catch(function (error) {
+        // if (error.response.status === 401) {
+        // }
+      })
   },
-  getMe({ state }) {
-
+  getMe({ state, dispatch }) {
     //  state.loadingReg = true;
 
-    const response = this.$axios.$get('/me').then((res) => {
-      state.loadingReg = false;
-      if (res.data === 401) {
-        state.step = 1;
-
-      } else {
-        state.step = res.data.current_step + 1;
-        state.user = res.data;
-        state.is_online = res.data.is_online
-
-        state.token = res.token;
-        this.$cookies.set("user", res.data, { path: "/", maxAge: 365 * 24 * 60 * 60 });
-      }
-    }).catch(function (error) {
-
-    });
+    const response = this.$axios
+      .$get('/me')
+      .then((res) => {
+        state.loadingReg = false
+        if (res.data === 401) {
+          state.step = 1
+        } else {
+          state.step = res.data.current_step + 1
+          state.user = res.data
+          state.is_online = res.data.is_online
+          this.$cookies.set('user', res.data, {
+            path: '/',
+            maxAge: 365 * 24 * 60 * 60,
+          })
+        }
+        dispatch('getListCart')
+      })
+      .catch(function (error) {})
   },
   LoginAction({ app, state, dispatch }, arrayData) {
-
-    var data = new FormData();
-    data.append("phone_number", arrayData.phone.replace(/\s/g, ''));
-    data.append("password", arrayData.password);
-    state.loading = true;
-    const response = this.$axios.$post('/me/login', data).then((res) => {
-      state.loading = false;
-      if (res.status === 200) {
-        this.$cookies.set('iA', 1, {
-          path: '/',
-          maxAge: 365 * 24 * 60 * 60,
-        })
-        this.$cookies.set('user', res.data, {
-          path: '/',
-          maxAge: 365 * 24 * 60 * 60,
-        })
-        dispatch('routerTo');
-      }
-    }).catch(function (error) {
-      state.loading = false;
-    });
+    var data = new FormData()
+    data.append('phone_number', '+2' + arrayData.phone.replace(/\s/g, ''))
+    data.append('password', arrayData.password)
+    state.loading = true
+    const response = this.$axios
+      .$post('/me/login', data)
+      .then((res) => {
+        state.loading = false
+        if (res.status === 200) {
+          this.$cookies.set('iA', 1, {
+            path: '/',
+            maxAge: 365 * 24 * 60 * 60,
+          })
+          this.$cookies.set('user', res.data, {
+            path: '/',
+            maxAge: 365 * 24 * 60 * 60,
+          })
+          dispatch('routerTo')
+        }
+      })
+      .catch(function (error) {
+        state.loading = false
+      })
   },
 
   // checkPhone({state},data) {
@@ -175,8 +176,6 @@ const actions = {
   //          state.loading=false;
   //     });
   // },
-
-
 }
 
 const mutations = {

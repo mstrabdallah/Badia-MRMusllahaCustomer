@@ -22,7 +22,7 @@ const actions = {
     })
   },
 
-  async UpdateCart({ state }, Obj) {
+  async UpdateCart({ state , dispatch }, Obj) {
 
     // console.log(Obj);
     // console.log(id);
@@ -34,6 +34,7 @@ const actions = {
      this.$axios.post('/cart/update', data).then((res) => {
        state.cart = res.data
        if (res.data.status === 200) {
+         dispatch('getListCart')
          alert(res.data.msg)
        } else {
          alert(res.data.msg)
@@ -60,25 +61,6 @@ const actions = {
        state.loading = false
      })
   },
-
-
-
-  // async addToCart({ state }, dataObj) {
-
-  //   var data = new FormData()
-  //   data.append('service_id', dataObj)
-
-  //   state.loading = true
-  //    this.$axios.post('/cart/add', data).then((res) => {
-  //      state.cart = res.data
-  //      if (res.data.status === 200) {
-  //        alert(res.data.msg)
-  //      } else {
-  //        alert(res.data.msg)
-  //      }
-  //      state.loading = false
-  //    })
-  // },
 }
 
 const mutations = {}

@@ -62,15 +62,14 @@ export default {
     return !isNaN(params.id)
   },
   computed: {
-    ...mapGetters(['allservices',"AllListOfCarts"]),
+    ...mapGetters(['allservices']),
   },
   methods: {
-    ...mapActions(['getservices', 'addToCart','getListCart']),
+    ...mapActions(['getservices', 'addToCart']),
     onSubmit(id){
       this.addToCart(id)
 
       if (this.$cookies.get("user")) {
-      setTimeout(() => this.getListCart(), 2000)
       }
     }
     // addToCart(id){
