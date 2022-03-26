@@ -1,8 +1,8 @@
 <template>
   <v-container>
-    <h1 class="text-center">Your Cart Items</h1>
     <div
         v-if="this.$store.state.carts.cartLength > 0">
+    <h1 class="text-center">Your Cart Items</h1>
       <v-banner
         two-line
         v-for="(SingleCart, j) in AllListOfCarts.data.services"
@@ -55,11 +55,9 @@
           </v-btn>
         </template>
       </v-banner>
-    </div>
-    <div
-        v-if="this.$store.state.carts.cartLength <= 0">
-          <h2>not data item</h2>
-    </div>
+
+      totalPrice : {{ AllListOfCarts.data.total_price }}
+      <v-spacer></v-spacer>
      <v-fab-transition>
       <v-btn
 
@@ -72,7 +70,13 @@
         Check Out
       </v-btn>
     </v-fab-transition>
+    </div>
+    <div
+        v-if="this.$store.state.carts.cartLength <= 0">
+          <h2 class="text-center">not data item</h2>
+    </div>
   </v-container>
+
 </template>
 
 <script>
