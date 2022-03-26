@@ -135,7 +135,7 @@ const actions = {
             maxAge: 365 * 24 * 60 * 60,
           })
         }
-        dispatch('getListCart')
+        // dispatch('getListCart')
       })
       .catch(function (error) {})
   },

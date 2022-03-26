@@ -22,7 +22,8 @@
         <h4>{{ SingleCart.title }}</h4>
         <span>Price: {{ SingleCart.price }}</span>
         <template v-slot:actions>
-          <v-btn v-if="SingleCart.quantity > 1"
+          <v-btn
+            v-if="SingleCart.quantity > 1"
             fab
             :rounded="false"
             small
@@ -56,6 +57,25 @@
       </v-banner>
 
       <v-spacer></v-spacer>
+      <v-banner>
+        <div class="msg">
+          <p></p>
+        </div>
+      </v-banner>
+      <template>
+        <v-snackbar
+          v-model="snackbar"
+          color="blue"
+          :timeout="1500"
+          :value="true"
+          absolute
+          centered
+          shaped
+          bottom
+        >
+          {{ this.$store.state.carts.msg }}
+        </v-snackbar>
+      </template>
 
       <v-banner two-line>
         <v-simple-table>
@@ -73,7 +93,7 @@
             </thead>
             <tbody>
               <tr>
-                <td>{{ this.$store.state.carts.cartLength }}</td>
+                <!-- <td>{{ this.$store.state.carts.cartLength }}</td> -->
                 <td>{{ AllListOfCarts.data.price }}</td>
                 <td>{{ AllListOfCarts.data.vat }}</td>
                 <td>{{ AllListOfCarts.data.total_price }}</td>
@@ -126,6 +146,8 @@ export default {
         quantity: 0,
         id: '',
       },
+      timeout: 2000,
+      snackbar: false,
     }
   },
 
@@ -141,6 +163,10 @@ export default {
 
       this.cartQuantity.id = id
       this.UpdateCart(this.cartQuantity)
+
+      if ((this.$store.state.carts.status = 200)) {
+        setTimeout(() => (this.snackbar = true))
+      }
       // setTimeout(() => this.getListCart(), 2000)
 
       // this.getListCart()
@@ -153,7 +179,9 @@ export default {
         this.cartQuantity.quantity = quantity - 1
         this.cartQuantity.id = id
         this.UpdateCart(this.cartQuantity)
-        // setTimeout(() => this.getListCart(), 2000)
+        if ((this.$store.state.carts.status = 200)) {
+          setTimeout(() => (this.snackbar = true))
+        }
 
         // setTimeout(, 1000)
       }

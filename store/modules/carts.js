@@ -3,6 +3,7 @@ const state = {
   loading: true,
   data: [],
   cart: [],
+  msg:'',
   cartLength:0
 }
 
@@ -34,8 +35,10 @@ const actions = {
      this.$axios.post('/cart/update', data).then((res) => {
        state.cart = res.data
        if (res.data.status === 200) {
-         dispatch('getListCart')
-         alert(res.data.msg)
+         state.msg = res.data.msg;
+
+
+    setTimeout(() => dispatch('getListCart'), 1000)
        } else {
          alert(res.data.msg)
        }
