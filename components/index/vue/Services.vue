@@ -48,7 +48,7 @@ export default {
     // }
   },
   mounted() {
-    this.getCategories()
+    setTimeout(() => this.getCategories(), 2000)
 
   },
 }

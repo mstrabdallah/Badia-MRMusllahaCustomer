@@ -30,9 +30,9 @@ export default {
      if (!this.$cookies.get("token")) {
       this.getToken();
     }
-    else{
-      this.getMe()
-    }
+
+    setTimeout(() => this.getMe(), 2000)
+
   },
   methods: {
     ...mapActions(["getToken", "getMe", "setAuth"]),
