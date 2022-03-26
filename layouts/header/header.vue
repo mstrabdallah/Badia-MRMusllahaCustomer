@@ -27,8 +27,8 @@
           </li>
 
           <li v-if="this.$store.state.auth.checkAuth">
-            <NuxtLink :to="localePath('/Categories')">{{
-              $t('Categories')
+            <NuxtLink :to="localePath('/about')">{{
+              $t('AboutUs')
             }}</NuxtLink>
           </li>
 

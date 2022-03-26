@@ -7,7 +7,7 @@
       اطلب خدماتك على الفور أو احجز موعدك ليوم محدد.
     </p>
 
-    <div class="groups_but">
+    <!-- <div class="groups_but">
       <v-btn class="ma-2" outlined >
          <NuxtLink :to="localePath('/categories')">
          Call Now
@@ -15,7 +15,7 @@
 
       </v-btn>
 
-    </div>
+    </div> -->
 
     <a class="but_down" href="#serv"><font-awesome-icon icon="angle-down" class="fa" /></a>
 
