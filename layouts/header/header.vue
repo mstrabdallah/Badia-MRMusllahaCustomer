@@ -27,8 +27,8 @@
           </li>
 
           <li v-if="this.$store.state.auth.checkAuth">
-            <NuxtLink :to="localePath('/Categories')">{{
-              $t('Categories')
+            <NuxtLink :to="localePath('/about')">{{
+              $t('AboutUs')
             }}</NuxtLink>
           </li>
 
@@ -64,8 +64,8 @@
               </v-list>
               <v-list>
                 <v-list-item>
-                  <div @click="Logout">
-                    <v-list-item-title>{{ $t('Logout') }}</v-list-item-title>
+                  <div style="cursor: pointer" @click="Logout">
+                    <v-list-item-title >{{ $t('Logout') }}</v-list-item-title>
                   </div>
                 </v-list-item>
               </v-list>

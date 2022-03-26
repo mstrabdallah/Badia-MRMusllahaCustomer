@@ -8,9 +8,9 @@
     </p>
 
     <div class="groups_but">
-      <v-btn class="ma-2" outlined >
-         <NuxtLink :to="localePath('/categories')">
-         Call Now
+      <v-btn outlined >
+         <NuxtLink :to="localePath('/about')">
+         About Us
          </NuxtLink>
 
       </v-btn>
@@ -37,7 +37,8 @@ components: {
 
 <style>
 .head {
-  min-height: calc(100vh - 120px);
+  /* min-height: calc(100vh - 120px); */
+  padding: 250px 0px;
   display: flex;
   align-items: center;
   justify-content: space-between;
