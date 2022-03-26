@@ -64,8 +64,8 @@
               </v-list>
               <v-list>
                 <v-list-item>
-                  <div @click="Logout">
-                    <v-list-item-title>{{ $t('Logout') }}</v-list-item-title>
+                  <div style="cursor: pointer" @click="Logout">
+                    <v-list-item-title >{{ $t('Logout') }}</v-list-item-title>
                   </div>
                 </v-list-item>
               </v-list>

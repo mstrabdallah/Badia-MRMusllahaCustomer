@@ -37,7 +37,8 @@ components: {
 
 <style>
 .head {
-  min-height: calc(100vh - 120px);
+  /* min-height: calc(100vh - 120px); */
+  padding: 250px 0px;
   display: flex;
   align-items: center;
   justify-content: space-between;
