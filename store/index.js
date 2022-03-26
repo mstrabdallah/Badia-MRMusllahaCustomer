@@ -7,6 +7,7 @@ import categories from "./modules/categories";
 import cart from './modules/cart'
 import carts from './modules/carts'
 import servieses from './modules/servieses'
+import addresses from './modules/addresses'
 // Load Vuex
 Vue.use(Vuex);
 
@@ -19,7 +20,8 @@ const store = () =>{
       categories,
       cart,
       carts,
-      servieses
+      servieses,
+      addresses
     },
 });
 }
