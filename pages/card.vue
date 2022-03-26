@@ -1,14 +1,13 @@
 <template>
   <v-container>
-    <div
-        v-if="this.$store.state.carts.cartLength > 0">
-    <h1 class="text-center">Your Cart Items</h1>
+    <div v-if="this.$store.state.carts.cartLength > 0">
+      <h1 class="text-center">Your Cart Items</h1>
       <v-banner
         two-line
         v-for="(SingleCart, j) in AllListOfCarts.data.services"
         :key="j"
       >
-        <v-avatar slot="icon" size="200" tile color=" accent-4" >
+        <v-avatar slot="icon" size="200" tile color=" accent-4">
           <img :src="SingleCart.image" />
         </v-avatar>
         <!-- <v-avatar
@@ -56,27 +55,62 @@
         </template>
       </v-banner>
 
-      totalPrice : {{ AllListOfCarts.data.total_price }}
       <v-spacer></v-spacer>
-     <v-fab-transition>
-      <v-btn
 
-        color="#cd3"
-        dark
-        bottom
-        right
-        class="v-btn--example"
-      >
-        Check Out
-      </v-btn>
-    </v-fab-transition>
+      <v-banner two-line>
+        <v-simple-table>
+          <template v-slot:default>
+            <thead>
+              <tr>
+                <th class="text-left">Price</th>
+                <th class="text-left">vat</th>
+                <th class="text-left">Total Price</th>
+                <th class="text-rigth"></th>
+
+                <!-- <th class="text-right" expanded-item></th> -->
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{{ AllListOfCarts.data.price }}</td>
+                <td>{{ AllListOfCarts.data.vat }}</td>
+                <td>{{ AllListOfCarts.data.total_price }}</td>
+                <td class="checkoutBtn" style="text-align: end">
+                  <v-fab-transition>
+                    <v-btn color="#30c88d" dark nuxt to="/Checkout">
+                      Check Out
+                    </v-btn>
+                  </v-fab-transition>
+                </td>
+              </tr>
+            </tbody>
+          </template>
+        </v-simple-table>
+
+        <!-- totalPrice : {{ AllListOfCarts.data.total_price }} -->
+      </v-banner>
+
+      <!-- <div class="text-right mt-10">
+        <template>
+                    <v-fab-transition>
+                      <v-btn
+                        color="#30c88d"
+                        dark
+                        bottom
+                        right
+                        class="v-btn--example"
+                      >
+                        Check Out
+                      </v-btn>
+                    </v-fab-transition>
+                  </template>
+      </div> -->
     </div>
-    <div
-        v-if="this.$store.state.carts.cartLength <= 0">
-          <h2 class="text-center">not data item</h2>
+
+    <div v-if="this.$store.state.carts.cartLength <= 0">
+      <h2 class="text-center">Wait for Your data item</h2>
     </div>
   </v-container>
-
 </template>
 
 <script>
@@ -100,7 +134,7 @@ export default {
     ...mapActions(['getListCart', 'DeleteCart', 'UpdateCart']),
 
     increment(quantity, id) {
-      console.log(id);
+      console.log(id)
       this.cartQuantity.quantity = quantity - 1 + 2
 
       this.cartQuantity.id = id
@@ -158,5 +192,11 @@ export default {
 }
 .v-btn--round {
   border-radius: 5px;
+}
+.checkoutBtn {
+  text-align: end;
+}
+.v-data-table > .v-data-table__wrapper tbody tr td:last-child {
+  text-align: end;
 }
 </style>
