@@ -15,7 +15,7 @@ const getters = {
 const actions = {
   register({ state }, dat) {
 
-    console.log(state.register);
+    // console.log(state.register);
     let data = new FormData();
 
     if (state.step === 2)
@@ -36,13 +36,13 @@ const actions = {
        .post("/register", data)
        .then((res) => {
          state.loading = false;
-         console.log(res)
+        //  console.log(res)
          if (res.status === 200) {
-          console.log('ee',res)
+          // console.log('ee',res)
           if (state.step === 1) state.step = 2;
 
            else{
-            console.log('eee',res)
+            // console.log('eee',res)
             // this.$cookies.set("iA", res.token, {path: "/",maxAge: 365 * 24 * 60 * 60});
             // if (this.$i18n.locale === "ar") {
             //   window.location.href = "/";

@@ -104,7 +104,7 @@ export default {
   methods: {
     ...mapActions(["Logout"]),
     afterVisibleChange(val) {
-      console.log("visible", val);
+      // console.log("visible", val);
     },
     showDrawer() {
       this.visible = true;

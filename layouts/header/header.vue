@@ -56,7 +56,12 @@
                   {{ $t('My Account') }}
                 </div>
               </template>
+              <v-list>
+                <v-list-item>
+                    <NuxtLink  :to="localePath('/UserProfile')">{{ $t('UserProfile') }}</NuxtLink>
 
+                </v-list-item>
+              </v-list>
               <v-list>
                 <v-list-item>
                   <div @click="Logout">
@@ -122,7 +127,6 @@ export default {
   },
 }
 </script>
-
 
 <style scoped>
 header {

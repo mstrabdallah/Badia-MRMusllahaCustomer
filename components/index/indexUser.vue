@@ -1,5 +1,5 @@
 <template>
-  <v-conatiner>
+  <v-container>
     <section  class="head bg">
     <h2>خدمات عند الطلب</h2>
     <p>
@@ -22,7 +22,7 @@
   </section>
       <Services />
 
-  </v-conatiner>
+  </v-container>
 </template>
 
 <script>

@@ -30,7 +30,9 @@ export default {
      if (!this.$cookies.get("token")) {
       this.getToken();
     }
-    this.getMe();
+    else{
+      this.getMe()
+    }
   },
   methods: {
     ...mapActions(["getToken", "getMe", "setAuth"]),

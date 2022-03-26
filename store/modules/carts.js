@@ -24,7 +24,7 @@ const actions = {
 
   async UpdateCart({ state }, Obj) {
 
-    console.log(Obj);
+    // console.log(Obj);
     // console.log(id);
     var data = new FormData()
     data.append('service_id', Obj.id)
