@@ -42,7 +42,7 @@ const actions = {
     if (this.$i18n.locale === "ar") {
       window.location.href = "/";
     } else {
-      window.location.href = "/en";
+      window.location.href = "/";
     }
   },
 
@@ -140,34 +140,38 @@ const actions = {
 
     });
   },
-  // Login({ app, state, dispatch }, arrayData) {
+  Login({ app, state, dispatch }, arrayData) {
 
-  //   var data = new FormData();
-  //   data.append("phone_number", arrayData.phone_number.replace(/\s/g, ''));
-  //   data.append("password", arrayData.password);
-  //   state.loading = true;
-  //   const response = this.$axios.$post('/me/login', data).then((res) => {
-  //     state.loading = false;
+    var data = new FormData();
+    data.append("phone_number", arrayData.phone_number.replace(/\s/g, ''));
+    data.append("password", arrayData.password);
+    state.loading = true;
+    const response = this.$axios.$post('/me/login', data).then((res) => {
+      state.loading = false;
 
-  //     if (res.status === 200) {
+      if (res.status === 200) {
 
-  //       state.is_active = res.data.is_active;
-  //       this.$cookies.set("iA", res.data.is_active, {
-  //         path: "/",
-  //         maxAge: 365 * 24 * 60 * 60,
-  //       });
-  //       // window.location.href = "/";
-  //       dispatch('routerTo');
-  //     }
-  //     //state.token = res.token;
+        state.is_active = res.data.is_active;
+        this.$cookies.set("iA", res.data.is_active, {
+          path: "/",
+          maxAge: 365 * 24 * 60 * 60,
+        });
+        this.$cookies.set('user', res.data.user, {
+          path: '/',
+          maxAge: 365 * 24 * 60 * 60,
+        })
+        // window.location.href = "/";
+        dispatch('routerTo');
+      }
+      //state.token = res.token;
 
-  //   }).catch(function (error) {
-  //     // if (error.response.status === 401) {
-  //     state.loading = false;
+    }).catch(function (error) {
+      // if (error.response.status === 401) {
+      state.loading = false;
 
-  //     // }
-  //   });
-  // },
+      // }
+    });
+  },
 
   // checkPhone({state},data) {
   //   state.loading=true;

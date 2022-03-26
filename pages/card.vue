@@ -91,11 +91,12 @@ export default {
     ...mapActions(['getListCart', 'DeleteCart', 'UpdateCart']),
 
     increment(quantity, id) {
+      console.log(id);
       this.cartQuantity.quantity = quantity - 1 + 2
 
       this.cartQuantity.id = id
       this.UpdateCart(this.cartQuantity)
-      setTimeout(() => this.getListCart(), 1000)
+      setTimeout(() => this.getListCart(), 2000)
 
       // this.getListCart()
     },
@@ -105,11 +106,9 @@ export default {
         return
       } else {
         this.cartQuantity.quantity = quantity - 1
-
         this.cartQuantity.id = id
         this.UpdateCart(this.cartQuantity)
-
-        setTimeout(() => this.getListCart(), 1000)
+        setTimeout(() => this.getListCart(), 2000)
 
         // setTimeout(, 1000)
       }

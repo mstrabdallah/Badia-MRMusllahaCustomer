@@ -14,7 +14,7 @@
 import HeaderTop from './header/header-top.vue'
 import Header from "./header/header.vue";
 import Footer from "./footer/footer.vue";
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from 'vuex'
 export default {
   head() {
     return this.$nuxtI18nHead({ addSeoAttributes: true });
@@ -24,18 +24,23 @@ export default {
     Footer,
     HeaderTop
   },
+  computed: {
+    ...mapGetters(['AllListOfCarts']),
+  },
   mounted() {
     this.$vuetify.rtl = this.$i18n.locale === 'ar' ? true:false;
 
      if (!this.$cookies.get("token")) {
       this.getToken();
     }
-
+    if (this.$cookies.get("user")) {
+      this.getListCart();
+    }
     setTimeout(() => this.getMe(), 2000)
 
   },
   methods: {
-    ...mapActions(["getToken", "getMe", "setAuth"]),
+    ...mapActions(["getToken", "getMe", "setAuth","getListCart"]),
   },
 };
 </script>

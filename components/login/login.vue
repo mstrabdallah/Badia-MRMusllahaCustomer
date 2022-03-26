@@ -1,18 +1,24 @@
 <template>
   <div class="page container_cc">
     <div class="login">
-      <h1>{{ $t('Login') }}</h1>
+      <h1>{{ $t("Login") }}</h1>
 
       <div class="form_login_cc">
         <div class="form_login">
           <div class="form_title">
             <div class="mb-5">
-              {{ $t('Enter Phone Number') }}
+              {{ $t("Enter Phone Number") }}
             </div>
+
           </div>
 
           <div class="form">
-            <v-form ref="form" @submit="Login" v-model="valid" lazy-validation>
+            <v-form
+              ref="form"
+              @submit="Login"
+              v-model="valid"
+              lazy-validation
+            >
               <v-text-field
                 v-model="phone"
                 :counter="11"
@@ -43,7 +49,7 @@
                 @click="Login"
                 :loading="loading"
               >
-                {{ $t('Login') }}
+                {{ $t("Login") }}
               </v-btn>
             </v-form>
           </div>
@@ -53,90 +59,91 @@
   </div>
 </template>
 
+
 <script>
 export default {
   head() {
     return {
-      title: this.$i18n.t('Login-page'),
+      title: this.$i18n.t("Login-page"),
       meta: [
         // hid is used as unique identifier. Do not use `vmid` for it as it will not work
         {
-          hid: 'todos description',
-          name: 'todos description',
-          content: 'todos My custom description',
+          hid: "todos description",
+          name: "todos description",
+          content: "todos My custom description",
         },
       ],
-    }
+    };
   },
   data: () => ({
     loading: false,
     valid: false,
     showPasswordLogin: false,
-    password: '',
+    password: "",
 
-    phone: '',
-    msg: '',
+    phone: "",
+    msg: "",
     msgStatus: true,
     phoneRules: [
-      (v) => !!v || 'Phone is required',
-      (v) => (v && v.length <= 11) || 'Phone must be less than 11 Number',
+      (v) => !!v || "Phone is required",
+      (v) => (v && v.length <= 11) || "Phone must be less than 11 Number",
       (v) =>
-        Number.isInteger(Number(v)) || 'The value must be an integer number',
+        Number.isInteger(Number(v)) || "The value must be an integer number",
     ],
     rules: {
-      required: (value) => !!value || 'Required.',
-      min: (v) => v.length >= 8 || 'Min 8 characters',
+      required: (value) => !!value || "Required.",
+      min: (v) => v.length >= 8 || "Min 8 characters",
     },
 
     emailRules: [
-      (v) => !!v || 'E-mail is required',
-      (v) => /.+@.+\..+/.test(v) || 'E-mail must be valid',
+      (v) => !!v || "E-mail is required",
+      (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
     ],
-    items: ['Item 1', 'Item 2', 'Item 3', 'Item 4'],
+    items: ["Item 1", "Item 2", "Item 3", "Item 4"],
   }),
 
   methods: {
-    Login(e) {
-      e.preventDefault()
-      this.$refs.form.validate()
-      if (this.$refs.form.validate() === false) return false
+    // Login(e) {
+    //   e.preventDefault();
+    //   this.$refs.form.validate();
+    //   if (this.$refs.form.validate() === false) return false;
 
-      var data = new FormData()
-      data.append('phone', this.phone)
-      data.append('password', this.password)
-      console.log(data)
-      this.loading = true
-      this.msg = ''
-      this.$axios
-        .post('/login', data)
-        .then((res) => {
-          console.log(res)
-          if (res.data.status === 200) {
-            this.$cookies.set('user', res.data.user, {
-              path: '/',
-              maxAge: 365 * 24 * 60 * 60,
-            })
-            state.is_active = res.data.is_active
-            this.$cookies.set('iA', res.data.is_active, {
-              path: '/',
-              maxAge: 365 * 24 * 60 * 60,
-            })
-            if (this.$i18n.locale === 'ar') {
-              window.location.href = '/'
-            } else {
-              window.location.href = '/en'
-            }
-          }
-          this.loading = false
-        })
-        .catch((error) => {
-          this.loading = false
-          this.msg = error.response.data.message
-        })
-    },
+    //   var data = new FormData();
+    //   data.append("phone", this.phone);
+    //   data.append("password", this.password);
+    //   console.log(data)
+    //   this.loading = true;
+    //   this.msg = "";
+    //   this.$axios
+    //     .post("/login", data)
+    //     .then((res) => {
+    //       console.log(res)
+    //       return ;
+    //       // this.$cookies.set("token", res.data.token, {
+    //       //   path: "/",
+    //       //   maxAge: 365 * 24 * 60 * 60,
+    //       // });
+    //       this.$cookies.set("user", res.data.user, {
+    //         path: "/",
+    //         maxAge: 365 * 24 * 60 * 60,
+    //       });
+    //       if (this.$i18n.locale === "ar") {
+    //         window.location.href = "/";
+    //       } else {
+    //         window.location.href = "/en";
+    //       }
+    //       this.loading = false;
+    //     })
+    //     .catch((error) => {
+    //       this.loading = false;
+    //       this.msg = error.response.data.message;
+    //     });
+    // },
   },
-}
+};
 </script>
+
+
 
 <style scoped>
 .login {
@@ -161,3 +168,5 @@ export default {
   margin-top: 30px;
 }
 </style>
+
+
