@@ -140,36 +140,27 @@ const actions = {
 
     });
   },
-  Login({ app, state, dispatch }, arrayData) {
+  LoginAction({ app, state, dispatch }, arrayData) {
 
     var data = new FormData();
-    data.append("phone_number", arrayData.phone_number.replace(/\s/g, ''));
+    data.append("phone_number", arrayData.phone.replace(/\s/g, ''));
     data.append("password", arrayData.password);
     state.loading = true;
     const response = this.$axios.$post('/me/login', data).then((res) => {
       state.loading = false;
-
       if (res.status === 200) {
-
-        state.is_active = res.data.is_active;
-        this.$cookies.set("iA", res.data.is_active, {
-          path: "/",
-          maxAge: 365 * 24 * 60 * 60,
-        });
-        this.$cookies.set('user', res.data.user, {
+        this.$cookies.set('iA', 1, {
           path: '/',
           maxAge: 365 * 24 * 60 * 60,
         })
-        // window.location.href = "/";
+        this.$cookies.set('user', res.data, {
+          path: '/',
+          maxAge: 365 * 24 * 60 * 60,
+        })
         dispatch('routerTo');
       }
-      //state.token = res.token;
-
     }).catch(function (error) {
-      // if (error.response.status === 401) {
       state.loading = false;
-
-      // }
     });
   },
 
