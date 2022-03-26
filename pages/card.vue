@@ -23,7 +23,7 @@
         <h4>{{ SingleCart.title }}</h4>
         <span>Price: {{ SingleCart.price }}</span>
         <template v-slot:actions>
-          <v-btn
+          <v-btn v-if="SingleCart.quantity > 1"
             fab
             :rounded="false"
             small
