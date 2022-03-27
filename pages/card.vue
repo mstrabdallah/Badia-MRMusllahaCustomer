@@ -47,7 +47,6 @@
           </span>
           <v-btn
             fab
-            :loading="AllListOfCarts.loading"
             @click="increment(SingleCart.quantity, SingleCart.id)"
             small
           >
@@ -109,7 +108,7 @@
           <template v-slot:default>
             <thead>
               <tr>
-                <!-- <th class="text-left">Count of Items</th> -->
+                <th class="text-left">Count of Items</th>
                 <th class="text-left">Price</th>
                 <th class="text-left">vat</th>
                 <th class="text-left">Total Price</th>
@@ -120,7 +119,7 @@
             </thead>
             <tbody>
               <tr>
-                <!-- <td>{{ this.$store.state.carts.cartLength }}</td> -->
+                <td>{{ AllListOfCarts.cartLength }}</td>
                 <td>{{ AllListOfCarts.data.price }}</td>
                 <td>{{ AllListOfCarts.data.vat }}</td>
                 <td>{{ AllListOfCarts.data.total_price }}</td>

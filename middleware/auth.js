@@ -1,6 +1,7 @@
 
 export default function ({ route, store, redirect, app, i18n }) {
 
+   if (app.$cookies.get('lang')) i18n.setLocale(app.$cookies.get('lang'))
 
 
   const user = app.$cookies.get('user');

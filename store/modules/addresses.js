@@ -47,9 +47,6 @@ const actions = {
 
     data.append('is_default', is_Default)
 
-    console.log(data);
-
-
     state.loading = true
      this.$axios.post('/me/addAddress', data).then((res) => {
        state.cart = res.data

@@ -15,6 +15,9 @@ import HeaderTop from './header/header-top.vue'
 import Header from "./header/header.vue";
 import Footer from "./footer/footer.vue";
 import { mapActions } from "vuex";
+import { uuid } from "vue-uuid";
+
+
 export default {
   head() {
     return this.$nuxtI18nHead({ addSeoAttributes: true });
@@ -24,19 +27,20 @@ export default {
     Footer,
     HeaderTop
   },
-  mounted() {
-    this.$vuetify.rtl = this.$i18n.locale === 'ar' ? true:false;
+   async beforeCreate() {
+    this.$vuetify.rtl = this.$i18n.locale === "ar" ? true : false;
 
-     if (!this.$cookies.get("token")) {
-      this.getToken();
-    }
-    else{
-      this.getMe();
-    }
+  },
+
+  async mounted() {
+
+
+    await this.setApi(uuid.v5(navigator.userAgent, "65f9af5d-f23f-4065-ac85-da725569fdcd"));
+
 
   },
   methods: {
-    ...mapActions(["getToken", "getMe", "setAuth"]),
+    ...mapActions(["setApi"]),
   },
 };
 </script>

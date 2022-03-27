@@ -333,7 +333,7 @@ export default {
     // }
   },
   mounted() {
-    this.getAddress()
+    // this.getAddress()
     this.getListCart()
     // this.getListOfTime()
   },

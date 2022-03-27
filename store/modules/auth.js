@@ -22,10 +22,30 @@ const getters = {
 };
 
 const actions = {
-  setAuth({ state }, data) {
-    state.sessionId = data
-  },
+  async setApi({ state, dispatch }, data) {
+    await this.$axios.setHeader('session-id', data)
+    await this.$axios.setHeader('device', state.device)
+    await this.$axios.setHeader('lang', this.$i18n.locale)
+    if (this.$cookies.get('token'))
+      await this.$axios.setHeader('token', this.$cookies.get('token'))
+    if (!this.$cookies.get('token')) await dispatch('getToken')
 
+    //sId = session-id  -- for check if user agent changed
+    if (!this.$cookies.get('sId'))
+      this.$cookies.set('sId', data, { path: '/', maxAge: 365 * 24 * 60 * 60 })
+    if (this.$cookies.get('sId') != data) alert('a7a')
+
+    // get api when open site first time
+
+    dispatch('getMe')
+  },
+  async changeLanguage({ state }, data) {
+    await this.$cookies.set('lang', data, {
+      path: '/',
+      maxAge: 365 * 24 * 60 * 60,
+    })
+    location.reload()
+  },
   routerTo() {
     if (this.$i18n.locale === 'en') {
       window.location.href = '/'
@@ -104,6 +124,8 @@ const actions = {
       .then((res) => {
         if (res.status === 200) {
           state.token = res.token
+          this.$axios.setHeader('token', res.token)
+
           this.$cookies.set('token', res.token, {
             path: '/',
             maxAge: 365 * 24 * 60 * 60,
@@ -135,7 +157,7 @@ const actions = {
             maxAge: 365 * 24 * 60 * 60,
           })
         }
-        // dispatch('getListCart')
+        dispatch('getListCart')
       })
       .catch(function (error) {})
   },

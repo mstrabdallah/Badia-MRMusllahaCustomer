@@ -3,8 +3,7 @@ const state = {
   loading: true,
   data: [],
   time: [],
-  DateMessage: '',
-  cartLength: 0
+  DateMessage: ''
 }
 
 const getters = {

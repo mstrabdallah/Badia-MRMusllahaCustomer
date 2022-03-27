@@ -21,6 +21,7 @@
     "vue-phone-number-input": "^1.1.12",
     "vue-server-renderer": "^2.6.14",
     "vue-template-compiler": "^2.6.14",
+    "vue-uuid": "^3.0.0",
     "vuex": "^3.4.0",
     "webpack": "^4.46.0"
   },

@@ -3,7 +3,7 @@
     <a>{{$t('call us')}}</a>
     <ul>
       <li :class="[this.$i18n.locale === 'ar' && 'active']">
-        <a :href="switchLocalePath('ar')"> العربية </a>
+        <a @click="changeLanguage('ar')"> العربية </a>
       </li>
        <v-divider
       class="mx-4"
@@ -11,14 +11,21 @@
     ></v-divider>
 
       <li :class="[this.$i18n.locale === 'en' && 'active']">
-        <a :href="switchLocalePath('en')"> English </a>
+        <a @click="changeLanguage('en')"> English </a>
       </li>
     </ul>
   </nav>
 </template>
 
 <script>
-export default {};
+import { mapActions } from "vuex";
+export default {
+  methods: {
+    ...mapActions(["changeLanguage"]),
+
+
+  }
+};
 </script>
 
  <style scoped>
