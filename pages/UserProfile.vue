@@ -3,9 +3,7 @@
     <v-row>
       <v-col md="4">
         <div class="">
-          <v-card class="mx-auto text-end" max-width="344" active-class=""
-
-          >
+          <v-card class="mx-auto text-end" max-width="344" active-class="">
             <div class="pa-7 rounded-circle d-inline-block">
               <img src="/images/07.png" class="relative" />
             </div>
@@ -15,7 +13,7 @@
                 <font-awesome-icon far icon="user" class="mr-5" />
               </v-list-item-icon>
               <v-list-item-title text="title" class="text-start">
-                {{allAuth.user.name}}
+                {{ allAuth.user.name }}
               </v-list-item-title>
             </v-list-item>
 
@@ -24,7 +22,7 @@
                 <font-awesome-icon far icon="envelope" class="mr-5" />
               </v-list-item-icon>
               <v-list-item-title text="title">
-                {{  allAuth.user.email}}
+                {{ allAuth.user.email }}
               </v-list-item-title>
             </v-list-item>
 
@@ -36,11 +34,9 @@
                   class="mr-5"
                 />
               </v-list-item-icon>
-              <v-list-item-title text="title"
-                >
+              <v-list-item-title text="title">
                 {{ allAuth.user.phone }}
-                </v-list-item-title
-              >
+              </v-list-item-title>
             </v-list-item>
 
             <!-- <v-list-item>
@@ -60,23 +56,45 @@
       <v-divider vertical></v-divider>
       <v-col md="8">
         <div>
-          <v-expansion-panels v-model="panel" multiple>
+          <v-expansion-panels  multiple>
             <v-expansion-panel>
               <v-expansion-panel-header
                 >Pesonal Information</v-expansion-panel-header
               >
 
-              <editUserDetails />
+              <UserDetails />
             </v-expansion-panel>
 
             <v-expansion-panel>
-              <v-expansion-panel-header>About Me</v-expansion-panel-header>
+              <v-expansion-panel-header>My Address</v-expansion-panel-header>
               <v-expansion-panel-content>
-                Some content
+                <v-list
+                  two-line
+                  v-for="(address, i) in AllAddresses.data.data"
+                  :key="i"
+                >
+                  <v-list-item>
+                    <v-list-item-icon>
+                      <v-icon color="indigo"> mdi-map-marker </v-icon>
+                    </v-list-item-icon>
+
+                    <v-list-item-content>
+                      <v-list-item-title>{{
+                        address.address_line
+                      }}</v-list-item-title>
+                      <v-list-item-subtitle
+                        >{{ address.apartment_no }} , {{ address.building_no }},
+                        {{ address.street }}, {{ address.area }},
+                        {{ address.city.name }}</v-list-item-subtitle
+                      >
+                    </v-list-item-content>
+                  </v-list-item>
+                </v-list>
+                <UserAddress />
               </v-expansion-panel-content>
             </v-expansion-panel>
 
-            <v-expansion-panel>
+            <!-- <v-expansion-panel>
               <v-expansion-panel-header>Bank Account</v-expansion-panel-header>
               <v-expansion-panel-content>
                 <v-sheet class="pa-5">
@@ -100,21 +118,6 @@
                         required
                       ></v-text-field>
                     </v-col>
-
-                    <!-- <v-col
-                                  cols="12"
-                                  sm="6"
-                                  md="6"
-                                >
-                                  <v-text-field
-                                    label="EXPAIRY DATE*"
-                                    v-model="ExpairyDate"
-                                    placeholder="MM/YY"
-                                    type="date"
-                                    required
-                                  ></v-text-field>
-                                </v-col> -->
-
                     <v-col cols="11" sm="6">
                       <v-dialog
                         ref="dialog"
@@ -190,7 +193,7 @@
                   </v-btn>
                 </v-card-actions>
               </v-expansion-panel-content>
-            </v-expansion-panel>
+            </v-expansion-panel> -->
           </v-expansion-panels>
         </div>
       </v-col>
@@ -199,53 +202,31 @@
 </template>
 
 <script>
-import editUserDetails from '../components/user/vue/editUserDetails.vue'
+import UserDetails from '../components/user/vue/UserDetails.vue'
+import UserAddress from '../components/userAddress/index.vue'
 import { mapActions, mapGetters } from 'vuex'
 
-
 export default {
-  // data: () => ({
-  //   date: new Date().toISOString().substr(0, 7),
-  //   menu: false,
-  //   modal: false,
 
-  //   name: null,
-  //   address: null,
-  //   city: null,
-  //   state: null,
-  //   zip: null,
-  //   country: null,
 
-  //   dialog: false,
-  //   hidden: false,
-  //   panel: [0, 1],
-  //   WorkUserEmail: null,
-  //   UserEmail: null,
-  //   WorkUserMobile: null,
-  //   PersonalUserMobile: '',
-  //   UserLastName: '',
-  //   UserFirstName: '',
-
-  //   switch1: true,
-  //   switch2: false,
-  // }),
   components: {
-    editUserDetails,
+    UserDetails,
+    UserAddress,
   },
 
-
- computed: {
-    ...mapGetters(['allAuth']),
+  computed: {
+    ...mapGetters(['allAuth', 'AllAddresses']),
   },
   methods: {
-    ...mapActions(['getMe']),
+    ...mapActions(['getMe','getListCart', 'addAddress', 'getAddress']),
     // onSubmit(){
     //   this.addToCart(this.prodName)
     // }
   },
   mounted() {
-    // this.getMe()
-
+    this.getAddress()
+    this.getListCart()
+    // this.getListOfTime()
   },
 }
 </script>

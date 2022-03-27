@@ -41,6 +41,8 @@ const actions = {
     setTimeout(() => dispatch('getListCart'), 1000)
        } else {
          alert(res.data.msg)
+         state.msg = res.data.msg;
+
        }
        state.loading = false
      })

@@ -7,11 +7,11 @@
           <div class="Payment">
             <v-container fluid>
               <v-row align="center">
-                <v-col cols="6">
+                <v-col cols="12" sm="6" md="6">
                   <h3>Select Your Payment Method</h3>
                 </v-col>
 
-                <v-col cols="6">
+                <v-col cols="12" sm="6" md="6">
                   <v-select
                     v-model="select"
                     :hint="`${select.state}`"
@@ -25,11 +25,11 @@
                   ></v-select>
                 </v-col>
 
-                <v-col cols="6">
+                <v-col cols="12" lg="6">
                   <h3>Select Your Address</h3>
                 </v-col>
 
-                <v-radio-group >
+                <v-radio-group>
                   <v-radio
                     v-for="(address, i) in AllAddresses.data.data"
                     :key="i"
@@ -42,8 +42,12 @@
             </v-container>
           </div>
 
-          <v-container>
-            <div class="Adress" style="text-align: end">
+
+          <!-- This is palce of old add address -->
+
+          <!-- <v-col cols="6"></v-col> -->
+          <!-- <v-col cols="12">
+            <div class="Adress" style="text-align: center; margin-left: 140px">
               <v-dialog v-model="dialog" persistent max-width="1000px">
                 <template v-slot:activator="{ on, attrs }">
                   <v-btn
@@ -58,7 +62,7 @@
                 </template>
                 <v-card>
                   <v-card-title>
-                    <span class="text-h5">User Profile</span>
+                    <span class="text-h5">Add Address</span>
                   </v-card-title>
                   <v-card-text>
                     <v-container>
@@ -115,7 +119,7 @@
                             outlined
                             v-model="addressData.notes"
                             label="notes"
-                            value="The Woodman set to work at once, and so sharp was his axe that the tree was soon chopped nearly through."
+                            value="If you would to add any notes ... Write it here."
                           ></v-textarea>
                         </v-col>
 
@@ -139,12 +143,16 @@
                 </v-card>
               </v-dialog>
             </div>
-          </v-container>
+          </v-col> -->
+
+            <UserAddress   style="margin-left: 80px"/>
+
+
 
           <v-container>
             <v-row>
-              <v-col cols="6">
-                <h3>Select Your Time</h3>
+              <v-col cols="6" lg="6">
+                <h3>Select Day</h3>
               </v-col>
 
               <v-col cols="12" lg="6">
@@ -161,11 +169,9 @@
                     <v-text-field
                       v-model="dateFormatted"
                       label="Date"
-                      hint="MM/DD/YYYY format"
                       persistent-hint
                       prepend-icon="mdi-calendar"
                       v-bind="attrs"
-                      @blur="date = parseDate(dateFormatted)"
                       v-on="on"
                     ></v-text-field>
                   </template>
@@ -175,10 +181,36 @@
                     @input="menu1 = false"
                   ></v-date-picker>
                 </v-menu>
-                <!-- <p>
-                  Date in ISO format: <strong>{{ date }}</strong>
-                </p> -->
               </v-col>
+
+              <div
+                class="loadingReg"
+                v-if="this.$store.state.ckeckoutModule.loading"
+              >
+                <v-progress-circular
+                  :size="50"
+                  color="primary"
+                  indeterminate
+                ></v-progress-circular>
+              </div>
+              <template v-else>
+                <v-col cols="12" lg="6" v-if="AllListOfTime.time">
+                  <h3>Select Your Time</h3>
+                </v-col>
+                <v-col cols="12" lg="6">
+                  <p class="red--text" v-if="this.$store.state.ckeckoutModule.DateMessage">
+                    Please Pick the Right Time
+                  </p>
+                  <v-radio-group>
+                    <v-radio
+                      v-for="(time, i) in AllListOfTime.time.data"
+                      :key="i"
+                      :label="time"
+                      :value="time"
+                    ></v-radio>
+                  </v-radio-group>
+                </v-col>
+              </template>
             </v-row>
           </v-container>
         </v-card>
@@ -190,66 +222,75 @@
         <div class="">
           <v-card class="mx-auto text-end" max-width="344" active-class="">
             <v-list-item>
-              <v-list-item-icon>
-                <!-- <font-awesome-icon far icon="user" class="mr-5" /> -->
-              </v-list-item-icon>
+              <v-list-item-title> Price: </v-list-item-title>
               <v-list-item-title text="title" class="text-start">
-                na
+                {{ AllListOfCarts.data.price }}
               </v-list-item-title>
             </v-list-item>
 
             <v-list-item>
-              <v-list-item-icon>
-                <!-- <font-awesome-icon far icon="envelope" class="mr-5" /> -->
-              </v-list-item-icon>
-              <v-list-item-title text="title"> na </v-list-item-title>
+              <v-list-item-title> Taxes: </v-list-item-title>
+              <v-list-item-title text="title">
+                {{ AllListOfCarts.data.vat }}
+              </v-list-item-title>
             </v-list-item>
-
+            <v-divider></v-divider>
             <v-list-item>
-              <v-list-item-icon> </v-list-item-icon>
-              <v-list-item-title text="title"> na </v-list-item-title>
+              <v-list-item-title class="title">
+                Total Price:
+              </v-list-item-title>
+              <v-list-item-title text="title" class="text-start title">
+                {{ AllListOfCarts.data.total_price }}
+              </v-list-item-title>
             </v-list-item>
           </v-card>
         </div>
       </v-col>
     </v-row>
+
   </v-container>
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex'
+import { mapActions, mapGetters } from 'vuex';
+import UserAddress from '../../components/userAddress/index.vue'
 
 export default {
   data() {
     return {
-      select: { state: 'Cash' },
-      items: [{ state: 'Cash' }, { state: 'Visa Card' }],
+      select: { state: 'Cash On Service' },
+      items: [{ state: 'Cash On Service' }],
       dialog: false,
 
-      date: new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
-        .toISOString()
-        .substr(0, 10),
+
+      date: new Date(
+        Date.now() - new Date().getTimezoneOffset() * 60000
+      ).toISOString(),
       dateFormatted: this.formatDate(
         new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
           .toISOString()
-          .substr(0, 10)
+          .substr(0, 20)
       ),
       menu1: false,
+      dateSended: '',
 
-      addressData: {
-        street: '',
-        area: '',
-        building_no: '',
-        apartment_no: '',
-        address_line: '',
-        postal_code: '',
-        notes: '',
-        checkbox: false,
-      },
+      // addressData: {
+      //   street: '',
+      //   area: '',
+      //   building_no: '',
+      //   apartment_no: '',
+      //   address_line: '',
+      //   postal_code: '',
+      //   notes: '',
+      //   checkbox: false,
+      // },
     }
   },
+  components:{
+    UserAddress
+  },
   computed: {
-    ...mapGetters(['AllAddresses']),
+    ...mapGetters(['AllAddresses', 'AllListOfCarts', 'AllListOfTime']),
     computedDateFormatted() {
       return this.formatDate(this.date)
     },
@@ -257,21 +298,24 @@ export default {
   watch: {
     date(val) {
       this.dateFormatted = this.formatDate(this.date)
+      if ((this.$store.state.ckeckoutModule.status = 500)) {
+        setTimeout(() => (this.snackbar = true))
+      }
+      this.getListOfTime(this.dateFormatted)
     },
   },
   methods: {
-    ...mapActions(['addAddress', 'getAddress']),
+    ...mapActions(['addAddress', 'getAddress', 'getListCart', 'getListOfTime']),
 
-    OnAddAddress() {
-      console.log(this.addressData)
-      this.addAddress(this.addressData)
-    },
+    // OnAddAddress() {
+    //   this.addAddress(this.addressData)
+    // },
 
     formatDate(date) {
       if (!date) return null
 
       const [year, month, day] = date.split('-')
-      return `${month}/${day}/${year}`
+      return `${year}-${month}-${day}`
     },
     parseDate(date) {
       if (!date) return null
@@ -279,12 +323,17 @@ export default {
       const [month, day, year] = date.split('/')
       return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`
     },
+
+    // OnPickDate(e) {},
+
     // onSubmit(){
     //   this.addToCart(this.prodName)
     // }
   },
   mounted() {
     this.getAddress()
+    this.getListCart()
+    // this.getListOfTime()
   },
 }
 </script>

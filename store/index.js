@@ -8,6 +8,7 @@ import cart from './modules/cart'
 import carts from './modules/carts'
 import servieses from './modules/servieses'
 import addresses from './modules/addresses'
+import ckeckoutModule from './modules/ckeckoutModule'
 // Load Vuex
 Vue.use(Vuex);
 
@@ -21,7 +22,8 @@ const store = () =>{
       cart,
       carts,
       servieses,
-      addresses
+      addresses,
+      ckeckoutModule
     },
 });
 }

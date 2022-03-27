@@ -4,7 +4,7 @@
       :content="`${$store.state.carts.cartLength}`"
     >
       <v-btn nuxt to="/card" icon>
-        <v-icon size="20">mdi-cart-outline</v-icon>
+        <v-icon large >mdi-cart-outline</v-icon>
       </v-btn>
     </v-badge>
 </template>

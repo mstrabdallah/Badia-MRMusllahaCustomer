@@ -72,6 +72,22 @@
           centered
           shaped
           bottom
+          v-if="this.$store.state.carts.msg"
+        >
+          {{ this.$store.state.carts.msg }}
+        </v-snackbar>
+      </template>
+      <template>
+        <v-snackbar
+          v-model="snackbar"
+          color="blue"
+          :timeout="1500"
+          :value="true"
+          absolute
+          centered
+          shaped
+          bottom
+          v-if="!this.$store.state.carts.msg"
         >
           {{ this.$store.state.carts.msg }}
         </v-snackbar>
@@ -82,7 +98,7 @@
           <template v-slot:default>
             <thead>
               <tr>
-                <th class="text-left">Count of Items</th>
+                <!-- <th class="text-left">Count of Items</th> -->
                 <th class="text-left">Price</th>
                 <th class="text-left">vat</th>
                 <th class="text-left">Total Price</th>
