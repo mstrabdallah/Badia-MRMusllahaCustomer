@@ -3,8 +3,8 @@ const state = {
   loading: true,
   data: [],
   time: [],
-  DateMessage:'',
-  cartLength:0
+  DateMessage: '',
+  cartLength: 0
 }
 
 const getters = {
@@ -23,7 +23,7 @@ const actions = {
   //   })
   // },
 
-  async getListOfTime({ state , dispatch }, date) {
+  async getListOfTime({ state, dispatch }, date) {
 
 
 
@@ -32,26 +32,25 @@ const actions = {
 
 
     state.loading = true
-     this.$axios.post('/cart/getListOfTime', data).then((res) => {
+    this.$axios.post('/cart/getListOfTime', data).then((res) => {
       state.loading = false;
 
-       state.time = res.data
-       if (res.data.status === 200) {
+      state.time = res.data
+      if (res.data.status === 200) {
         // state.msg = res.data.msg;
         //  state.DateMessage = res.data.msg;
 
+        // setTimeout(() => dispatch('getListCart'), 1000)
+      }
 
-    // setTimeout(() => dispatch('getListCart'), 1000)
-       }
-
-       else {
+      else {
         //  alert(res.data.msg)
-         state.DateMessage = res.data.msg;
+        state.DateMessage = res.data.msg;
 
-       }
-       state.loading = false
-     }
-     )
+      }
+      state.loading = false
+    }
+    )
   },
 
 

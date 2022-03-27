@@ -184,13 +184,15 @@
               </v-col>
 
               <div
-                class="loadingReg"
+                class="loadingReg "
                 v-if="this.$store.state.ckeckoutModule.loading"
+
               >
                 <v-progress-circular
                   :size="50"
                   color="primary"
                   indeterminate
+
                 ></v-progress-circular>
               </div>
               <template v-else>
@@ -344,5 +346,8 @@ export default {
 }
 .Adress {
   text-align: end;
+}
+.loadingReg{
+  margin: auto;
 }
 </style>

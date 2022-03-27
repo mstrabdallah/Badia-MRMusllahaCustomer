@@ -1,7 +1,17 @@
 <template>
   <v-container>
+    <div v-if="this.$store.state.carts.cartLength <= 0">
+      <h2 class="text-center">Wait for Your data item</h2>
+    </div>
+    <div class="loadingReg d-flex justify-center" centered v-if="this.$store.state.carts.loading">
+      <v-progress-circular
+        :size="50"
+        color="#43A047"
+        indeterminate
+      ></v-progress-circular>
+    </div>
     <div v-if="this.$store.state.carts.cartLength > 0">
-      <h1 class="text-center">Your Cart Items</h1>
+      <h1 class="text-center" v-if="!this.$store.state.carts.loading">Your Cart Items</h1>
       <v-banner
         two-line
         v-for="(SingleCart, j) in AllListOfCarts.data.services"
@@ -37,6 +47,7 @@
           </span>
           <v-btn
             fab
+            :loading="AllListOfCarts.loading"
             @click="increment(SingleCart.quantity, SingleCart.id)"
             small
           >
@@ -93,7 +104,7 @@
         </v-snackbar>
       </template>
 
-      <v-banner two-line>
+      <v-banner two-line v-if="!this.$store.state.carts.loading">
         <v-simple-table>
           <template v-slot:default>
             <thead>
@@ -145,9 +156,7 @@
       </div> -->
     </div>
 
-    <div v-if="this.$store.state.carts.cartLength <= 0">
-      <h2 class="text-center">Wait for Your data item</h2>
-    </div>
+
   </v-container>
 </template>
 
@@ -244,5 +253,8 @@ export default {
 }
 .v-data-table > .v-data-table__wrapper tbody tr td:last-child {
   text-align: end;
+}
+.loadingReg {
+  margin: auto;
 }
 </style>
