@@ -3,8 +3,9 @@ const state = {
   loading: true,
   data: [],
   cart: [],
-  msg:'',
-  cartLength:0
+  msg: '',
+  deleteMsg: '',
+  cartLength: 0
 }
 
 const getters = {
@@ -13,58 +14,58 @@ const getters = {
 
 const actions = {
   async getListCart({ state }) {
-    // alert(id)
+
     state.loading = true
     state.data = []
-    await this.$axios.get('/cart' ).then((res) => {
-      state.data = res.data.data
-      state.cartLength = res.data.data.services.length
+    await this.$axios.get('/cart').then((res) => {
+      (res.data);
       state.loading = false
+
+      if (res.data.status === 200) {
+        state.data = res.data.data
+        state.cartLength = res.data.data.services.length
+      } else {
+
+      }
+
     })
   },
 
-  async UpdateCart({ state , dispatch }, Obj) {
+  async UpdateCart({ state, dispatch }, Obj) {
 
-    // console.log(Obj);
-    // console.log(id);
+
     var data = new FormData()
     data.append('service_id', Obj.id)
     data.append('quantity', Obj.quantity)
 
-    state.loading = true
-     this.$axios.post('/cart/update', data).then((res) => {
-       state.cart = res.data
-       if (res.data.status === 200) {
-         state.msg = res.data.msg;
-
-
-    setTimeout(() => dispatch('getListCart'), 1000)
-       } else {
-         alert(res.data.msg)
-         state.msg = res.data.msg;
-
-       }
-       state.loading = false
-     })
+    // state.loading = true
+    this.$axios.post('/cart/update', data).then((res) => {
+      state.cart = res.data
+      if (res.data.status === 200) {
+        state.msg = res.data.msg;
+        setTimeout(() => dispatch('getListCart'), 1000)
+      } else {
+        state.msg = `Updated Only Once, ` + res.data.msg;
+      }
+      state.loading = false
+    })
   },
 
 
 
   async DeleteCart({ state }, dataObj) {
-
     var data = new FormData()
     data.append('service_id', dataObj)
-
-    state.loading = true
-     this.$axios.post('/cart/remove', data).then((res) => {
-       state.cart = res.data
-       if (res.data.status === 200) {
-         alert(res.data.msg)
-       } else {
-         alert(res.data.msg)
-       }
-       state.loading = false
-     })
+    // state.loading = true
+    this.$axios.post('/cart/remove', data).then((res) => {
+      state.cart = res.data
+      if (res.data.status === 200) {
+        state.deleteMsg = res.data.msg;
+      } else {
+        state.deleteMsg = res.data.msg;
+      }
+      state.loading = false
+    })
   },
 }
 

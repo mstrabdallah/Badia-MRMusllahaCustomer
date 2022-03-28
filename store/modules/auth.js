@@ -81,7 +81,7 @@ const actions = {
       .post('/register', data)
       .then((res) => {
         state.loading = false
-        // console.log(res.data.status)
+         (res.data.status)
         if (res.data.status === 200) {
           if (state.step === 1) state.step = 2
           else {

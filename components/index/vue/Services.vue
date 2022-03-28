@@ -1,6 +1,6 @@
 <template>
   <section id="serv" class="container_cc serv">
-    <h2>popular services</h2>
+    <h2>Popular Services</h2>
 
     <v-container>
       <v-row>
@@ -9,15 +9,20 @@
           :key="i"
           :cols="i"
           md="4"
+
+          class="text-center"
         >
-          <v-card class="mx-auto" max-width="344">
+        <v-hover v-slot="{ hover }" open-delay="200">
+<nuxt-link  :to="`/Category?parent=${Proudcts.id}`">
+          <v-card class="mx-auto" rounded-t-0 max-width="344" :elevation="hover ? 12 : 2"
+                :class="{ 'on-hover': hover }">
             <v-img :src="Proudcts.image" height="200px"></v-img>
 
             <v-card-title> {{ Proudcts.name }} </v-card-title>
 
-            <v-card-subtitle> {{ Proudcts.id }} </v-card-subtitle>
+            <!-- <v-card-subtitle> {{ Proudcts.id }} </v-card-subtitle> -->
 
-            <v-card-actions>
+            <!-- <v-card-actions>
               <v-spacer></v-spacer>
               <v-btn
                 text
@@ -27,8 +32,10 @@
               >
                 {{ Proudcts.name }}
               </v-btn>
-            </v-card-actions>
+            </v-card-actions> -->
           </v-card>
+          </nuxt-link>
+          </v-hover>
         </v-col>
       </v-row>
     </v-container>
@@ -48,8 +55,7 @@ export default {
     // }
   },
   mounted() {
-    setTimeout(() => this.getCategories(), 2000)
-
+    setTimeout(() => this.getCategories(), 1000)
   },
 }
 </script>
@@ -73,5 +79,8 @@ export default {
 .crad_s {
   padding: 0px;
   margin-bottom: 30px;
+}
+.v-card__title {
+  display: block;
 }
 </style>

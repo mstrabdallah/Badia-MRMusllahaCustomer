@@ -225,7 +225,7 @@ export default {
   },
   mounted() {
     this.getAddress()
-    this.getListCart()
+    // this.getListCart()
     // this.getListOfTime()
   },
 }

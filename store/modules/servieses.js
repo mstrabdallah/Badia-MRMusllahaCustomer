@@ -3,6 +3,7 @@ const state = {
   loading: true,
   data: [],
   cart: [],
+  serviceMsg:'',
 }
 
 const getters = {
@@ -15,6 +16,7 @@ const actions = {
     state.loading = true
     state.data = []
     await this.$axios.get('/Service/' + id).then((res) => {
+      // state.serviceMsg = res.data.msg;
       state.data = res.data.data
       state.loading = false
     })
@@ -24,14 +26,18 @@ const actions = {
     var data = new FormData()
     data.append('service_id', dataObj)
 
-    state.loading = true
     this.$axios.post('/cart/add', data).then((res) => {
+      state.loading = true
       state.cart = res.data
       if (res.data.status === 200) {
+      state.serviceMsg = res.msg;
+
         alert(res.data.msg)
-        dispatch('getListCart')
+        dispatch('getListCart', 'getservices')
       } else {
-        alert(res.data.msg)
+        // alert(res.data.msg)
+      state.serviceMsg = res.msg;
+
       }
       state.loading = false
     })

@@ -42,7 +42,7 @@
         </NuxtLink>
       </v-list-item> -->
         <v-list-item v-if="this.$store.state.auth.checkAuth">
-            <NuxtLink :to="localePath('/card')">
+            <NuxtLink :to="localePath('/cart')">
               <Checkout />
             </NuxtLink>
           </v-list-item>
@@ -104,7 +104,7 @@ export default {
   methods: {
     ...mapActions(["Logout"]),
     afterVisibleChange(val) {
-      // console.log("visible", val);
+       ("visible", val);
     },
     showDrawer() {
       this.visible = true;

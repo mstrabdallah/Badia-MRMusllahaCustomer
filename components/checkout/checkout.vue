@@ -3,7 +3,7 @@
       overlap
       :content="`${$store.state.carts.cartLength}`"
     >
-      <v-btn nuxt to="/card" icon>
+      <v-btn nuxt to="/cart" icon>
         <v-icon large >mdi-cart-outline</v-icon>
       </v-btn>
     </v-badge>

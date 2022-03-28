@@ -1,10 +1,10 @@
 <template>
-  <CheckCart />
+  <Cart />
 </template>
 
 
 <script>
-import CheckCart from '../../components/cart/CheckCart.vue'
+import Cart from '../components/cart/Cart.vue'
 export default {
    data: () => ({
 
@@ -14,7 +14,7 @@ export default {
 },
 
   components: {
-    CheckCart,
+    Cart,
   },
 }
 </script>

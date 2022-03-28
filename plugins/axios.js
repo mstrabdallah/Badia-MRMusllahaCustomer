@@ -5,8 +5,7 @@ export default function ({ $axios, app, store }, inject) {
       common: {
         'Accept': "application/json",
         'Content-Type': 'multipart/form-data',
-
-        // 'device':store.state.auth.device,
+        'token':app.$cookies.get('token'),
         // 'session-id':store.state.auth.sessionId
       }
     }

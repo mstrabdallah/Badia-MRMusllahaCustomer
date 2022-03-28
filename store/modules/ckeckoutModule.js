@@ -1,9 +1,12 @@
 import 'axios';
 const state = {
   loading: true,
+  loadingForAddress: true,
   data: [],
-  time: [],
-  DateMessage: ''
+  order: [],
+  DateMessage: '',
+  msg:'',
+  CartEmptyMessage: '',
 }
 
 const getters = {
@@ -24,12 +27,8 @@ const actions = {
 
   async getListOfTime({ state, dispatch }, date) {
 
-
-
     var data = new FormData()
     data.append('date', date)
-
-
     state.loading = true
     this.$axios.post('/cart/getListOfTime', data).then((res) => {
       state.loading = false;
@@ -38,14 +37,10 @@ const actions = {
       if (res.data.status === 200) {
         // state.msg = res.data.msg;
         //  state.DateMessage = res.data.msg;
-
         // setTimeout(() => dispatch('getListCart'), 1000)
       }
-
       else {
-        //  alert(res.data.msg)
         state.DateMessage = res.data.msg;
-
       }
       state.loading = false
     }
@@ -53,23 +48,32 @@ const actions = {
   },
 
 
+  async CheckOut({ state }, dataObj) {
 
-  // async DeleteCart({ state }, dataObj) {
 
-  //   var data = new FormData()
-  //   data.append('service_id', dataObj)
+    var data = new FormData()
+    data.append('payment_method', dataObj.payment)
+    data.append('address_id', dataObj.address)
+    data.append('date', dataObj.date)
+    data.append('time', dataObj.time)
+    data.append('city_id', '1')
 
-  //   state.loading = true
-  //    this.$axios.post('/cart/remove', data).then((res) => {
-  //      state.cart = res.data
-  //      if (res.data.status === 200) {
-  //        alert(res.data.msg)
-  //      } else {
-  //        alert(res.data.msg)
-  //      }
-  //      state.loading = false
-  //    })
-  // },
+    this.$axios.post('/Order/checkout', data).then((res) => {
+       state.loading = true
+       state.order = res.data
+       if (res.data.status === 200) {
+
+         state.msg = res.data.msg;
+
+
+       } else {
+
+         state.CartEmptyMessage = res.data.msg;
+
+       }
+       state.loading = false
+     })
+  },
 }
 
 const mutations = {}

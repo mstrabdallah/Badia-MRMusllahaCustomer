@@ -105,7 +105,6 @@ export default {
     EditUserDetails,
   },
   data: () => ({
-
     errorMessages: '',
     name: null,
     address: null,

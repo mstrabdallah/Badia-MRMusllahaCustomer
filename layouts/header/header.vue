@@ -33,7 +33,7 @@
           </li>
 
           <li v-if="this.$store.state.auth.checkAuth">
-            <NuxtLink :to="localePath('/card')">
+            <NuxtLink :to="localePath('/cart')">
               <Checkout />
             </NuxtLink>
           </li>

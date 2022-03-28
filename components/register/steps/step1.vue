@@ -135,7 +135,7 @@ export default {
     RegisterFunction(e) {
       e.preventDefault();
       if (this.$refs.form.validate() === false) return false;
-      // console.log(this.data);
+       (this.data);
       this.registerAction(this.data);
     },
 

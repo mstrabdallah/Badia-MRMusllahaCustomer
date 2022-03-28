@@ -1,40 +1,232 @@
 <template>
-  <div></div>
+  <v-container>
+    <div v-if="this.$store.state.carts.cartLength <= 0">
+      <h2 class="text-center">Wait for Your data item</h2>
+    </div>
+    <div
+      class="loadingReg d-flex justify-center"
+      centered
+      v-if="this.$store.state.carts.loading"
+    >
+      <v-progress-circular
+        :size="50"
+        color="#43A047"
+        indeterminate
+      ></v-progress-circular>
+    </div>
+    <div v-if="this.$store.state.carts.cartLength > 0">
+      <template v-if="!this.$store.state.carts.loading">
+        <h1 class="text-center" v-if="!this.$store.state.carts.loading">
+          Your Cart Items
+        </h1>
+        <v-banner
+          two-line
+          v-for="(SingleCart, j) in AllListOfCarts.data.services"
+          :key="j"
+        >
+          <v-avatar slot="icon" size="200" tile color=" accent-4">
+            <img :src="SingleCart.image" />
+          </v-avatar>
+
+          <h4>{{ SingleCart.title }}</h4>
+          <span>Price: {{ SingleCart.price }}</span>
+          <template v-slot:actions>
+            <v-btn
+              v-if="SingleCart.quantity > 1"
+              fab
+              :rounded="false"
+              small
+              @click="decrement(SingleCart.quantity, SingleCart.id)"
+            >
+              <v-icon>mdi-minus</v-icon>
+            </v-btn>
+
+            <span class="counter">
+              {{ SingleCart.quantity }}
+            </span>
+            <v-btn
+              fab
+              @click="increment(SingleCart.quantity, SingleCart.id)"
+              small
+            >
+              <v-icon>mdi-plus</v-icon>
+            </v-btn>
+
+            <v-btn
+              fab
+              dark
+              small
+              :rounded="false"
+              @click="Delete(SingleCart.id)"
+              color="red"
+            >
+              <v-icon>mdi-delete</v-icon>
+            </v-btn>
+          </template>
+        </v-banner>
+
+        <v-spacer></v-spacer>
+        <v-banner>
+          <div class="msg">
+            <p></p>
+          </div>
+        </v-banner>
+        <template>
+          <v-snackbar
+            v-model="snackbar"
+            color="blue"
+            :timeout="2500"
+            :value="true"
+            absolute
+            centered
+            shaped
+            bottom
+            v-if="this.$store.state.carts.msg"
+          >
+            {{ this.$store.state.carts.msg }}
+          </v-snackbar>
+        </template>
+        <!--  -->
+        <template>
+          <v-snackbar
+            v-model="snackbarError"
+            color="red"
+            :timeout="2500"
+            :value="true"
+            absolute
+            centered
+            shaped
+            bottom
+            v-if="this.$store.state.carts.deleteMsg"
+          >
+            {{ this.$store.state.carts.deleteMsg }}
+          </v-snackbar>
+        </template>
+
+        <v-banner two-line v-if="!this.$store.state.carts.loading">
+          <v-simple-table>
+            <template v-slot:default>
+              <thead>
+                <tr>
+                  <th class="text-left">Count of Items</th>
+                  <th class="text-left">Price</th>
+                  <th class="text-left">vat</th>
+                  <th class="text-left">Total Price</th>
+                  <th class="text-rigth"></th>
+
+                  <!-- <th class="text-right" expanded-item></th> -->
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>{{ AllListOfCarts.cartLength }}</td>
+                  <td>{{ AllListOfCarts.data.price }}</td>
+                  <td>{{ AllListOfCarts.data.vat }}</td>
+                  <td>{{ AllListOfCarts.data.total_price }}</td>
+                  <td class="checkoutBtn" style="text-align: end">
+                    <v-fab-transition>
+                      <v-btn color="#30c88d" dark nuxt to="/Checkout">
+                        Check Out
+                      </v-btn>
+                    </v-fab-transition>
+                  </td>
+                </tr>
+              </tbody>
+            </template>
+          </v-simple-table>
+        </v-banner>
+      </template>
+    </div>
+  </v-container>
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex'
+
 export default {
-  name: "Card",
+  data() {
+    return {
+      counter: null,
+      cartQuantity: {
+        quantity: 0,
+        id: '',
+      },
+      timeout: 2000,
+      snackbar: false,
+      snackbarError: false,
+    }
+  },
+
+  computed: {
+    ...mapGetters(['AllListOfCarts']),
+  },
   methods: {
-    changeValue(val) {
-      if (val) {
-        //this.item.count++
-        this.$store.dispatch("changeItemCount", {
-          type: val,
-          item: this.item
-        })
+    ...mapActions(['getListCart', 'DeleteCart', 'UpdateCart']),
+
+    increment(quantity, id) {
+      this.cartQuantity.quantity = quantity - 1 + 2
+      this.cartQuantity.id = id
+      this.UpdateCart(this.cartQuantity)
+
+      if ((this.$store.state.carts.status = 200)) {
+        setTimeout(() => (this.snackbar = true))
+      }
+    },
+
+    decrement(quantity, id) {
+      if (quantity <= 0) {
+        return
       } else {
-        if (this.item.count >= 0) {
-          this.$store.dispatch("changeItemCount", {
-            type: val,
-            item: this.item
-          })
+        this.cartQuantity.quantity = quantity - 1
+        this.cartQuantity.id = id
+        this.UpdateCart(this.cartQuantity)
+        if ((this.$store.state.carts.status = 200)) {
+          setTimeout(() => (this.snackbar = true))
         }
       }
     },
-    removeItem() {
-      this.$store.dispatch("removeFromCard", this.item.id)
-    }
+
+    Delete(id) {
+      this.DeleteCart(id)
+      if ((this.$store.state.carts.status = 200)) {
+        setTimeout(() => (this.snackbarError = true))
+      }
+      setTimeout(() => this.getListCart(), 2000)
+    },
+    totalPrice() {
+      return this.$store.getters.getTotalPrice
+    },
+
   },
-  props: {
-    item: {
-      type: Object,
-      required: true
-    }
+  mounted() {
+    // setTimeout(() => this.getListCart(), 1000)
   },
 }
 </script>
 
 <style scoped>
-
+.price {
+  background-color: #ff0000cc;
+  color: white;
+  font-weight: 900;
+  border-radius: 10px;
+  padding: 2px 5px 2px 5px;
+}
+.counter {
+  border: 1px solid #ccc;
+  padding: 8px 20px;
+  border-radius: 5px;
+}
+.v-btn--round {
+  border-radius: 5px;
+}
+.checkoutBtn {
+  text-align: end;
+}
+.v-data-table > .v-data-table__wrapper tbody tr td:last-child {
+  text-align: end;
+}
+.loadingReg {
+  margin: auto;
+}
 </style>

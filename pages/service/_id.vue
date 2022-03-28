@@ -22,13 +22,34 @@
               <v-card-actions>
                 <v-spacer></v-spacer>
 
-                <v-btn class="mx-2" fab dark color="indigo" @click="onSubmit(Proudcts.id)">
+                <v-btn
+                  class="mx-2"
+                  fab
+                  dark
+                  color="indigo"
+                  @click="onSubmit(Proudcts.id)"
+                >
                   <v-icon dark> mdi-cart-outline </v-icon>
                 </v-btn>
               </v-card-actions>
             </v-card>
           </v-col>
         </v-row>
+        <template>
+          <v-snackbar
+            v-model="snackbar"
+            color="blue"
+            :timeout="2500"
+            :value="true"
+            absolute
+            centered
+            shaped
+            bottom
+            v-if="this.$store.state.servieses.serviceMsg"
+          >
+            {{ this.$store.state.carts.serviceMsg }}
+          </v-snackbar>
+        </template>
       </v-container>
     </v-item-group>
   </section>
@@ -58,20 +79,29 @@
 import { mapActions, mapGetters } from 'vuex'
 
 export default {
+  data() {
+    return {
+      timeout: 2000,
+      snackbar: false,
+      snackbarError: false,
+    }
+  },
+
   validate({ params }) {
     return !isNaN(params.id)
   },
   computed: {
-    ...mapGetters(['allservices']),
+    ...mapGetters(['allservices', 'AllListOfCarts']),
   },
   methods: {
-    ...mapActions(['getservices', 'addToCart']),
-    onSubmit(id){
+    ...mapActions(['getListCart', 'getservices', 'addToCart']),
+    onSubmit(id) {
       this.addToCart(id)
+      setTimeout(() => (this.snackbar = true))
 
-      if (this.$cookies.get("user")) {
+      if (this.$cookies.get('user')) {
       }
-    }
+    },
     // addToCart(id){
     //   alert("what is",id)
     // }
@@ -79,6 +109,7 @@ export default {
   mounted() {
     // alert(this.$route.params.id)
     this.getservices(this.$route.params.id)
+    // this.getListCart()
   },
 }
 </script>
