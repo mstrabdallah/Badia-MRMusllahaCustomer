@@ -116,7 +116,7 @@
           </div>
         </v-list-item-action>
         <v-list-item-action>
-          <v-btn dark :rounded="false" @click="DeleteAdd" color="red">
+          <v-btn dark :rounded="false" @click="DeleteAdd(addressData.street)" color="red">
             <v-icon>mdi-delete</v-icon>
           </v-btn>
         </v-list-item-action>
