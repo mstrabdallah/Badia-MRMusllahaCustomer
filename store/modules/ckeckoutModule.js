@@ -14,43 +14,28 @@ const getters = {
 }
 
 const actions = {
-  // async getListCart({ state }) {
-  //   // alert(id)
-  //   state.loading = true
-  //   state.data = []
-  //   await this.$axios.get('/cart' ).then((res) => {
-  //     state.data = res.data.data
-  //     state.cartLength = res.data.data.services.length
-  //     state.loading = false
-  //   })
-  // },
+
 
   async getListOfTime({ state, dispatch }, date) {
-
     var data = new FormData()
     data.append('date', date)
     state.loading = true
     this.$axios.post('/cart/getListOfTime', data).then((res) => {
-      state.loading = false;
+      state.loading = false
 
       state.time = res.data
       if (res.data.status === 200) {
         // state.msg = res.data.msg;
         //  state.DateMessage = res.data.msg;
         // setTimeout(() => dispatch('getListCart'), 1000)
-      }
-      else {
-        state.DateMessage = res.data.msg;
+      } else {
+        state.DateMessage = res.data.msg
       }
       state.loading = false
-    }
-    )
+    })
   },
 
-
-  async CheckOut({ state }, dataObj) {
-
-
+  async CheckOut({ state, dispatch }, dataObj) {
     var data = new FormData()
     data.append('payment_method', dataObj.payment)
     data.append('address_id', dataObj.address)
@@ -59,20 +44,22 @@ const actions = {
     data.append('city_id', '1')
 
     this.$axios.post('/Order/checkout', data).then((res) => {
-       state.loading = true
-       state.order = res.data
-       if (res.data.status === 200) {
+      state.loading = true
+      state.order = res.data
+      if (res.data.status === 200) {
+        state.msg = res.data.msg
 
-         state.msg = res.data.msg;
-
-
-       } else {
-
-         state.CartEmptyMessage = res.data.msg;
-
-       }
-       state.loading = false
-     })
+        dispatch('getListCart')
+        if (this.$i18n.locale === 'en') {
+          window.location.href = '/ListOrder'
+        } else {
+          window.location.href = '/ar/ListOrder'
+        }
+      } else {
+        state.CartEmptyMessage = res.data.msg
+      }
+      state.loading = false
+    })
   },
 }
 

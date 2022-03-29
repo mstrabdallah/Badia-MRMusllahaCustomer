@@ -62,6 +62,11 @@
 
                 </v-list-item>
               </v-list>
+                <v-list-item>
+                    <NuxtLink  :to="localePath('/listOrder')">{{ $t('Order List') }}</NuxtLink>
+
+                </v-list-item>
+              </v-list>
               <v-list>
                 <v-list-item>
                   <div style="cursor: pointer" @click="Logout">

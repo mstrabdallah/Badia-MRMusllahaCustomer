@@ -9,6 +9,7 @@ import carts from './modules/carts'
 import servieses from './modules/servieses'
 import addresses from './modules/addresses'
 import ckeckoutModule from './modules/ckeckoutModule'
+import listOrder from './modules/listOrder'
 // Load Vuex
 Vue.use(Vuex);
 
@@ -23,9 +24,10 @@ const store = () =>{
       carts,
       servieses,
       addresses,
-      ckeckoutModule
+      ckeckoutModule,
+      listOrder,
     },
-});
+  })
 }
 
 export default store ;

@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <div v-if="this.$store.state.carts.cartLength <= 0">
-      <h2 class="text-center">Wait for Your data item</h2>
+      <h2 class="text-center">You Don't Have Any Items Yet</h2>
     </div>
     <div
       class="loadingReg d-flex justify-center"

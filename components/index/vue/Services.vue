@@ -47,16 +47,7 @@ import { mapActions, mapGetters } from 'vuex'
 export default {
   computed: {
     ...mapGetters(['AllCategories']),
-  },
-  methods: {
-    ...mapActions(['getCategories']),
-    // onSubmit(){
-    //   this.addToCart(this.prodName)
-    // }
-  },
-  mounted() {
-    setTimeout(() => this.getCategories(), 1000)
-  },
+  }
 }
 </script>
 <style scoped>
