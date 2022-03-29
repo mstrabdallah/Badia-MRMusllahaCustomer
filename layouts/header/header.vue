@@ -10,12 +10,20 @@
 
         <v-select
           class="select_head"
-          :items="items"
+          :items="AllCityDeatils.data.data"
           label="Location"
+          item-text="name"
+          item-value="id"
+          v-model="city"
           outlined
           dense
+          @change="onChangeCity"
+
           prepend-inner-icon="mdi-map-marker"
-        ></v-select>
+        >
+
+
+        </v-select>
       </div>
 
       <nav class="menu">
@@ -28,7 +36,7 @@
 
           <li v-if="this.$store.state.auth.checkAuth">
             <NuxtLink :to="localePath('/about')">{{
-              $t('AboutUs')
+              $t('About')
             }}</NuxtLink>
           </li>
 
@@ -93,23 +101,30 @@
 </template>
 
 <script>
+import 'axios';
+
 import Menu from './menu.vue'
 import Checkout from '../../components/checkout/checkout.vue'
 import { mapActions, mapGetters } from 'vuex'
 export default {
   data: () => ({
-    items: ['Foo', 'Bar', 'Fizz', 'Buzz'],
+    // items: ['Foo', 'Bar', 'Fizz', 'Buzz'],
+    city:null,
     scrolled: false,
   }),
 
   mounted() {
-    window.addEventListener('scroll', this.handleScroll)
+    window.addEventListener('scroll', this.handleScroll);
+    this.getCity();
+    // this.getAllUsers()
   },
+
+
   // computed:{
   // ...mapGetters(['all'])
   // },
   methods: {
-    ...mapActions(['Logout']),
+    ...mapActions(['Logout', 'getCity', 'UpdateCity']),
     handleClick(index) {
       this.items[index].click.call(this)
     },
@@ -121,7 +136,16 @@ export default {
         this.scrolled = true
       }
     },
+
+    onChangeCity(){
+      console.log(this.city);
+      this.UpdateCity(this.city)
+    }
+
   },
+  computed: {
+    ...mapGetters(['AllCityDeatils']),
+    },
   components: {
     Menu,
   },
@@ -221,7 +245,7 @@ a.nuxt-link-exact-active.login_ {
   border: 1px solid #9e9e9e;
   padding: 9px 20px;
   border-radius: 8px;
-  width: 300px;
+  width: 200px;
   margin: 0px;
 }
 
@@ -238,6 +262,9 @@ a.nuxt-link-exact-active.login_ {
   color: rgba(0, 0, 0, 0.38);
   background: #bf804b;
   color: #fff;
+}
+.select_head[data-v-f21a83aa]{
+  width: 200px;
 }
 
 @media (max-width: 768px) {

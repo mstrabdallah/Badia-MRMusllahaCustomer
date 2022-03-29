@@ -9,20 +9,24 @@
           :key="i"
           :cols="i"
           md="4"
-
           class="text-center"
         >
-        <v-hover v-slot="{ hover }" open-delay="200">
-<nuxt-link  :to="`/Category?parent=${Proudcts.id}`">
-          <v-card class="mx-auto" rounded-t-0 max-width="344" :elevation="hover ? 12 : 2"
-                :class="{ 'on-hover': hover }">
-            <v-img :src="Proudcts.image" height="200px"></v-img>
+          <v-hover v-slot="{ hover }" open-delay="200">
+            <nuxt-link :to="`/Category?parent=${Proudcts.id}`">
+              <v-card
+                class="mx-auto"
+                rounded-t-0
+                max-width="344"
+                :elevation="hover ? 12 : 2"
+                :class="{ 'on-hover': hover }"
+              >
+                <v-img :src="Proudcts.image" height="200px"></v-img>
 
-            <v-card-title> {{ Proudcts.name }} </v-card-title>
+                <v-card-title> {{ Proudcts.name }} </v-card-title>
 
-            <!-- <v-card-subtitle> {{ Proudcts.id }} </v-card-subtitle> -->
+                <!-- <v-card-subtitle> {{ Proudcts.id }} </v-card-subtitle> -->
 
-            <!-- <v-card-actions>
+                <!-- <v-card-actions>
               <v-spacer></v-spacer>
               <v-btn
                 text
@@ -33,8 +37,8 @@
                 {{ Proudcts.name }}
               </v-btn>
             </v-card-actions> -->
-          </v-card>
-          </nuxt-link>
+              </v-card>
+            </nuxt-link>
           </v-hover>
         </v-col>
       </v-row>

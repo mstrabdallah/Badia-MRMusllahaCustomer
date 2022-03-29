@@ -33,9 +33,9 @@ const actions = {
     }
     var data = new FormData()
 
-    data.append('city_id', '1')
-    data.append('lat', "30.33535")
-    data.append('lng', "30.33535")
+    // data.append('city_id', Obj.city)
+    data.append('lat', "")
+    data.append('lng', "")
 
     data.append('street', Obj.street)
     data.append('area', Obj.area)

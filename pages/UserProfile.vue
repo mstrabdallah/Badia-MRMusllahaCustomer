@@ -68,28 +68,7 @@
             <v-expansion-panel>
               <v-expansion-panel-header>My Address</v-expansion-panel-header>
               <v-expansion-panel-content>
-                <v-list
-                  two-line
-                  v-for="(address, i) in AllAddresses.data.data"
-                  :key="i"
-                >
-                  <v-list-item>
-                    <v-list-item-icon>
-                      <v-icon color="indigo"> mdi-map-marker </v-icon>
-                    </v-list-item-icon>
 
-                    <v-list-item-content>
-                      <v-list-item-title>{{
-                        address.address_line
-                      }}</v-list-item-title>
-                      <v-list-item-subtitle
-                        >{{ address.apartment_no }} , {{ address.building_no }},
-                        {{ address.street }}, {{ address.area }},
-                        {{ address.city.name }}</v-list-item-subtitle
-                      >
-                    </v-list-item-content>
-                  </v-list-item>
-                </v-list>
                 <UserAddress />
               </v-expansion-panel-content>
             </v-expansion-panel>

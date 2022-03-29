@@ -35,6 +35,10 @@ const actions = {
       this.$cookies.set('sId', data, { path: '/', maxAge: 365 * 24 * 60 * 60 })
     if (this.$cookies.get('sId') != data) alert('a7a')
 
+
+    if (!this.$cookies.get('city_id'))
+      this.$cookies.set('city_id', '1')
+
     // get api when open site first time
 
     dispatch('getMe')
