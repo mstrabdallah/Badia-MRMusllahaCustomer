@@ -42,6 +42,8 @@ const actions = {
     // get api when open site first time
 
     dispatch('getMe')
+    setTimeout(() => dispatch('getCategories'), 2000)
+
   },
   async changeLanguage({ state }, data) {
     await this.$cookies.set('lang', data, {
