@@ -2,6 +2,17 @@
   <section>
     <v-item-group>
       <v-container>
+        <div
+            class="loadingReg d-flex justify-center"
+            centered
+            v-if="this.$store.state.servieses.loading"
+          >
+            <v-progress-circular
+              :size="50"
+              color="#43A047"
+              indeterminate
+            ></v-progress-circular>
+        </div>
         <v-row>
           <v-col
             v-for="(Proudcts, i) in allservices.data"
@@ -9,10 +20,12 @@
             :cols="i"
             md="4"
           >
-            <v-card class="mx-auto" max-width="344">
+          <v-hover v-slot="{ hover }" open-delay="200">
+            <v-card class="mx-auto" max-width="344"  :elevation="hover ? 12 : 2"
+                :class="{ 'on-hover': hover }">
               <v-img :src="Proudcts.image" height="200px"></v-img>
 
-              <v-card-title> {{ Proudcts.title }} </v-card-title>
+              <v-card-title class="text-truncate"> {{ Proudcts.title }} </v-card-title>
 
               <v-card-subtitle> {{ Proudcts.description }} </v-card-subtitle>
               <v-card-subtitle>
@@ -24,15 +37,15 @@
 
                 <v-btn
                   class="mx-2"
-                  fab
                   dark
-                  color="indigo"
+                  color="#30c88d"
                   @click="onSubmit(Proudcts.id)"
                 >
                   <v-icon dark> mdi-cart-outline </v-icon>
                 </v-btn>
               </v-card-actions>
             </v-card>
+             </v-hover>
           </v-col>
         </v-row>
         <template>
