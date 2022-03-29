@@ -68,7 +68,6 @@ const actions = {
       if (res.data.status === 200) {
         state.deleteMsg = res.data.msg
           dispatch('ListOfOrder')
-          dispatch('getListCart')
       } else {
         state.deleteMsg = res.data.msg
       }
