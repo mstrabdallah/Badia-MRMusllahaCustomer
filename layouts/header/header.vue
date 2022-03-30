@@ -6,7 +6,7 @@
       </NuxtLink>
 
       <div class="search">
-        <input type="text" placeholder="Search For Services" />
+        <!-- <input type="text" placeholder="Search For Services" /> -->
 
         <v-select
           class="select_head"
@@ -18,26 +18,25 @@
           outlined
           dense
           @change="onChangeCity"
-
           prepend-inner-icon="mdi-map-marker"
         >
-
-
         </v-select>
       </div>
 
       <nav class="menu">
         <ul>
-          <li>
+          <li class="box_op_header d-none d-sm-block">
             <NuxtLink :to="localePath('/')">
-              {{ $t('Home') }}
+              <font-awesome-icon icon="house" class="fa" />
+              <span class="navM_">{{ $t("Home") }}</span>
             </NuxtLink>
           </li>
 
           <li v-if="this.$store.state.auth.checkAuth">
-            <NuxtLink :to="localePath('/about')">{{
-              $t('About')
-            }}</NuxtLink>
+            <NuxtLink :to="localePath('/about')">
+              <font-awesome-icon icon="user-secret" class="fa" />
+              <span class="navM_">{{ $t("About") }}</span>
+            </NuxtLink>
           </li>
 
           <li v-if="this.$store.state.auth.checkAuth">
@@ -46,8 +45,11 @@
             </NuxtLink>
           </li>
 
-          <li v-if="!this.$store.state.auth.checkAuth">
-            <NuxtLink :to="localePath('/about')">{{ $t('About') }}</NuxtLink>
+         <li v-if="!this.$store.state.auth.checkAuth">
+            <NuxtLink :to="localePath('/about')">
+              <font-awesome-icon icon="user-secret" class="fa" />
+              <span class="navM_">{{ $t("About") }}</span>
+            </NuxtLink>
           </li>
 
           <!-- <li v-if="!this.$store.state.auth.checkAuth">
@@ -59,26 +61,38 @@
           <li v-if="this.$store.state.auth.checkAuth">
             <v-menu bottom left>
               <template v-slot:activator="{ on, attrs }">
-                <div v-bind="attrs" v-on="on" color="primary" icon>
+                <div v-bind="attrs" v-on="on"  >
                   <font-awesome-icon icon="user" class="fa" />
                   {{ $t('My Account') }}
                 </div>
               </template>
-              <v-list>
-                <v-list-item>
-                    <NuxtLink  :to="localePath('/UserProfile')">{{ $t('UserProfile') }}</NuxtLink>
 
+              <v-list>
+                  <NuxtLink :to="localePath('/UserProfile')">
+                <v-list-item link>
+                  <v-list-item-title>
+                    {{$t('UserProfile')}}
+                  </v-list-item-title>
                 </v-list-item>
+                  </NuxtLink>
               </v-list>
-                <v-list-item>
-                    <NuxtLink  :to="localePath('/listOrder')">{{ $t('Order List') }}</NuxtLink>
 
-                </v-list-item>
+              <v-list>
+                  <NuxtLink :to="localePath('/listOrder')">
+                  <v-list-item link>
+                  <v-list-item-title>
+                  {{
+                    $t('Order List')
+                  }}
+                  </v-list-item-title>
+                  </v-list-item>
+                  </NuxtLink>
+
               </v-list>
               <v-list>
-                <v-list-item>
-                  <div style="cursor: pointer" @click="Logout">
-                    <v-list-item-title >{{ $t('Logout') }}</v-list-item-title>
+                <v-list-item link>
+                  <div style="margin:auto" @click="Logout">
+                    <v-list-item-title>{{ $t('Logout') }}</v-list-item-title>
                   </div>
                 </v-list-item>
               </v-list>
@@ -96,6 +110,40 @@
               $t('Login')
             }}</NuxtLink>
           </li>
+          <li class="box_op_header">
+            <v-menu offset-y>
+              <template v-slot:activator="{ on, attrs }">
+                <div v-if="$i18n.locale === 'ar'" class="flex">
+                  <img
+                    v-bind="attrs"
+                    v-on="on"
+                    width="24px"
+                    src="/saflag.png"
+                  />
+                </div>
+                <div class="flex" v-else>
+                  <img
+                    v-bind="attrs"
+                    v-on="on"
+                    width="24px"
+                    src="/usflag.png"
+                  />
+                </div>
+              </template>
+              <v-list>
+                <v-list-item :disabled="this.$i18n.locale === 'ar'">
+                  <a @click="changeLanguage('ar')">
+                    <img width="24px" src="/saflag.png" />
+                  </a>
+                </v-list-item>
+                <v-list-item>
+                  <a @click="changeLanguage('en')">
+                    <img width="24px" src="/usflag.png" />
+                  </a>
+                </v-list-item>
+              </v-list>
+            </v-menu>
+          </li>
         </ul>
       </nav>
       <div class="mob_nav">
@@ -106,7 +154,7 @@
 </template>
 
 <script>
-import 'axios';
+import 'axios'
 
 import Menu from './menu.vue'
 import Checkout from '../../components/checkout/checkout.vue'
@@ -114,16 +162,15 @@ import { mapActions, mapGetters } from 'vuex'
 export default {
   data: () => ({
     // items: ['Foo', 'Bar', 'Fizz', 'Buzz'],
-    city:null,
+    city: null,
     scrolled: false,
   }),
 
   mounted() {
-    window.addEventListener('scroll', this.handleScroll);
-    this.getCity();
+    window.addEventListener('scroll', this.handleScroll)
+    this.getCity()
     // this.getAllUsers()
   },
-
 
   // computed:{
   // ...mapGetters(['all'])
@@ -142,15 +189,13 @@ export default {
       }
     },
 
-    onChangeCity(){
-      console.log(this.city);
+    onChangeCity() {
       this.UpdateCity(this.city)
-    }
-
+    },
   },
   computed: {
     ...mapGetters(['AllCityDeatils']),
-    },
+  },
   components: {
     Menu,
   },
@@ -158,14 +203,14 @@ export default {
 </script>
 
 <style scoped>
-header {
-  padding: 0px 100px;
-  box-shadow: 0 3px 4px 0 rgb(0 0 0 / 5%);
-  z-index: 99;
+.header {
+  /* padding: 0px 100px; */
+  box-shadow: 0px 1px 4px 0 rgb(0 0 0 / 5%);
+  border: 1px solid #efefef;
+  z-index: 3;
   background: #fff;
-  position: absolute;
-  top: 41px;
   width: 100%;
+  position: fixed;
 }
 .headerFixed {
   position: fixed;
@@ -184,7 +229,7 @@ header {
   transition: 1s;
 }
 .header_p li a.nuxt-link-exact-active {
-  color: #bf804b;
+  color: #30c88c;
   padding-bottom: 10px;
 }
 .menu ul li[data-v-f21a83aa] {
@@ -192,7 +237,7 @@ header {
   line-height: normal;
 }
 a.nuxt-link-exact-active.login_ {
-  border: 1px solid #bf804b;
+  border: 1px solid #30c88c;
 }
 .login_ {
   border: 1px solid #ccc;
@@ -209,14 +254,18 @@ a.nuxt-link-exact-active.login_ {
   display: flex;
   justify-content: flex-end;
   flex: 1;
+
 }
 
 .menu ul {
-  font-size: 16px;
+  /* font-size: 16px; */
   display: flex;
+  font-size: 14px;
+  align-items: center;
 }
 .menu ul li:lang(en) {
   margin-left: 3em;
+
 }
 
 .menu ul li:lang(ar) {
@@ -224,7 +273,7 @@ a.nuxt-link-exact-active.login_ {
 }
 
 .menu ul li a:hover {
-  color: #bf804b;
+  color: #30c88c;
 }
 
 .logo img {
@@ -261,17 +310,20 @@ a.nuxt-link-exact-active.login_ {
 .mob_nav {
   display: none;
   font-size: 20px;
-  color: #bf804b;
+  color: #30c88c;
 }
 .theme--light.v-list-item--disabled {
   color: rgba(0, 0, 0, 0.38);
-  background: #bf804b;
+  background: #30c88c;
   color: #fff;
 }
-.select_head[data-v-f21a83aa]{
+
+.select_head[data-v-f21a83aa] {
   width: 200px;
 }
-
+.v-list-item .v-list-item__title, .v-list-item .v-list-item__subtitle{
+  text-align: center;
+}
 @media (max-width: 768px) {
   .search {
     display: none;

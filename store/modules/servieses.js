@@ -4,6 +4,7 @@ const state = {
   data: [],
   cart: [],
   serviceMsg:'',
+  id:''
 }
 
 const getters = {
@@ -11,11 +12,14 @@ const getters = {
 }
 
 const actions = {
-  async getservices({ state }, id) {
+  async getservices({ state }, id='') {
+    if(id !='') state.id=id;
+
+
     // alert(id)
     state.loading = true
     state.data = []
-    await this.$axios.get('/Service/' + id).then((res) => {
+    await this.$axios.get('/Service/' + state.id).then((res) => {
       // state.serviceMsg = res.data.msg;
       state.data = res.data.data
       state.loading = false

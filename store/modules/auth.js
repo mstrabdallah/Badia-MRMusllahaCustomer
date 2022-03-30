@@ -193,6 +193,32 @@ const actions = {
       })
   },
 
+  UpdateUserInfo({ app, state, dispatch }, arrayData) {
+
+    var data = new FormData()
+    data.append('name', arrayData.name )
+    data.append('email', arrayData.email)
+    console.log(arrayData);
+    state.loading = true
+    this.$axios
+      .$post('/me/updateProfile', data)
+      .then((res) => {
+        // state.loading = false
+        if (res.status === 200) {
+          state.user = res.data
+          console.log(res);
+          // alert(res.data.msg)
+        } else {
+          // alert(res.data.msg)
+          console.log(res);
+
+        }
+        state.loading = false
+      })
+  },
+
+
+
   // checkPhone({state},data) {
   //   state.loading=true;
   //   this.$axios.post("checkPhone", data).then((res) => {

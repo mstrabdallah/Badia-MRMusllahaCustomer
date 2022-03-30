@@ -43,7 +43,7 @@ const actions = {
        state.loading = false
      })
 
-     dispatch("getservices")
+      dispatch("getservices")
   },
 
 

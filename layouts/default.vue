@@ -1,7 +1,8 @@
 <template>
   <div class="app">
     <v-app>
-       <HeaderTop />
+      <!-- <Menu /> -->
+       <!-- <HeaderTop /> -->
       <Header />
       <div class="pages">
       <Nuxt />

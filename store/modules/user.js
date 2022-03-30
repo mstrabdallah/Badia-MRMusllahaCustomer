@@ -11,7 +11,9 @@ const getters = {
 
 const actions = {
 
-
+  changeMenuHeader({ state }, data) {
+    state.menuHeader = data
+},
   async getUserData({ state }) {
     // alert(id)
     state.loading = true

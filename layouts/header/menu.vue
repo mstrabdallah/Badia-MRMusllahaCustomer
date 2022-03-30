@@ -1,5 +1,5 @@
 <template>
-  <v-sheet class="overflow-hidden">
+  <v-sheet class="overflow-hidden menu_header">
     <v-container class="fill-height">
       <v-row align="center" justify="center">
         <v-btn   dark @click.stop="drawer = !drawer"><font-awesome-icon icon="bars"  /> </v-btn>
@@ -15,38 +15,78 @@
     >
       <v-list-item>
         <NuxtLink :to="localePath('/')" class="logo">
-          <img src="/logo.png" />
+          <img src="/logo.svg" />
         </NuxtLink>
       </v-list-item>
 
       <v-divider></v-divider>
+      <ul>
 
-       <v-list-item>
+
+
         <NuxtLink :to="localePath('/')">
+       <v-list-item link>
+
          <font-awesome-icon icon="house" class="fa" />
           {{ $t("Home") }}
-        </NuxtLink>
       </v-list-item>
+        </NuxtLink>
 
+        <NuxtLink link class="login_" :to="localePath('/login')">
       <v-list-item v-if="!this.$store.state.auth.checkAuth">
-        <NuxtLink class="login_" :to="localePath('/login')">
         <font-awesome-icon icon="user" class="fa" />
         {{$t("Login")}}
-        </NuxtLink>
       </v-list-item>
-
-      <!-- <v-list-item v-if="this.$store.state.auth.checkAuth">
-        <NuxtLink :to="localePath('/tickets')">
-         <font-awesome-icon icon="message" class="fa" />
-          {{ $t("My Tickets") }}
         </NuxtLink>
-      </v-list-item> -->
-        <v-list-item v-if="this.$store.state.auth.checkAuth">
+
+        <NuxtLink :to="localePath('/cart')">
+        <v-list-item link v-if="this.$store.state.auth.checkAuth">
+          <font-awesome-icon icon="cart-plus" class="fa" />
+          {{ $t("CheckOut") }}
+      </v-list-item>
+        </NuxtLink>
+
+        <NuxtLink :to="localePath('/listOrder')">
+      <v-list-item link v-if="this.$store.state.auth.checkAuth">
+          <font-awesome-icon icon="cart-shopping" class="fa" />
+          {{ $t('Order List')}}
+      </v-list-item>
+        </NuxtLink>
+
+
+
+        <!-- <v-list-item link v-if="this.$store.state.auth.checkAuth">
             <NuxtLink :to="localePath('/cart')">
               <Checkout />
             </NuxtLink>
+          </v-list-item> -->
+
+<v-list-group
+          no-action
+          sub-group
+        >
+          <template v-slot:activator>
+
+              <v-list-item-title>{{ $t("My Account") }}</v-list-item-title>
+
+          </template>
+
+          <v-list-item
+            v-for="([title, icon], i) in cruds"
+            :key="i"
+            link
+          >
+            <v-list-item-title v-text="title"></v-list-item-title>
+
+            <v-list-item-icon>
+              <v-icon v-text="icon"></v-icon>
+            </v-list-item-icon>
           </v-list-item>
-      <v-list-item v-if="this.$store.state.auth.checkAuth">
+        </v-list-group>
+
+
+
+      <v-list-item link v-if="this.$store.state.auth.checkAuth">
         <v-menu bottom left>
           <template v-slot:activator="{ on, attrs }">
             <div v-bind="attrs" v-on="on" color="primary" icon>
@@ -56,7 +96,7 @@
           </template>
 
           <v-list>
-            <v-list-item>
+            <v-list-item link>
               <div @click="Logout">
                 <v-list-item-title >{{ $t("Logout") }}</v-list-item-title>
               </div>
@@ -65,7 +105,7 @@
         </v-menu>
       </v-list-item>
 
-       <v-list-item>
+       <v-list-item link>
         <v-menu bottom left>
           <template v-slot:activator="{ on, attrs }">
             <div v-bind="attrs" v-on="on" color="primary" icon>
@@ -89,28 +129,39 @@
           </v-list>
         </v-menu>
       </v-list-item>
+
+          </ul>
     </v-navigation-drawer>
   </v-sheet>
 </template>
  <script>
- import {mapActions} from 'vuex'
+import { mapActions, mapGetters } from "vuex";
 import Checkout from "../../components/checkout/checkout.vue"
 export default {
   data() {
     return {
       drawer: false,
+       cruds: [
+        ['Create', 'mdi-plus-outline'],
+        ['Read', 'mdi-file-outline'],
+        ['Update', 'mdi-update'],
+        ['Delete', 'mdi-delete'],
+      ],
     };
   },
+  computed:{
+...mapGetters(['allUsers'])
+  },
   methods: {
-    ...mapActions(["Logout"]),
+    ...mapActions(["Logout","changeMenuHeader"]),
     afterVisibleChange(val) {
-       ("visible", val);
+      console.log("visible", val);
     },
     showDrawer() {
-      this.visible = true;
+      this.changeMenuHeader(true)
     },
     onClose() {
-      this.visible = false;
+      this.changeMenuHeader(false)
     },
   },
 };
