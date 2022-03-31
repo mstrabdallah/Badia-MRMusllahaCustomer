@@ -204,9 +204,6 @@ const actions = {
       .then((res) => {
         // state.loading = false
         if (res.status === 200) {
-          state.user = res.data
-          dispatch('getMe')
-          console.log(res);
           // alert(res.data.msg)
         } else {
           // alert(res.data.msg)
