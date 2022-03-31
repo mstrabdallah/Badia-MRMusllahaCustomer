@@ -85,7 +85,10 @@
   "testimonials": "Testimonials",
   "awards": "Awards ",
   "about-h": "About Us",
+  "About Us":"About Us",
+
   "about-p": "Mr. Musllaha is your one-stop solution to sort all your home needs ranging from construction to maintenance, quickly, professionally and conveniently. We simplify your everyday living with a variety of at-home services across all cities of KSA. Services are delivered by our verified & qualified professionals only. With Mr. Musllaha, consider a done for any service you require.",
+
   "mobile-p": "Use our Mobile App to refer and get a free service",
   "service-on": "Services on Demand",
   "mrmusllaha": "Mr. Musllaha",
@@ -94,6 +97,9 @@
   "About mr.musllaha": "About mr.musllaha",
   "Order List":"Order List",
   "call us":"Call Us",
+  "Home-header":"For information on services at your doorstep.",
+  "Home-header2":"Request your appointment for a specific day.",
+  "Popular Services":"Popular Services",
   "headH2": "Mr.Musllaha For Partner",
   "headp1": "Mr. Musleha is the first and best choice that brings together <br >all maintenance service providers under one roof.",
   "sections_m_t": "You can download our application, on any of the two platforms, Google Play, and the App Store",

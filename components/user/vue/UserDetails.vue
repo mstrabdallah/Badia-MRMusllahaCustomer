@@ -137,37 +137,15 @@ export default {
   },
 
   watch: {
-    name() {
-      this.errorMessages = ''
-    },
+    // name() {
+    //   this.errorMessages = ''
+    // },
   },
 
   methods: {
     ...mapActions(['getMe', 'addAddress', 'getAddress']),
 
-    addressCheck() {
-      this.errorMessages = this.address && !this.name ? `Hey! I'm required` : ''
-
-      return true
     },
-    resetForm() {
-      this.errorMessages = []
-      this.formHasErrors = false
-
-      Object.keys(this.form).forEach((f) => {
-        this.$refs[f].reset()
-      })
-    },
-    submit() {
-      this.formHasErrors = false
-
-      Object.keys(this.form).forEach((f) => {
-        if (!this.form[f]) this.formHasErrors = true
-
-        this.$refs[f].validate(true)
-      })
-    },
-  },
 
   computed: {
     ...mapGetters(['allAuth', 'AllAddresses']),

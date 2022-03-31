@@ -176,7 +176,7 @@ export default {
   // ...mapGetters(['all'])
   // },
   methods: {
-    ...mapActions(['Logout', 'getCity', 'UpdateCity']),
+    ...mapActions(['Logout','changeLanguage', 'getCity', 'UpdateCity']),
     handleClick(index) {
       this.items[index].click.call(this)
     },

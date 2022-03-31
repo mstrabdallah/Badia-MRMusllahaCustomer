@@ -1,16 +1,17 @@
 <template>
   <v-container>
     <section  class="head bg">
-    <h2>خدمات عند الطلب</h2>
+    <h2>{{$t('service-on')}}</h2>
     <p>
-      نحن المنصة المثالية للحصول على مجموعة من الخدمات على عتبة داركم.<br />
-      اطلب خدماتك على الفور أو احجز موعدك ليوم محدد.
+      {{$t('Home-header')}}
+      {{$t('Home-header2')}}
+
     </p>
 
     <div class="groups_but">
       <v-btn outlined >
          <NuxtLink :to="localePath('/about')">
-         About Us
+         {{$t('About Us')}}
          </NuxtLink>
 
       </v-btn>

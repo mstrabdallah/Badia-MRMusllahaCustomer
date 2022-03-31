@@ -14,6 +14,8 @@ const actions = {
   changeMenuHeader({ state }, data) {
     state.menuHeader = data
 },
+
+
   async getUserData({ state }) {
     // alert(id)
     state.loading = true
@@ -25,25 +27,6 @@ const actions = {
     })
   },
 
-  // async UpdateCart({ state }, Obj) {
-
-  //   console.log(Obj);
-  //    (id);
-  //   var data = new FormData()
-  //   data.append('service_id', Obj.id)
-  //   data.append('quantity', Obj.quantity)
-
-  //   this.$axios.post('/cart/update', data).then((res) => {
-  //      state.loading = true
-  //      state.cart = res.data
-  //      if (res.data.status === 200) {
-  //        alert(res.data.msg)
-  //      } else {
-  //        alert(res.data.msg)
-  //      }
-  //      state.loading = false
-  //    })
-  // },
 
 }
 
