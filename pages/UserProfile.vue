@@ -7,12 +7,12 @@
         <div>
           <v-expansion-panels v-model="panel" multiple>
             <v-expansion-panel v-model="panel">
-              <v-expansion-panel-header>Pesonal Information</v-expansion-panel-header>
+              <v-expansion-panel-header>{{$t('Pesonal Information')}}</v-expansion-panel-header>
               <UserDetails />
             </v-expansion-panel>
 
             <v-expansion-panel>
-              <v-expansion-panel-header>My Address</v-expansion-panel-header>
+              <v-expansion-panel-header>{{$t('My Address')}}</v-expansion-panel-header>
               <v-expansion-panel-content>
 
                 <!-- User Address Iformations -->

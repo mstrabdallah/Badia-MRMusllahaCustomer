@@ -137,6 +137,13 @@
   "City": "City",
   "Coverage Area": "Coverage Area",
   "More Options": "More Options",
+
+  "Personal": "Personal",
+  "Work": "Work",
+  "Pesonal Information": "Pesonal Information",
+  "My Address": "My Address",
+
+
   "Re-enter The Password": "Re-enter The Password",
   "------- validation": "",
   "Required": "Required",

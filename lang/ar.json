@@ -144,11 +144,12 @@
   "Oops, Wrong username or password": "عفوًا ، اسم المستخدم أو كلمة المرور خاطئة",
   "Count of Items":"Count of Items",
 
-  "": "",
-  "": "",
-  "": "",
-  "": "",
-  "": "",
+  "Personal": "شخصى",
+  "Work": "العمل",
+  "Pesonal Information": "البيانات الشخصية",
+  "My Address": "عنوانى",
+
+
   "": "",
   "": "",
   "": "",

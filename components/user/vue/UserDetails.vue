@@ -54,7 +54,7 @@
 
         <v-list-item-content>
           <v-list-item-title>{{ allAuth.user.phone }}</v-list-item-title>
-          <v-list-item-subtitle>Personal</v-list-item-subtitle>
+          <v-list-item-subtitle>{{$t('Personal')}}</v-list-item-subtitle>
         </v-list-item-content>
       </v-list-item>
 
@@ -63,7 +63,7 @@
 
         <v-list-item-content>
           <v-list-item-title>{{ allAuth.user.phone }}</v-list-item-title>
-          <v-list-item-subtitle>Work</v-list-item-subtitle>
+          <v-list-item-subtitle>{{$t('Work')}}</v-list-item-subtitle>
         </v-list-item-content>
       </v-list-item>
 
@@ -76,7 +76,7 @@
 
         <v-list-item-content>
           <v-list-item-title>{{ allAuth.user.email }}</v-list-item-title>
-          <v-list-item-subtitle>Personal</v-list-item-subtitle>
+          <v-list-item-subtitle>{{$t('Personal')}}</v-list-item-subtitle>
         </v-list-item-content>
       </v-list-item>
 
@@ -85,7 +85,7 @@
 
         <v-list-item-content>
           <v-list-item-title>{{ allAuth.user.email }}</v-list-item-title>
-          <v-list-item-subtitle>Work</v-list-item-subtitle>
+          <v-list-item-subtitle>{{$t('Work')}}</v-list-item-subtitle>
         </v-list-item-content>
       </v-list-item>
 
