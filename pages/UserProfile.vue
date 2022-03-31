@@ -1,16 +1,10 @@
 <template>
   <v-container class="py-10">
-    <div
-        class="text-center"
-        v-if="allAuth.loadingupdate == true"
-      >
-        <v-overlay>
-        <v-progress-circular
-          indeterminate
-          size="64"
-        ></v-progress-circular>
+    <div class="text-center" v-if="allAuth.loadingupdate == true">
+      <v-overlay>
+        <v-progress-circular indeterminate size="64"></v-progress-circular>
       </v-overlay>
-      </div>
+    </div>
     <v-row>
       <ProfileUserInfo />
       <v-divider vertical></v-divider>
@@ -18,15 +12,30 @@
         <div>
           <v-expansion-panels v-model="panel" multiple>
             <v-expansion-panel v-model="panel">
-              <v-expansion-panel-header>{{$t('Pesonal Information')}}</v-expansion-panel-header>
+              <v-expansion-panel-header>{{
+                $t('Pesonal Information')
+              }}</v-expansion-panel-header>
               <UserDetails />
             </v-expansion-panel>
 
             <v-expansion-panel>
-              <v-expansion-panel-header>{{$t('My Address')}}</v-expansion-panel-header>
+              <v-expansion-panel-header>{{
+                $t('My Address')
+              }}</v-expansion-panel-header>
               <v-expansion-panel-content>
-
                 <!-- User Address Iformations -->
+                <div
+                  class="loadingReg d-flex justify-center"
+                  centered
+                  v-if="this.$store.state.addresses.loading"
+                >
+                  <v-progress-linear
+                    color="deep-purple accent-4"
+                    indeterminate
+                    rounded
+                    height="6"
+                  ></v-progress-linear>
+                </div>
                 <v-list
                   two-line
                   v-for="(addressData, i) in AllAddresses.data.data"

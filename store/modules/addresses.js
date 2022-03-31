@@ -1,6 +1,6 @@
 import 'axios';
 const state = {
-  loading: true,
+  loading: false,
   data: [],
   address: [],
   addressMSG:''
