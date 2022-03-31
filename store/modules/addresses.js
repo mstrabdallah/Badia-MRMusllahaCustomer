@@ -18,7 +18,6 @@ const actions = {
     state.data = []
     await this.$axios.get('/me/getAddress' ).then((res) => {
       state.data = res.data
-      console.log(res.data);
 
       state.loading = false
     })
@@ -66,7 +65,6 @@ const actions = {
 
   async UpdateAddress({ state , dispatch }, Obj) {
 
-    // console.log(Obj);
     var is_Default =  Obj.checkbox;
     if(is_Default == true){
       is_Default =1
@@ -88,19 +86,21 @@ const actions = {
     data.append('is_default', is_Default)
 
     state.loading = true
-     this.$axios.post('/me/updateAddress/'+id, data).then((res) => {
-       state.cart = res.data
-       if (res.data.status === 200) {
-        state.addressMSG = res.data.msg
+     this.$axios
+       .post('/me/updateAddress/' + Obj.address_id, data)
+       .then((res) => {
+         state.cart = res.data
+         if (res.data.status === 200) {
+           state.addressMSG = res.data.msg
 
-        //  alert(res.data.msg)
-       } else {
-        state.addressMSG = res.data.msg
+           //  alert(res.data.msg)
+         } else {
+           state.addressMSG = res.data.msg
 
-        //  alert(res.data.msg)
-       }
-       state.loading = false
-     })
+           //  alert(res.data.msg)
+         }
+         state.loading = false
+       })
   },
 
 

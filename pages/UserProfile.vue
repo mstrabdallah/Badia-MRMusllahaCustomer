@@ -328,6 +328,7 @@ export default {
       panel: [0],
 
       currentAddress: {
+        address_id:null,
         street: '',
         area: '',
         building_no: '',
@@ -368,8 +369,9 @@ export default {
       //  this.addressId = id;
     },
     EditAddress(id) {
+      this.currentAddress.address_id = id
       this.dialog = false
-      this.UpdateAddress(id, this.currentAddress)
+      this.UpdateAddress(this.currentAddress)
     },
     // onSubmit(){
     //   this.addToCart(this.prodName)
