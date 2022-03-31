@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <div v-if="this.$store.state.carts.cartLength <= 0">
-      <h2 class="text-center">You Don't Have Any Items Yet</h2>
+      <h2 class="text-center">{{$t("You Don't Have Any Items Yet")}}</h2>
     </div>
     <div
       class="loadingReg d-flex justify-center"
@@ -17,7 +17,7 @@
     <div v-if="this.$store.state.carts.cartLength > 0">
       <template v-if="!this.$store.state.carts.loading">
         <h1 class="text-center" v-if="!this.$store.state.carts.loading">
-          Your Cart Items
+          {{$t('Your Cart Items')}}
         </h1>
         <v-banner
           two-line
@@ -29,7 +29,7 @@
           </v-avatar>
 
           <h4>{{ SingleCart.title }}</h4>
-          <span>Price: {{ SingleCart.price }}</span>
+          <span>{{$t('Price')}}: {{ SingleCart.price }}</span>
           <template v-slot:actions>
             <v-btn
               v-if="SingleCart.quantity > 1"
@@ -108,10 +108,10 @@
             <template v-slot:default>
               <thead>
                 <tr>
-                  <th class="text-left">Count of Items</th>
-                  <th class="text-left">Price</th>
-                  <th class="text-left">vat</th>
-                  <th class="text-left">Total Price</th>
+                  <th class="text-left">{{$t('Count of Items')}}</th>
+                  <th class="text-left">{{$t('Price')}}</th>
+                  <th class="text-left">{{$t('vat')}}</th>
+                  <th class="text-left">{{$t('Total Price')}}</th>
                   <th class="text-rigth"></th>
 
                   <!-- <th class="text-right" expanded-item></th> -->
@@ -126,7 +126,7 @@
                   <td class="checkoutBtn" style="text-align: end">
                     <v-fab-transition>
                       <v-btn color="#30c88d" dark nuxt to="/Checkout">
-                        Check Out
+                        {{$t('Check Out')}}
                       </v-btn>
                     </v-fab-transition>
                   </td>

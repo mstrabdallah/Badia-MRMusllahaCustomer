@@ -11,7 +11,7 @@
         <v-select
           class="select_head"
           :items="AllCityDeatils.data.data"
-          label="Location"
+          :label="$t('Location')"
           item-text="name"
           item-value="id"
           v-model="city"

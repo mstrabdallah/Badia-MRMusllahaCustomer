@@ -1,7 +1,7 @@
 <template>
   <v-container class="py-10">
     <div v-if="this.$store.state.carts.cartLength <= 0">
-      <h2 class="text-center">You Don't Have Any Items Yet</h2>
+      <h2 class="text-center">{{$t("You Don't Have Any Items Yet")}}</h2>
     </div>
 
     <v-row v-else>
@@ -11,7 +11,7 @@
             <v-container fluid>
               <v-row align="center">
                 <v-col cols="12" sm="6" md="6">
-                  <h3>Select Your Payment Method</h3>
+                  <h3>{{$t('Select Your Payment Method')}}</h3>
                 </v-col>
 
                 <v-col cols="12" sm="6" md="6">
@@ -28,7 +28,7 @@
                 </v-col>
 
                 <v-col cols="12" lg="6">
-                  <h3>Select Your Address</h3>
+                  <h3>{{$t('Select Your Address')}}</h3>
                 </v-col>
 
                 <v-radio-group v-model="addressID">
@@ -49,7 +49,7 @@
           <v-container>
             <v-row>
               <v-col cols="6" lg="6">
-                <h3>Select Day</h3>
+                <h3>{{$t('Select Day')}}</h3>
               </v-col>
 
               <v-col cols="12" lg="6">
@@ -82,23 +82,23 @@
 
               <template v-if="this.$store.state.ckeckoutModule.loading">
                 <v-col cols="12" lg="6">
-                  <h3>Select Your Time</h3>
+                  <h3>{{$t('Select Your Time')}}</h3>
                 </v-col>
                 <v-col cols="12" lg="6">
-                  <p class="red--text">Please Pick the Right Day</p>
+                  <p class="red--text">{{$t('Please Pick the Right Day')}}</p>
                 </v-col>
               </template>
 
               <template v-else>
                 <v-col cols="12" lg="6" v-if="AllListOfTime.time">
-                  <h3>Select Your Time</h3>
+                  <h3>{{$t('Select Your Time')}}</h3>
                 </v-col>
                 <v-col cols="12" lg="6">
                   <p
                     class="red--text"
                     v-if="this.$store.state.ckeckoutModule.DateMessage"
                   >
-                    Please Pick the Right Day
+                    {{$t('Please Pick the Right Day')}}
                   </p>
                   <v-radio-group v-model="timePicked">
                     <v-radio
@@ -149,7 +149,7 @@
           <v-card class="mx-auto text-center" max-width="344" active-class="">
             <v-fab-transition>
               <v-btn color="#30c88d" dark @click="onSubmitOrder">
-                Order It Now
+                {{$t('Order It Now')}}
               </v-btn>
             </v-fab-transition>
           </v-card>

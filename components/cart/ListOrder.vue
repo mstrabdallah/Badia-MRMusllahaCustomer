@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <div v-if="AllListOforder.data.length <= 0 && AllListOforder.loading ==false ">
-      <h2 class="text-center">You Don't Have Any Items Yet</h2>
+      <h2 class="text-center">{{$t("You Don't Have Any Items Yet")}}</h2>
     </div>
     <div v-else-if="AllListOforder.data.length > 0">
       <template>
@@ -31,25 +31,25 @@
                         >{{ order.date + ' ' + order.time }}
                         <br />
                         <span v-if="order.status == 0" class="pending"
-                          >pending</span
+                          >{{$t('pending')}}</span
                         >
                         <span v-else-if="order.status == 1" class="accepted"
-                          >accepted</span
+                          >{{$t('accepted')}}</span
                         >
                         <span v-else-if="order.status == 2" class="on-going"
-                          >on-going</span
+                          >{{$t('on-going')}}</span
                         >
                         <span v-else-if="order.status == 3" class="in-progress"
-                          >in-progress</span
+                          >{{$t('in-progress')}}</span
                         >
                         <span v-else-if="order.status == 4" class="reschedule"
-                          >reschedule from Partinar</span
+                          >{{$t('Reschedule from Partner')}}</span
                         >
                         <span v-else-if="order.status == 5" class="canceled"
-                          >canceled</span
+                          >{{$t('Canceled')}}</span
                         >
                         <span v-else-if="order.status == 6" class="completed"
-                          >completed</span
+                          >{{$t('Completed')}}</span
                         >
                       </v-list-item-action-text>
                       <v-list-item>
@@ -61,7 +61,7 @@
                         >
                           reschedule Order
                         </NuxtLink>
-                        <v-btn color="error" @click="CanceledOrder(order.id)"> canceled </v-btn>
+                        <v-btn color="error" @click="CanceledOrder(order.id)"> {{$t('Cancele')}} </v-btn>
                       </v-list-item>
                     </v-list-item-action>
                   </template>
