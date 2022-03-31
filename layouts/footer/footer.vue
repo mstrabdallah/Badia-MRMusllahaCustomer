@@ -78,7 +78,7 @@
           <h2 class="links_heading">{{ $t("Quick links") }}</h2>
           <div class="links">
             <nuxt-link :to="localePath('/')" >{{ $t("Home") }}</nuxt-link>
-            <nuxt-link :to="localePath('/notifications')"  v-if="allAuth.checkAuth"  >{{ $t("Notifications") }}</nuxt-link>
+            <nuxt-link :to="localePath('/UserProfile')"  v-if="allAuth.checkAuth"  >{{ $t("UserProfile") }}</nuxt-link>
             <nuxt-link :to="localePath('/ListOrder')"  v-if="allAuth.checkAuth"  >{{ $t("My Order") }}</nuxt-link>
             <nuxt-link :to="localePath('/login')"  v-if="!allAuth.checkAuth"  >{{ $t("Login") }}</nuxt-link>
             <nuxt-link :to="localePath('/register')"  v-if="!allAuth.checkAuth" >{{ $t("Create Account") }}</nuxt-link>
