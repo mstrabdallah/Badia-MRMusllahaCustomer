@@ -2,7 +2,7 @@
 
 <div class="text-center" v-if="AllListOforder.loading">
     <v-progress-linear
-      color="deep-purple accent-4"
+      color="#30c88c"
       indeterminate
       rounded
       height="6"

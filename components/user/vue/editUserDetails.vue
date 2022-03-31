@@ -1,16 +1,14 @@
 <template>
-  <v-row justify="center">
+  <v-row justify="center text-center">
     <v-dialog v-model="dialog" persistent max-width="1000px">
       <template v-slot:activator="{ on, attrs }">
         <v-card-text style="height: 100px; position: relative">
           <v-fab-transition>
             <v-btn
               v-show="!hidden"
-              color="#223535"
+              color="#30c88d"
               dark
-              absolute
-              top
-              right
+
               v-bind="attrs"
               v-on="on"
             >

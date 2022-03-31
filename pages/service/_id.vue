@@ -63,7 +63,7 @@
         <template>
           <v-snackbar
             v-model="snackbar"
-            color="blue"
+            color="#30c88d"
             :timeout="2500"
             :value="true"
             absolute

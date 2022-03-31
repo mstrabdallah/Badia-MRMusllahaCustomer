@@ -30,7 +30,7 @@
                   v-if="this.$store.state.addresses.loading"
                 >
                   <v-progress-linear
-                    color="deep-purple accent-4"
+                    color="#30c88c"
                     indeterminate
                     rounded
                     height="6"
@@ -82,21 +82,21 @@
                                   <v-col cols="12" sm="6" md="6">
                                     <v-text-field
                                       v-model="currentAddress.street"
-                                      label="street"
+                                      :label="$t('street')"
                                       outlined
                                       required
                                     ></v-text-field>
                                   </v-col>
                                   <v-col cols="12" sm="6" md="6">
                                     <v-text-field
-                                      label="area"
+                                      :label="$t('area')"
                                       outlined
                                       v-model="currentAddress.area"
                                     ></v-text-field>
                                   </v-col>
                                   <v-col cols="12" sm="6" md="6">
                                     <v-text-field
-                                      label="building_no"
+                                      :label="$t('building_no')"
                                       v-model="currentAddress.building_no"
                                       persistent-hint
                                       outlined
@@ -106,7 +106,7 @@
                                   <v-col cols="12" sm="6" md="6">
                                     <v-text-field
                                       v-model="currentAddress.apartment_no"
-                                      label="apartment_no"
+                                      :label="$t('apartment_no')"
                                       outlined
                                       required
                                     ></v-text-field>
@@ -124,7 +124,7 @@
                                   <v-col cols="12" sm="6" md="6">
                                     <v-text-field
                                       v-model="currentAddress.postal_code"
-                                      label="postal_code"
+                                      :label="$t('postal_code')"
                                       outlined
                                     ></v-text-field>
                                   </v-col>
@@ -132,7 +132,7 @@
                                   <v-col cols="12">
                                     <v-text-field
                                       v-model="currentAddress.address_line"
-                                      label="address_line"
+                                      :label="$t('address_line')"
                                       outlined
                                     ></v-text-field>
                                   </v-col>
@@ -141,14 +141,18 @@
                                     <v-textarea
                                       outlined
                                       v-model="currentAddress.notes"
-                                      label="notes"
-                                      value="If you would to add any notes ... Write it here."
+                                      :label="$t('notes')"
+                                      :value="
+                                        $t(
+                                          'If you would to add any notes ... Write it here.'
+                                        )
+                                      "
                                     ></v-textarea>
                                   </v-col>
 
                                   <v-checkbox
                                     v-model="currentAddress.checkbox"
-                                    label="Is Default"
+                                    :label="$t('Is Default')"
                                   ></v-checkbox>
                                 </v-row>
                               </v-container>
@@ -161,14 +165,14 @@
                                 text
                                 @click="dialog = false"
                               >
-                                Close
+                                {{ $t('Close') }}
                               </v-btn>
                               <v-btn
                                 color="blue darken-1"
                                 text
                                 @click="EditAddress(addressData.id)"
                               >
-                                Update
+                                {{ $t('Update') }}
                               </v-btn>
                             </v-card-actions>
                           </v-card>
@@ -187,7 +191,15 @@
                     </v-list-item-action>
                   </v-list-item>
                 </v-list>
-
+                <div class="text-center">
+                  <v-alert
+                    dense
+                    type="red"
+                    v-if="this.$store.state.addresses.deleteAddressMsg"
+                  >
+                    This Address Can't Delete, It Realted With Order
+                  </v-alert>
+                </div>
                 <UserAddress />
               </v-expansion-panel-content>
             </v-expansion-panel>
@@ -297,6 +309,8 @@
         </div>
       </v-col>
     </v-row>
+
+
   </v-container>
 </template>
 
@@ -309,7 +323,6 @@ import { mapActions, mapGetters } from 'vuex'
 export default {
   data() {
     return {
-      // items: ['Foo', 'Bar', 'Fizz', 'Buzz'],
 
       dialog: false,
       panel: [0],
@@ -355,8 +368,7 @@ export default {
       //  this.addressId = id;
     },
     EditAddress(id) {
-      console.log('jjkkk', id)
-      console.log(this.currentAddress)
+      this.dialog = false
       this.UpdateAddress(id, this.currentAddress)
     },
     // onSubmit(){

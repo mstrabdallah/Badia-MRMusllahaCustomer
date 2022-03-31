@@ -70,9 +70,9 @@ export default {
 </script>
 <style scoped>
 .serv {
-  background: #f8f8f8;
+  background: #fff;
   padding: 10px;
-  padding-bottom: 50px;
+  padding-bottom: 30px;
   min-height: 100vh;
   align-items: center;
 }

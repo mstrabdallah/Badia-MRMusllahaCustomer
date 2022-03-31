@@ -3,7 +3,8 @@ const state = {
   loading: false,
   data: [],
   address: [],
-  addressMSG:''
+  addressMSG:'',
+  deleteAddressMsg:''
 }
 
 const getters = {
@@ -92,11 +93,11 @@ const actions = {
        if (res.data.status === 200) {
         state.addressMSG = res.data.msg
 
-         alert(res.data.msg)
+        //  alert(res.data.msg)
        } else {
         state.addressMSG = res.data.msg
 
-         alert(res.data.msg)
+        //  alert(res.data.msg)
        }
        state.loading = false
      })
@@ -115,11 +116,14 @@ const actions = {
        if (res.data.status === 200) {
         state.addressMSG = res.data.msg
 
-         alert(res.data.msg)
-       } else {
-        state.addressMSG = res.data.msg
+        //  alert(res.data.msg)
+       } else if(res.data.status === 500) {
+        state.deleteAddressMsg = res.data.msg
+        console.log(res.data.msg);
 
-         alert(res.data.msg)
+        //  alert(res.data.msg)
+       }else {
+        state.addressMSG = res.data.msg
        }
        state.loading = false
      })
