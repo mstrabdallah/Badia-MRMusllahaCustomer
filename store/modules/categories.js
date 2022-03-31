@@ -17,7 +17,7 @@ const actions = {
       state.data = res.data;
        (state.data);
       // state.data = res.data.data;
-      // state.loading = false;
+      state.loading = false;
     });
   },
 
@@ -26,7 +26,7 @@ const actions = {
       state.subCat = res.data.data;
        (state.subCat);
       // state.data = res.data.data;
-      // state.loading = false;
+      state.loading = false;
     });
   },
 }

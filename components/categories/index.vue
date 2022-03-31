@@ -1,5 +1,17 @@
 <template>
   <section id="serv" class="container_cc serv">
+    <div
+      class="text-center"
+      v-if="AllCategories.loading"
+    >
+      <v-overlay>
+      <v-progress-circular
+        indeterminate
+        size="64"
+      ></v-progress-circular>
+    </v-overlay>
+    </div>
+    <div v-else>
     <h2 class="text-center mt-10">Popular Services</h2>
     <v-container>
       <v-row>
@@ -42,6 +54,7 @@
         </v-col>
       </v-row>
     </v-container>
+    </div>
   </section>
 </template>
 

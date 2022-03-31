@@ -1,6 +1,18 @@
 <template>
   <v-container class="py-10">
-    <div v-if="this.$store.state.carts.cartLength <= 0">
+    <div
+      class="text-center"
+      v-if="getAddress.loading"
+    >
+      <v-overlay>
+      <v-progress-circular
+        indeterminate
+        size="64"
+      ></v-progress-circular>
+    </v-overlay>
+    </div>
+    <div v-else>
+    <div v-if="getAddress.cartLength <= 0">
       <h2 class="text-center">You Don't Have Any Items Yet</h2>
     </div>
 
@@ -156,6 +168,7 @@
         </div>
       </v-col>
     </v-row>
+    </div>
   </v-container>
 </template>
 
@@ -244,7 +257,7 @@ export default {
   },
 
   async mounted() {
-    this.getAddress()
+    // this.getAddress()
     await this.getListCart()
     // this.getListOfTime()
   },

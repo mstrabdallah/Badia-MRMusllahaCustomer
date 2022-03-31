@@ -1,78 +1,98 @@
 <template>
-  <v-container>
-    <div v-if="AllListOforder.data.length <= 0 && AllListOforder.loading ==false ">
-      <h2 class="text-center">You Don't Have Any Items Yet</h2>
-    </div>
-    <div v-else-if="AllListOforder.data.length > 0">
-      <template>
-        <v-card>
-          <v-list two-line>
-            <template>
-              <div v-for="(order, i) in AllListOforder.data" :key="i">
-                <v-list-item>
-                  <template>
-                    <v-list-item-content>
-                      <v-list-item-title
-                        v-text="order.category.name"
-                      ></v-list-item-title>
-                      <v-list-item-subtitle
-                        v-for="(service, i) in order.services.data"
-                        :key="i"
-                        class="text--primary"
-                      >
-                        {{ service.service.title }} ,
-                      </v-list-item-subtitle>
+  <div class="text-center" v-if="AllListOforder.loading">
+    <v-progress-linear
+      color="deep-purple accent-4"
+      indeterminate
+      rounded
+      height="6"
+    ></v-progress-linear>
+  </div>
+  <div v-else>
+    <v-container>
+      <div
+        v-if="
+          AllListOforder.data.length <= 0 && AllListOforder.loading == false
+        "
+      >
+        <h2 class="text-center">You Don't Have Any Items Yet</h2>
+      </div>
+      <div v-else-if="AllListOforder.data.length > 0">
+        <template>
+          <h2 class="text-center my-4">All orders</h2>
 
-                      <v-list-item-subtitle></v-list-item-subtitle>
-                    </v-list-item-content>
+          <v-card>
+            <v-list two-line>
+              <template>
+                <div v-for="(order, i) in AllListOforder.data" :key="i">
+                  <v-list-item>
+                    <template>
+                      <v-list-item-content>
+                        <v-list-item-title
+                          v-text="order.category.name"
+                        ></v-list-item-title>
+                        <v-list-item-subtitle
+                          v-for="(service, i) in order.services.data"
+                          :key="i"
+                          class="text--primary"
+                        >
+                          {{ service.service.title }} ,
+                        </v-list-item-subtitle>
 
-                    <v-list-item-action>
-                      <v-list-item-action-text
-                        >{{ order.date + ' ' + order.time }}
-                        <br />
-                        <span v-if="order.status == 0" class="pending"
-                          >pending</span
-                        >
-                        <span v-else-if="order.status == 1" class="accepted"
-                          >accepted</span
-                        >
-                        <span v-else-if="order.status == 2" class="on-going"
-                          >on-going</span
-                        >
-                        <span v-else-if="order.status == 3" class="in-progress"
-                          >in-progress</span
-                        >
-                        <span v-else-if="order.status == 4" class="reschedule"
-                          >reschedule from Partinar</span
-                        >
-                        <span v-else-if="order.status == 5" class="canceled"
-                          >canceled</span
-                        >
-                        <span v-else-if="order.status == 6" class="completed"
-                          >completed</span
-                        >
-                      </v-list-item-action-text>
-                      <v-list-item>
-                        <NuxtLink
-                          v-if="order.status == 1 || order.status == 4"
-                          :to="localePath('/reschedule?orderid=' + order.id)"
-                          class="v-btn v-btn--is-elevated v-btn--has-bg theme--light v-size--default primary"
-                          color="primary"
-                        >
-                          reschedule Order
-                        </NuxtLink>
-                        <v-btn color="error" @click="CanceledOrder(order.id)"> canceled </v-btn>
-                      </v-list-item>
-                    </v-list-item-action>
-                  </template>
-                </v-list-item>
-              </div>
-            </template>
-          </v-list>
-        </v-card>
-      </template>
-    </div>
-  </v-container>
+                        <v-list-item-subtitle></v-list-item-subtitle>
+                      </v-list-item-content>
+
+                      <v-list-item-action>
+                        <v-list-item-action-text
+                          >{{ order.date + ' ' + order.time }}
+                          <br />
+                          <span v-if="order.status == 0" class="pending"
+                            >pending</span
+                          >
+                          <span v-else-if="order.status == 1" class="accepted"
+                            >accepted</span
+                          >
+                          <span v-else-if="order.status == 2" class="on-going"
+                            >on-going</span
+                          >
+                          <span
+                            v-else-if="order.status == 3"
+                            class="in-progress"
+                            >in-progress</span
+                          >
+                          <span v-else-if="order.status == 4" class="reschedule"
+                            >reschedule from Partinar</span
+                          >
+                          <span v-else-if="order.status == 5" class="canceled"
+                            >canceled</span
+                          >
+                          <span v-else-if="order.status == 6" class="completed"
+                            >completed</span
+                          >
+                        </v-list-item-action-text>
+                        <v-list-item>
+                          <NuxtLink
+                            v-if="order.status == 1 || order.status == 4"
+                            :to="localePath('/reschedule?orderid=' + order.id)"
+                            class="v-btn v-btn--is-elevated v-btn--has-bg theme--light v-size--default primary"
+                            color="primary"
+                          >
+                            reschedule Order
+                          </NuxtLink>
+                          <v-btn color="error" @click="CanceledOrder(order.id)">
+                            canceled
+                          </v-btn>
+                        </v-list-item>
+                      </v-list-item-action>
+                    </template>
+                  </v-list-item>
+                </div>
+              </template>
+            </v-list>
+          </v-card>
+        </template>
+      </div>
+    </v-container>
+  </div>
 </template>
 
 <script>
@@ -96,7 +116,7 @@ export default {
     ...mapGetters(['AllListOforder']),
   },
   methods: {
-    ...mapActions(['ListOfOrder', 'DeleteCart', 'UpdateCart','OrderCanceled']),
+    ...mapActions(['ListOfOrder', 'DeleteCart', 'UpdateCart', 'OrderCanceled']),
 
     decrement(quantity, id) {
       if (quantity <= 0) {

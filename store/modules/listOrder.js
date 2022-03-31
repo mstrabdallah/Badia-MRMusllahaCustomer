@@ -31,7 +31,6 @@ const actions = {
     await this.$axios
       .get('/Order?include=partner,customer,services,category&current=1')
       .then((res) => {
-        console.log(res)
         res.data
         state.loading = false
 
