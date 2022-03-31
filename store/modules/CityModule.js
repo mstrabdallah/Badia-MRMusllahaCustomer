@@ -37,9 +37,9 @@ const actions = {
      await this.$axios.post('/me/CustomerUpdateCity', data).then((res) => {
        state.cites = res.data
        if (res.data.status === 200) {
-        alert(res.date.msg)
+        alert(res.data.msg)
        } else {
-        alert(res.date.msg)
+        alert(res.data.msg)
        }
        state.loading = false
      })
