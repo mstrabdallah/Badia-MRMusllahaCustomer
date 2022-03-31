@@ -41,10 +41,10 @@ const actions = {
        } else {
         alert(res.data.msg)
        }
-       state.loading = false
+       state.progress = false
      })
 
-    dispatch("getservices")
+    // dispatch("getservices")
       dispatch('getCity')
 
   },
