@@ -161,7 +161,8 @@
 
   "address_line":"العنوان بالكامل",
   "notes":"ملاحظات",
-  "If you would to add any notes ... Write it here.":"الرقم البريدى",
+  "Is Default":"أساسية",
+  "If you would to add any notes ... Write it here.":"إذا كان لديك ملاحظات أكتبها هنا",
 
 
   "------ footer": "",

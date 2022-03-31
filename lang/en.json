@@ -209,7 +209,10 @@
   "address_line": "Address Line",
 
   "notes": "Notes",
+  "Is Default":"Is Default",
+
   "address_line": "Address Line",
+  "If you would to add any notes ... Write it here.":"If you would to add any notes ... Write it here.",
 
 
   "All orders": "All orders",

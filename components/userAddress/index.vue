@@ -88,13 +88,13 @@
                       outlined
                       v-model="addressData.notes"
                       :label="$t('notes')"
-                      value="If you would to add any notes ... Write it here."
+                      :value="$t( 'If you would to add any notes ... Write it here.')"
                     ></v-textarea>
                   </v-col>
 
                   <v-checkbox
                     v-model="addressData.checkbox"
-                    label="Is Default"
+                    :label="$t('Is Default')"
                   ></v-checkbox>
                 </v-row>
               </v-container>
