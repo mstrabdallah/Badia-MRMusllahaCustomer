@@ -1,58 +1,7 @@
 <template>
   <v-container class="py-10">
     <v-row>
-      <v-col md="4">
-        <div class="">
-          <v-card class="mx-auto text-end" max-width="344" active-class="">
-            <div class="pa-7 rounded-circle d-inline-block">
-              <img src="/images/07.png" class="relative" />
-            </div>
-
-            <v-list-item>
-              <v-list-item-icon>
-                <font-awesome-icon far icon="user" class="mr-5" />
-              </v-list-item-icon>
-              <v-list-item-title text="title" class="text-start">
-                {{ allAuth.user.name }}
-              </v-list-item-title>
-            </v-list-item>
-
-            <v-list-item>
-              <v-list-item-icon>
-                <font-awesome-icon far icon="envelope" class="mr-5" />
-              </v-list-item-icon>
-              <v-list-item-title text="title">
-                {{ allAuth.user.email }}
-              </v-list-item-title>
-            </v-list-item>
-
-            <v-list-item>
-              <v-list-item-icon>
-                <font-awesome-icon
-                  far
-                  icon="mobile-screen-button"
-                  class="mr-5"
-                />
-              </v-list-item-icon>
-              <v-list-item-title text="title">
-                {{ allAuth.user.phone }}
-              </v-list-item-title>
-            </v-list-item>
-
-            <!-- <v-list-item>
-              <v-list-item-icon>
-                <font-awesome-icon far icon="earth-asia" class="mr-5" />
-              </v-list-item-icon>
-              <v-list-item-title text="title"
-                >{{ address }},{{ state }},{{ city }},{{
-                  country
-                }}</v-list-item-title
-              >
-            </v-list-item> -->
-          </v-card>
-        </div>
-      </v-col>
-
+      <ProfileUserInfo />
       <v-divider vertical></v-divider>
       <v-col md="8">
         <div>
@@ -332,13 +281,14 @@
 
 <script>
 import UserDetails from '../components/user/vue/UserDetails.vue'
+import ProfileUserInfo from '../components/user/vue/ProfileUserInfo.vue'
 import UserAddress from '../components/userAddress/index.vue'
 import { mapActions, mapGetters } from 'vuex'
 
 export default {
   data() {
     return {
-      items: ['Foo', 'Bar', 'Fizz', 'Buzz'],
+      // items: ['Foo', 'Bar', 'Fizz', 'Buzz'],
 
       dialog: false,
       panel: [0],
@@ -359,6 +309,7 @@ export default {
 
   components: {
     UserDetails,
+    ProfileUserInfo,
     UserAddress,
   },
 
@@ -372,13 +323,13 @@ export default {
       'addAddress',
       'getAddress',
       'UpdateAddress',
-      'DeleteCart',
+      'DeleteAddress',
 
     ]),
 
 
     DeleteAdd(id) {
-      this.DeleteCart(id)
+      this.DeleteAddress(id)
     },
     OnEditAddd(id) {
      var s =  this.AllAddresses.data.data.filter((el)=>el.id==id);

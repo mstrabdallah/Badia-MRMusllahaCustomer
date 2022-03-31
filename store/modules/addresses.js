@@ -50,7 +50,7 @@ const actions = {
 
     state.loading = true
      this.$axios.post('/me/addAddress', data).then((res) => {
-       state.cart = res.data
+       state.data = res.data
        if (res.data.status === 200) {
          alert(res.data.msg)
        } else {
@@ -97,7 +97,7 @@ const actions = {
 
 
 
-  async DeleteCart({ state }, id) {
+  async DeleteAddress({ state }, id) {
 
     // var data = new FormData()
     // data.append('service_id', dataObj)
