@@ -1,9 +1,9 @@
 <template>
   <v-container>
 
-    <div v-if="this.$store.state.carts.cartLength <= 0">
+    <!-- <div v-if="this.$store.state.carts.cartLength <= 0">
       <h2 class="text-center">{{$t("You Don't Have Any Items Yet")}}</h2>
-    </div>
+    </div> -->
 
     <div
       class="loadingReg d-flex justify-center"
@@ -143,7 +143,7 @@
     <div
       v-if="AllListOfCarts.cartLength <= 0 && AllListOfCarts.loading == false"
     >
-      <h2 class="text-center">You Don't Have Any Items Yet</h2>
+      <h2 class="text-center">{{$t("You Don't Have Any Items Yet")}}</h2>
     </div>
   </v-container>
 </template>

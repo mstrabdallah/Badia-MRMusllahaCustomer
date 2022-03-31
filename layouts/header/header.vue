@@ -39,9 +39,25 @@
             </NuxtLink>
           </li>
 
-          <li v-if="this.$store.state.auth.checkAuth">
+
+
+
+
+          <!-- <li v-if="!this.$store.state.auth.checkAuth">
             <NuxtLink :to="localePath('/cart')">
               <Checkout />
+            </NuxtLink>
+          </li> -->
+          <li v-if="this.$store.state.auth.checkAuth">
+            <NuxtLink :to="localePath('/cart')">
+              <v-badge
+                  overlap
+                  :content="`${$store.state.carts.cartLength}`"
+                >
+                  <v-btn icon>
+                    <v-icon  >mdi-cart-outline</v-icon>
+                  </v-btn>
+                </v-badge>
             </NuxtLink>
           </li>
 
@@ -52,11 +68,6 @@
             </NuxtLink>
           </li>
 
-          <!-- <li v-if="!this.$store.state.auth.checkAuth">
-            <NuxtLink :to="localePath('/card')">
-              <Checkout />
-            </NuxtLink>
-          </li> -->
 
           <li v-if="this.$store.state.auth.checkAuth">
             <v-menu bottom left>
@@ -157,7 +168,6 @@
 import 'axios'
 
 import Menu from './menu.vue'
-import Checkout from '../../components/checkout/checkout.vue'
 import { mapActions, mapGetters } from 'vuex'
 export default {
   data: () => ({
@@ -218,7 +228,14 @@ export default {
   width: 100%;
   top: 0px;
 }
-
+.stock-span{
+  position: relative;
+  bottom: 20px;
+  left: 1px;
+  background-color: aquamarine;
+  border-radius: 50%;
+  padding: 5px;
+}
 .header_p {
   display: flex;
   align-items: center;
