@@ -142,7 +142,7 @@
   "You don't have authority to access this page": "ليس لديك الصلاحية للوصول إلى هذه الصفحة",
   "No partner found with this phone number": "لم يتم العثور على شريك برقم الهاتف هذا",
   "Oops, Wrong username or password": "عفوًا ، اسم المستخدم أو كلمة المرور خاطئة",
-  "Count of Items":"Count of Items",
+  "Count of Items":"عدد الخدمات المطلوبة",
 
   "Personal": "شخصى",
   "Work": "العمل",
@@ -150,12 +150,20 @@
   "My Address": "عنوانى",
 
 
-  "": "",
-  "": "",
-  "": "",
-  "": "",
-  "": "",
-  "": "",
+  "Add Address": "إضافة عنوان",
+  "Email": "البريد الإلكترونى",
+  "Edit User Details": "تعديل البيانات الشخصية",
+  "street": "الشارع",
+  "area": "المنطقة",
+  "building_no": "رقم المبنى",
+  "apartment_no": "رقم الشقة",
+  "postal_code":"الرقم البريدى",
+
+  "address_line":"العنوان بالكامل",
+  "notes":"ملاحظات",
+  "If you would to add any notes ... Write it here.":"الرقم البريدى",
+
+
   "------ footer": "",
   "Other pages": "صفحات اخرى",
   "Quick links": "روابط سريعة",
@@ -199,6 +207,7 @@
   "My Earnings": "اجوري",
   "Your General Information": "معلوماتك العامة",
   "Save": "حفظ",
+  "Update": "حفظ",
   "Enter your Old Password": "أدخل كلمة مرورك القديمة",
   "All": "الكل",
   "Today": "اليوم",
@@ -212,6 +221,8 @@
   "Services": "الخدمات",
   "Quantity": "الكمية",
   "Price": "السعر",
+  "All orders": "كل الطلبات",
+  "reschedule Order": "إعادة جدولة الطلب",
   "Your Cart Items":"تفاصيل الخدمات المطلوبة",
   "Payments details": "تفاصيل المدفوعات",
   "Total Price": "السعر الاجمالي",

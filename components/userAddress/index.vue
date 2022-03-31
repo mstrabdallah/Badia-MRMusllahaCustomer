@@ -14,12 +14,12 @@
               v-bind="attrs"
               v-on="on"
             >
-              Add Address
+              {{$t('Add Address')}}
             </v-btn>
           </template>
           <v-card>
             <v-card-title>
-              <span class="text-h5">Add Address</span>
+              <span class="text-h5">{{$t('Add Address')}}</span>
             </v-card-title>
 
             <v-card-text>
@@ -28,21 +28,21 @@
                   <v-col cols="12" sm="6" md="6">
                     <v-text-field
                       v-model="addressData.street"
-                      label="street"
+                      :label="$t('street')"
                       outlined
                       required
                     ></v-text-field>
                   </v-col>
                   <v-col cols="12" sm="6" md="6">
                     <v-text-field
-                      label="area"
+                      :label="$t('area')"
                       outlined
                       v-model="addressData.area"
                     ></v-text-field>
                   </v-col>
                   <v-col cols="12" sm="6" md="6">
                     <v-text-field
-                      label="building_no"
+                      :label="$t('building_no')"
                       v-model="addressData.building_no"
                       persistent-hint
                       outlined
@@ -52,7 +52,7 @@
                   <v-col cols="12" sm="6" md="6">
                     <v-text-field
                       v-model="addressData.apartment_no"
-                      label="apartment_no"
+                      :label="$t('apartment_no')"
                       outlined
                       required
                     ></v-text-field>
@@ -70,7 +70,7 @@
                   <v-col cols="12" sm="6" md="6">
                     <v-text-field
                       v-model="addressData.postal_code"
-                      label="postal_code"
+                      :label="$t('postal_code')"
                       outlined
                     ></v-text-field>
                   </v-col>
@@ -78,7 +78,7 @@
                   <v-col cols="12">
                     <v-text-field
                       v-model="addressData.address_line"
-                      label="address_line"
+                      :label="$t('address_line')"
                       outlined
                     ></v-text-field>
                   </v-col>
@@ -87,7 +87,7 @@
                     <v-textarea
                       outlined
                       v-model="addressData.notes"
-                      label="notes"
+                      :label="$t('notes')"
                       value="If you would to add any notes ... Write it here."
                     ></v-textarea>
                   </v-col>
@@ -103,14 +103,29 @@
             <v-card-actions>
               <v-spacer></v-spacer>
               <v-btn color="blue darken-1" text @click="dialog = false">
-                Close
+                {{$t('Close')}}
               </v-btn>
               <v-btn color="blue darken-1" text @click="OnAddAddress">
-                Save
+                {{$t('Save')}}
               </v-btn>
             </v-card-actions>
           </v-card>
         </v-dialog>
+         <template>
+          <v-snackbar
+            v-model="snackbar"
+            color="blue"
+            :timeout="2500"
+            :value="true"
+            absolute
+            centered
+            shaped
+            bottom
+            v-if="this.$store.state.addresses.addressMSG"
+          >
+            {{ this.$store.state.addresses.addressMSG }} Added
+          </v-snackbar>
+        </template>
       </div>
     </v-col>
   </div>
@@ -123,6 +138,10 @@ export default {
   data() {
     return {
       items: ['Foo', 'Bar', 'Fizz', 'Buzz'],
+
+       timeout: 2000,
+      snackbar: false,
+      snackbarError: false,
 
       dialog: false,
 
@@ -146,7 +165,9 @@ export default {
     ...mapActions(['addAddress', 'getAddress']),
 
     OnAddAddress() {
-      this.addAddress(this.addressData)
+      this.dialog = false;
+      this.addAddress(this.addressData);
+      setTimeout(() => (this.snackbar = true))
     },
 
   },

@@ -72,7 +72,7 @@
             bottom
             v-if="this.$store.state.servieses.serviceMsg"
           >
-            {{ this.$store.state.carts.serviceMsg }}
+            {{ this.$store.state.servieses.serviceMsg }}
           </v-snackbar>
         </template>
       </v-container>

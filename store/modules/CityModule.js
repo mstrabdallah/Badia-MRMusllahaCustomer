@@ -3,7 +3,8 @@ const state = {
   loading: true,
   data: [],
   cites: [],
-  progress: false
+  progress: false,
+  cityMSG:''
 }
 
 const getters = {
@@ -37,9 +38,12 @@ const actions = {
      await this.$axios.post('/me/CustomerUpdateCity', data).then((res) => {
        state.cites = res.data
        if (res.data.status === 200) {
-        alert(res.data.msg)
+         state.cityMSG = res.data.msg;
+        // alert(res.data.msg)
        } else {
-        alert(res.data.msg)
+        state.cityMSG = res.data.msg;
+
+        // alert(res.data.msg)
        }
        state.progress = false
      })

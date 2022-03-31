@@ -205,6 +205,7 @@ const actions = {
         // state.loading = false
         if (res.status === 200) {
           state.user = res.data
+          dispatch('getMe')
           console.log(res);
           // alert(res.data.msg)
         } else {
@@ -212,8 +213,12 @@ const actions = {
           console.log(res);
 
         }
+        dispatch('getMe')
         state.loading = false
+
       })
+
+
   },
 
 

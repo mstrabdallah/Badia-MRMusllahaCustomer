@@ -129,14 +129,14 @@
           <div class="">
             <v-card class="mx-auto text-end" max-width="344" active-class="">
               <v-list-item>
-                <v-list-item-title> Price: </v-list-item-title>
+                <v-list-item-title> {{$t('Price')}}: </v-list-item-title>
                 <v-list-item-title text="title" class="text-start">
                   {{ AllListOfCarts.data.price }}
                 </v-list-item-title>
               </v-list-item>
 
               <v-list-item>
-                <v-list-item-title> Taxes: </v-list-item-title>
+                <v-list-item-title> {{$t('vat')}}: </v-list-item-title>
                 <v-list-item-title text="title">
                   {{ AllListOfCarts.data.vat }}
                 </v-list-item-title>
@@ -144,7 +144,7 @@
               <v-divider></v-divider>
               <v-list-item>
                 <v-list-item-title class="title">
-                  Total Price:
+                  {{$t('Total Price')}}:
                 </v-list-item-title>
                 <v-list-item-title text="title" class="text-start title">
                   {{ AllListOfCarts.data.total_price }}

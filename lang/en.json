@@ -142,6 +142,7 @@
   "Work": "Work",
   "Pesonal Information": "Pesonal Information",
   "My Address": "My Address",
+  "Add Address": "Add Address",
 
 
   "Re-enter The Password": "Re-enter The Password",
@@ -196,6 +197,23 @@
   "My Earnings": "My Earnings",
   "Your General Information": "Your General Information",
   "Save": "Save",
+  "Update": "Update",
+  "Email": "Email",
+  "Edit User Details": "Edit User Details",
+  "street": "Street",
+  "area": "Area",
+
+  "building_no": "Building Number",
+  "apartment_no": "Apartment Number",
+  "postal_code": "Postal Code",
+  "address_line": "Address Line",
+
+  "notes": "Notes",
+  "address_line": "Address Line",
+
+
+  "All orders": "All orders",
+  "reschedule Order": "Reschedule Order",
   "Enter your Old Password": "Enter your Old Password",
   "All": "All",
   "Today": "Today",

@@ -20,7 +20,7 @@
     </div>
     <div v-else-if="AllListOforder.data.length > 0">
       <template>
-        <h2 class="text-center my-4">All orders</h2>
+        <h2 class="text-center my-4">{{$t('All orders')}}</h2>
 
         <v-card>
           <v-list two-line>
@@ -76,7 +76,7 @@
                           class="v-btn v-btn--is-elevated v-btn--has-bg theme--light v-size--default primary"
                           color="primary"
                         >
-                          reschedule Order
+                          {{$t('reschedule Order')}}
                         </NuxtLink>
                         <v-btn color="error" @click="CanceledOrder(order.id)"> {{$t('Cancele')}} </v-btn>
                       </v-list-item>

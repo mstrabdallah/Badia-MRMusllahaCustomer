@@ -21,14 +21,14 @@
       </template>
       <v-card>
         <v-card-title>
-          <span class="text-h5">Edit User Details</span>
+          <span class="text-h5">{{$t('Edit User Details')}}</span>
         </v-card-title>
         <v-card-text>
           <v-container>
             <v-row>
               <v-col cols="6">
                 <v-text-field
-                  label="Name"
+                  :label="$t('Name')"
                   prefix=""
                   outlined
                   v-model="userEdit.name"
@@ -37,7 +37,7 @@
               </v-col>
               <v-col cols="6">
                 <v-text-field
-                  label="Email"
+                  :label="$t('Email')"
                   v-model="userEdit.email"
                   required
                   outlined
@@ -189,10 +189,10 @@
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn color="blue darken-1" text @click="dialog = false">
-            Close
+            {{$t('Close')}}
           </v-btn>
           <v-btn color="blue darken-1" text @click="UpdateUserDetail">
-            Update
+            {{$t('Update')}}
           </v-btn>
         </v-card-actions>
       </v-card>
@@ -246,8 +246,9 @@ export default {
       this.userEdit.email = this.allAuth.user.email
     },
     UpdateUserDetail() {
-      console.log(this.userEdit)
-      this.UpdateUserInfo(this.userEdit)
+      // console.log(this.userEdit);
+      this.dialog = false;
+      this.UpdateUserInfo(this.userEdit);
     },
   },
 

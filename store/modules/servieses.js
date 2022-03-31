@@ -34,13 +34,13 @@ const actions = {
       state.loading = true
       state.cart = res.data
       if (res.data.status === 200) {
-      state.serviceMsg = res.msg;
+      state.serviceMsg = res.data.msg;
 
-        alert(res.data.msg)
+        // alert(res.data.msg)
         dispatch('getListCart', 'getservices')
       } else {
         // alert(res.data.msg)
-      state.serviceMsg = res.msg;
+      state.serviceMsg = res.data.msg;
 
       }
       state.loading = false

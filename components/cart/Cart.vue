@@ -109,27 +109,29 @@
             <template v-slot:default>
               <thead>
                 <tr>
-                  <th class="text-left">{{$t('Count of Items')}}</th>
-                  <th class="text-left">{{$t('Price')}}</th>
-                  <th class="text-left">{{$t('vat')}}</th>
-                  <th class="text-left">{{$t('Total Price')}}</th>
+                  <th >{{$t('Count of Items')}}</th>
+                  <th >{{$t('Price')}}</th>
+                  <th >{{$t('vat')}}</th>
+                  <th >{{$t('Total Price')}}</th>
                   <th class="text-rigth"></th>
 
                   <!-- <th class="text-right" expanded-item></th> -->
                 </tr>
               </thead>
               <tbody>
-                <tr>
+                <tr class="tr-body">
                   <td>{{ AllListOfCarts.cartLength }}</td>
                   <td>{{ AllListOfCarts.data.price }}</td>
                   <td>{{ AllListOfCarts.data.vat }}</td>
                   <td>{{ AllListOfCarts.data.total_price }}</td>
                   <td class="checkoutBtn" style="text-align: end">
+                    <NuxtLink :to="localePath('/Checkout')">
                     <v-fab-transition>
-                      <v-btn color="#30c88d" dark nuxt to="/Checkout">
+                      <v-btn color="#30c88d" dark >
                         {{$t('Check Out')}}
                       </v-btn>
                     </v-fab-transition>
+                    </NuxtLink>
                   </td>
                 </tr>
               </tbody>
@@ -210,6 +212,12 @@ export default {
 </script>
 
 <style scoped>
+
+ .tr-body td:lang(ar) {
+
+  text-align: end !important;
+}
+
 .price {
   background-color: #ff0000cc;
   color: white;

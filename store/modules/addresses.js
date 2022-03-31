@@ -3,7 +3,7 @@ const state = {
   loading: true,
   data: [],
   address: [],
-
+  addressMSG:''
 }
 
 const getters = {
@@ -52,9 +52,12 @@ const actions = {
      this.$axios.post('/me/addAddress', data).then((res) => {
        state.data = res.data
        if (res.data.status === 200) {
-         alert(res.data.msg)
+         dispatch('getAddress')
+         state.addressMSG = res.data.msg;
+        //  alert(res.data.msg)
        } else {
-         alert(res.data.msg)
+        state.addressMSG = res.data.msg
+        //  alert(res.data.msg)
        }
        state.loading = false
      })
@@ -87,8 +90,12 @@ const actions = {
      this.$axios.post('/me/updateAddress/'+id, data).then((res) => {
        state.cart = res.data
        if (res.data.status === 200) {
+        state.addressMSG = res.data.msg
+
          alert(res.data.msg)
        } else {
+        state.addressMSG = res.data.msg
+
          alert(res.data.msg)
        }
        state.loading = false
@@ -106,8 +113,12 @@ const actions = {
      this.$axios.post(`/me/deleteAddress/${id}`).then((res) => {
        state.cart = res.data
        if (res.data.status === 200) {
+        state.addressMSG = res.data.msg
+
          alert(res.data.msg)
        } else {
+        state.addressMSG = res.data.msg
+
          alert(res.data.msg)
        }
        state.loading = false
