@@ -46,6 +46,7 @@
         </v-col> -->
 
   <v-expansion-panel-content>
+
     <v-list two-line>
       <v-list-item>
         <v-list-item-icon>

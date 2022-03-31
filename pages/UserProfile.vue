@@ -1,5 +1,16 @@
 <template>
   <v-container class="py-10">
+    <div
+        class="text-center"
+        v-if="allAuth.loadingupdate == true"
+      >
+        <v-overlay>
+        <v-progress-circular
+          indeterminate
+          size="64"
+        ></v-progress-circular>
+      </v-overlay>
+      </div>
     <v-row>
       <ProfileUserInfo />
       <v-divider vertical></v-divider>
@@ -344,7 +355,7 @@ export default {
     // }
   },
   mounted() {
-    this.getAddress()
+    // this.getAddress()
     // this.getListCart()
     // this.getListOfTime()
   },

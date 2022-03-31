@@ -254,7 +254,7 @@ export default {
 
   async mounted() {
     // this.getAddress()
-    await this.getListCart()
+    // await this.getListCart()
     // this.getListOfTime()
   },
 }

@@ -7,15 +7,15 @@ const state = {
   is_active: 0,
   token: '',
   device: 'website',
-  sessionId: '1234567',//this.$uuid.v5(navigator.userAgent, '65f9af5d-f23f-4065-ac85-da725569fdcd'),
+  sessionId: '1234567', //this.$uuid.v5(navigator.userAgent, '65f9af5d-f23f-4065-ac85-da725569fdcd'),
   user: [],
   register: [],
   loading: false,
   checkUserStatus: false,
   loadingReg: true,
   errors: [],
-
-};
+  loadingupdate:false,
+}
 
 const getters = {
   allAuth: state => state
@@ -198,15 +198,12 @@ const actions = {
     data.append('name', arrayData.name )
     data.append('email', arrayData.email)
     console.log(arrayData);
-    state.loading = true
+    state.loadingupdate = true
     this.$axios
       .$post('/me/updateProfile', data)
       .then((res) => {
         // state.loading = false
         if (res.status === 200) {
-          state.user = res.data
-          dispatch('getMe')
-          console.log(res);
           // alert(res.data.msg)
         } else {
           // alert(res.data.msg)
@@ -214,7 +211,7 @@ const actions = {
 
         }
         dispatch('getMe')
-        state.loading = false
+        state.loadingupdate = false
 
       })
 
