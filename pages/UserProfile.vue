@@ -7,16 +7,15 @@
         <div>
           <v-expansion-panels v-model="panel" multiple>
             <v-expansion-panel v-model="panel">
-              <v-expansion-panel-header
-                >Pesonal Information</v-expansion-panel-header
-              >
-
+              <v-expansion-panel-header>Pesonal Information</v-expansion-panel-header>
               <UserDetails />
             </v-expansion-panel>
 
             <v-expansion-panel>
               <v-expansion-panel-header>My Address</v-expansion-panel-header>
               <v-expansion-panel-content>
+
+                <!-- User Address Iformations -->
                 <v-list
                   two-line
                   v-for="(addressData, i) in AllAddresses.data.data"
@@ -38,6 +37,7 @@
                         {{ addressData.city.name }}</v-list-item-subtitle
                       >
                     </v-list-item-content>
+
                     <v-list-item-action>
                       <!-- Update Form -->
                       <div>
@@ -172,6 +172,7 @@
               </v-expansion-panel-content>
             </v-expansion-panel>
 
+            <!-- Payment Methods -->
             <!-- <v-expansion-panel>
               <v-expansion-panel-header>Bank Account</v-expansion-panel-header>
               <v-expansion-panel-content>
@@ -303,7 +304,6 @@ export default {
         notes: '',
         checkbox: false,
       },
-
     }
   },
 
@@ -324,22 +324,20 @@ export default {
       'getAddress',
       'UpdateAddress',
       'DeleteAddress',
-
     ]),
-
 
     DeleteAdd(id) {
       this.DeleteAddress(id)
     },
     OnEditAddd(id) {
-     var s =  this.AllAddresses.data.data.filter((el)=>el.id==id);
-     this.currentAddress = s[0];
-    //  this.addressId = id;
+      var s = this.AllAddresses.data.data.filter((el) => el.id == id)
+      this.currentAddress = s[0]
+      //  this.addressId = id;
     },
     EditAddress(id) {
-      console.log('jjkkk', id);
-      console.log( this.currentAddress)
-      this.UpdateAddress(id,this.currentAddress )
+      console.log('jjkkk', id)
+      console.log(this.currentAddress)
+      this.UpdateAddress(id, this.currentAddress)
     },
     // onSubmit(){
     //   this.addToCart(this.prodName)

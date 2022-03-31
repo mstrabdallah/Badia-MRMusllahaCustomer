@@ -12,7 +12,7 @@
     </v-overlay>
     </div>
     <div v-else>
-    <h2 class="text-center mt-10">Popular Services</h2>
+    <h2 class="text-center mt-10">{{$t('Popular Services')}}</h2>
     <v-container>
       <v-row>
         <v-col

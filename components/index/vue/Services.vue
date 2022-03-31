@@ -13,7 +13,7 @@
     </v-overlay>
     </div>
     <div v-else>
-    <h2>Popular Services</h2>
+    <h2>{{$t('Popular Services')}}</h2>
 
     <v-container>
       <v-row>
@@ -71,14 +71,14 @@ export default {
 <style scoped>
 .serv {
   background: #f8f8f8;
-  padding: 20px;
+  padding: 10px;
   padding-bottom: 50px;
   min-height: 100vh;
   align-items: center;
 }
 .serv h2 {
   text-align: center;
-  padding: 40px;
+  padding: 20px;
   font-weight: bold;
   font-size: 2em;
 }
