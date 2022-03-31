@@ -1,20 +1,23 @@
 <template>
   <v-container>
+
     <div v-if="this.$store.state.carts.cartLength <= 0">
       <h2 class="text-center">{{$t("You Don't Have Any Items Yet")}}</h2>
     </div>
+
     <div
       class="loadingReg d-flex justify-center"
       centered
       v-if="this.$store.state.carts.loading"
     >
-      <v-progress-circular
-        :size="50"
-        color="#43A047"
+      <v-progress-linear
+        color="deep-purple accent-4"
         indeterminate
-      ></v-progress-circular>
+        rounded
+        height="6"
+      ></v-progress-linear>
     </div>
-    <div v-if="this.$store.state.carts.cartLength > 0">
+    <div v-if="AllListOfCarts.cartLength > 0">
       <template v-if="!this.$store.state.carts.loading">
         <h1 class="text-center" v-if="!this.$store.state.carts.loading">
           {{$t('Your Cart Items')}}
@@ -137,6 +140,11 @@
         </v-banner>
       </template>
     </div>
+    <div
+      v-if="AllListOfCarts.cartLength <= 0 && AllListOfCarts.loading == false"
+    >
+      <h2 class="text-center">You Don't Have Any Items Yet</h2>
+    </div>
   </v-container>
 </template>
 
@@ -196,7 +204,6 @@ export default {
     totalPrice() {
       return this.$store.getters.getTotalPrice
     },
-
   },
   mounted() {
     // setTimeout(() => this.getListCart(), 1000)

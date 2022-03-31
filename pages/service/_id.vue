@@ -1,5 +1,17 @@
 <template>
   <section>
+    <div
+      class="text-center"
+      v-if="allservices.loading"
+    >
+      <v-overlay>
+      <v-progress-circular
+        indeterminate
+        size="64"
+      ></v-progress-circular>
+    </v-overlay>
+    </div>
+    <div v-else>
     <v-item-group>
       <v-container>
         <div
@@ -65,6 +77,7 @@
         </template>
       </v-container>
     </v-item-group>
+    </div>
   </section>
 </template>
 

@@ -168,7 +168,7 @@ export default {
 
   mounted() {
     window.addEventListener('scroll', this.handleScroll)
-    this.getCity()
+    // this.getCity()
     // this.getAllUsers()
   },
 
@@ -176,7 +176,7 @@ export default {
   // ...mapGetters(['all'])
   // },
   methods: {
-    ...mapActions(['Logout','changeLanguage', 'getCity', 'UpdateCity']),
+    ...mapActions(['Logout', 'getCity', 'UpdateCity','changeLanguage']),
     handleClick(index) {
       this.items[index].click.call(this)
     },

@@ -1,6 +1,21 @@
 <template>
+
+<div class="text-center" v-if="AllListOforder.loading">
+    <v-progress-linear
+      color="deep-purple accent-4"
+      indeterminate
+      rounded
+      height="6"
+    ></v-progress-linear>
+  </div>
+  <div v-else>
   <v-container>
-    <div v-if="AllListOforder.data.length <= 0 && AllListOforder.loading ==false ">
+      <div
+        v-if="
+          AllListOforder.data.length <= 0 && AllListOforder.loading == false
+        "
+      >
+
       <h2 class="text-center">{{$t("You Don't Have Any Items Yet")}}</h2>
     </div>
     <div v-else-if="AllListOforder.data.length > 0">
@@ -71,8 +86,8 @@
           </v-list>
         </v-card>
       </template>
-    </div>
-  </v-container>
+    </v-container>
+  </div>
 </template>
 
 <script>
@@ -96,7 +111,7 @@ export default {
     ...mapGetters(['AllListOforder']),
   },
   methods: {
-    ...mapActions(['ListOfOrder', 'DeleteCart', 'UpdateCart','OrderCanceled']),
+    ...mapActions(['ListOfOrder', 'DeleteCart', 'UpdateCart', 'OrderCanceled']),
 
     decrement(quantity, id) {
       if (quantity <= 0) {

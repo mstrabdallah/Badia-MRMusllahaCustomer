@@ -40,9 +40,9 @@ const actions = {
       this.$cookies.set('city_id', '1')
 
     // get api when open site first time
-
-    dispatch('getMe')
+    setTimeout(() => dispatch('getMe'), 2000)
     setTimeout(() => dispatch('getCategories'), 2000)
+    setTimeout(() => dispatch('getCity'), 2000)
 
   },
   async changeLanguage({ state }, data) {
@@ -136,7 +136,6 @@ const actions = {
             path: '/',
             maxAge: 365 * 24 * 60 * 60,
           })
-          dispatch('getMe')
         } else {
         }
       })
