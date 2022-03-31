@@ -23,6 +23,17 @@
         </v-select>
       </div>
 
+      <div
+        class="text-center"
+        v-if="AllCityDeatils.progress == true"
+      >
+        <v-overlay>
+        <v-progress-circular
+          indeterminate
+          size="64"
+        ></v-progress-circular>
+      </v-overlay>
+      </div>
       <nav class="menu">
         <ul>
           <li class="box_op_header d-none d-sm-block">
@@ -174,6 +185,8 @@ export default {
     // items: ['Foo', 'Bar', 'Fizz', 'Buzz'],
     city: null,
     scrolled: false,
+    timeout: 2000,
+    snackbar: false,
   }),
 
   mounted() {

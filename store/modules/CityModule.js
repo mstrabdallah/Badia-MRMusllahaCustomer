@@ -3,7 +3,7 @@ const state = {
   loading: true,
   data: [],
   cites: [],
-  message: [],
+  progress: false
 }
 
 const getters = {
@@ -28,6 +28,7 @@ const actions = {
 
   async UpdateCity({ state , dispatch }, id) {
 
+    state.progress = true
     var data = new FormData()
     data.append('city_id', id)
     this.$cookies.set('city_id', id)
@@ -36,13 +37,16 @@ const actions = {
      await this.$axios.post('/me/CustomerUpdateCity', data).then((res) => {
        state.cites = res.data
        if (res.data.status === 200) {
-         message.push(res.date.msg)
+        alert(res.data.msg)
        } else {
+        alert(res.data.msg)
        }
-       state.loading = false
+       state.progress = false
      })
 
-      dispatch("getservices")
+    // dispatch("getservices")
+      dispatch('getCity')
+
   },
 
 
