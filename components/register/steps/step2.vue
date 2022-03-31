@@ -13,7 +13,7 @@
     <!-- Form -->
     <v-form ref="form"  v-model="valid" lazy-validation>
       <p class="mb-4 mt-4 text-center">
-        We sent you the activation code over the phone
+        {{$t('We sent you the activation code over the phone, please enter here')}}
       </p>
 
       <div class="form_body">
