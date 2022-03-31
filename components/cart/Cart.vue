@@ -74,11 +74,9 @@
             v-model="snackbar"
             color="blue"
             :timeout="2500"
+            class="justify-content-center"
             :value="true"
-            absolute
-            centered
             shaped
-            bottom
             v-if="this.$store.state.carts.msg"
           >
             {{ this.$store.state.carts.msg }}
