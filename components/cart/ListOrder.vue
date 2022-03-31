@@ -20,6 +20,8 @@
     </div>
     <div v-else-if="AllListOforder.data.length > 0">
       <template>
+        <h2 class="text-center my-4">All orders</h2>
+
         <v-card>
           <v-list two-line>
             <template>
@@ -86,6 +88,7 @@
           </v-list>
         </v-card>
       </template>
+    </div>
     </v-container>
   </div>
 </template>
