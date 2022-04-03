@@ -86,21 +86,7 @@ const actions = {
     data.append('is_default', is_Default)
 
     state.loading = true
-// <<<<<<< HEAD
-//      this.$axios.post('/me/updateAddress/'+id, data).then((res) => {
-//        state.cart = res.data
-//        if (res.data.status === 200) {
-//         state.addressMSG = res.data.msg
 
-//          alert(res.data.msg)
-//        } else {
-//         state.addressMSG = res.data.msg
-
-//         //  alert(res.data.msg)
-//        }
-//        state.loading = false
-//      })
-// =======
      this.$axios
        .post('/me/updateAddress/' + Obj.address_id, data)
        .then((res) => {
@@ -116,7 +102,6 @@ const actions = {
          }
          state.loading = false
        })
-// >>>>>>> b0b6cc29032abd52ac7b1c17be5b8e3e13aeefcd
   },
 
 
