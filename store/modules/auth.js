@@ -63,6 +63,8 @@ const actions = {
   Logout() {
     this.$cookies.remove('user')
     this.$cookies.remove('iA')
+    this.$cookies.remove('sId')
+    this.$cookies.remove('token')
     if (this.$i18n.locale === 'ar') {
       window.location.href = '/'
     } else {
@@ -73,7 +75,9 @@ const actions = {
   registerAction({ state, dispatch }, arrayData) {
     var data = new FormData()
 
-    if (state.step === 2) data.append('verification_code', arrayData)
+    if (state.step === 2) {
+      data.append('verification_code', arrayData)
+    }
     else state.register = arrayData
 
     data.append('name', state.register.name)
@@ -89,7 +93,13 @@ const actions = {
         state.loading = false
 
         if (res.data.status === 200) {
-          if (state.step === 1) state.step = 2
+          console.log(state.step);
+          if (state.step === 1) {
+            state.step = 2
+            console.log(state.step);
+
+          }
+
           else {
             this.$cookies.set('iA', 1, {
               path: '/',

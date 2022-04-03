@@ -1,5 +1,5 @@
 <template>
-  <section  class="head bg">
+  <section  class="head bg text-center" >
     <h2>{{$t('service-on')}}</h2>
     <p>
      {{$t('Home-header')}}
@@ -74,5 +74,11 @@
 }
 .but_down svg{
     font-size: 20px;
+}
+
+@media (max-width: 959px) {
+  .head h2 {
+    font-size: 25px;
+  }
 }
 </style>

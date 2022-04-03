@@ -38,11 +38,11 @@ const actions = {
          state.loading = false;
         //  console.log(res)
          if (res.status === 200) {
-           ('ee',res)
+
           if (state.step === 1) state.step = 2;
 
            else{
-             ('eee',res)
+
             // this.$cookies.set("iA", res.token, {path: "/",maxAge: 365 * 24 * 60 * 60});
             // if (this.$i18n.locale === "ar") {
             //   window.location.href = "/";

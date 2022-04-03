@@ -29,9 +29,9 @@
         </v-snackbar>
       </div>
 
-      <div class="msg" v-if="msg">
+      <!-- <div class="msg" v-if="msg">
         <p>{{ $t(msg) }}</p>
-      </div>
+      </div> -->
       <div class="buttons">
         <v-btn
           :disabled="valid"
