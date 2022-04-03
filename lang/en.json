@@ -202,7 +202,7 @@
   "Edit User Details": "Edit User Details",
   "street": "Street",
   "area": "Area",
-
+  "This Address Can't Delete, It Realted With Order":"This Address Can't Delete, It Realted With Order",
   "building_no": "Building Number",
   "apartment_no": "Apartment Number",
   "postal_code": "Postal Code",
@@ -211,7 +211,8 @@
   "notes": "Notes",
   "Is Default":"Is Default",
 
-  "address_line": "Address Line",
+  "Please Choice Your City From Above": "Please Choice Your City From Above",
+  "To Show The Service": "To Show The Service",
   "If you would to add any notes ... Write it here.":"If you would to add any notes ... Write it here.",
 
 

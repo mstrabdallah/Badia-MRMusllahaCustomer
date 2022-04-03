@@ -38,7 +38,7 @@
 
               <v-btn
                 :disabled="!valid"
-                color="success"
+                color="#30c88d"
                 class="button_login"
                 @click="OnLogin"
                 :loading="loading"

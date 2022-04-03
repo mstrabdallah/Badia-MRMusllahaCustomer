@@ -158,11 +158,14 @@
   "building_no": "رقم المبنى",
   "apartment_no": "رقم الشقة",
   "postal_code":"الرقم البريدى",
-
+  "This Address Can't Delete, It Realted With Order":"ﻻ يمكنك حذف هذا العنوان ﻻنه مرتبط بطلب خدمة",
   "address_line":"العنوان بالكامل",
   "notes":"ملاحظات",
   "Is Default":"أساسية",
   "If you would to add any notes ... Write it here.":"إذا كان لديك ملاحظات أكتبها هنا",
+
+  "Please Choice Your City From Above": "من فضلك قم بإختيار مدينتك من القائمة أعلاه",
+  "To Show The Service": "لإظهار الخدمات المتاحة",
 
 
   "------ footer": "",

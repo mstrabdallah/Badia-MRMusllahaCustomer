@@ -93,7 +93,7 @@ const actions = {
        if (res.data.status === 200) {
         state.addressMSG = res.data.msg
 
-        //  alert(res.data.msg)
+         alert(res.data.msg)
        } else {
         state.addressMSG = res.data.msg
 

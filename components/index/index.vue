@@ -7,7 +7,7 @@
     <div v-else>
       <Head />
       <Services />
-      <MobileApp />
+      <!-- <MobileApp /> -->
     </div>
 
 
@@ -32,7 +32,7 @@ export default {
 
   },
   computed: {
-    ...mapGetters(["allAuth"]),
+    ...mapGetters(["allAuth", "AllCityDeatils"]),
   },
 };
 </script>

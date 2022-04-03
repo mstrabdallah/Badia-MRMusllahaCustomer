@@ -63,7 +63,7 @@ export default {
     font-size: 20px;
   }
   .landing{
-    border: 1px solid #f6e82b;
+    border: 1px solid #30c88d;
     border-radius: 27px;
   }
   .landing-img{

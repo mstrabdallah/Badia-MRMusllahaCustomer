@@ -97,7 +97,7 @@ h3 {
   font-size: 30px;
 }
 p {
-  border-left: 1px solid #dfb754;
+  border-left: 1px solid #75df54;
   padding-left: 12px;
   line-height: 35px;
   margin-top: 40px;

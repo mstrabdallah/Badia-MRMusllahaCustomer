@@ -44,7 +44,7 @@
                 <span bold>Price:</span> {{ Proudcts.price }}
               </v-card-subtitle>
 
-              <v-card-actions>
+              <v-card-actions v-if="allAuth.checkAuth">
                 <v-spacer></v-spacer>
 
                 <v-btn
@@ -117,7 +117,7 @@ export default {
     return !isNaN(params.id)
   },
   computed: {
-    ...mapGetters(['allservices', 'AllListOfCarts']),
+    ...mapGetters(["allAuth",'allservices', 'AllListOfCarts']),
   },
   methods: {
     ...mapActions(['getListCart', 'getservices', 'addToCart']),

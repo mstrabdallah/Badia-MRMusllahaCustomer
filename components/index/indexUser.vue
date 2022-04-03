@@ -28,10 +28,14 @@
 
 <script>
 import Services from "./vue/Services.vue";
+import { mapGetters } from "vuex";
 
 export default {
 components: {
     Services,
+  },
+  computed: {
+    ...mapGetters(["allAuth", "AllCityDeatils"]),
   },
 }
 </script>

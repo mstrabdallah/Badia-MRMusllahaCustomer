@@ -197,7 +197,7 @@
                     type="red"
                     v-if="this.$store.state.addresses.deleteAddressMsg"
                   >
-                    This Address Can't Delete, It Realted With Order
+                    {{$t("This Address Can't Delete, It Realted With Order")}}
                   </v-alert>
                 </div>
                 <UserAddress />

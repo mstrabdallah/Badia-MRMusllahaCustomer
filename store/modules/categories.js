@@ -13,18 +13,23 @@ const getters = {
 const actions = {
 
   async getCategories({ state }) {
+    state.loading = true
+
     await this.$axios.get("/Category").then((res) => {
       state.data = res.data;
-       (state.data);
+
       // state.data = res.data.data;
       state.loading = false;
     });
   },
 
   async getSubCategories({ state }, id) {
+    state.loading = true
+
+
     await this.$axios.get("/Category?parent="+id).then((res) => {
       state.subCat = res.data.data;
-       (state.subCat);
+
       // state.data = res.data.data;
       state.loading = false;
     });

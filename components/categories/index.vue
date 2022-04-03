@@ -1,5 +1,6 @@
 <template>
-  <section id="serv" class="container_cc serv">
+
+  <section id="serv" class="container_cc serv" >
     <div
       class="text-center"
       v-if="AllCategories.loading"
@@ -11,7 +12,7 @@
       ></v-progress-circular>
     </v-overlay>
     </div>
-    <div v-else>
+    <div v-else >
     <h2 class="text-center mt-10">{{$t('Popular Services')}}</h2>
     <v-container>
       <v-row>
@@ -23,7 +24,7 @@
           class="text-center"
         >
           <v-hover v-slot="{ hover }" open-delay="200">
-            <nuxt-link :to="`/Service/${subCateg.id}`">
+            <nuxt-link :to="localePath(`/Service/${subCateg.id}`)">
               <v-card
                 class="mx-auto"
                 max-width="344"
@@ -32,35 +33,24 @@
                 :class="{ 'on-hover': hover }"
               >
                 <v-img :src="subCateg.image" height="200px"></v-img>
-
                 <v-card-title> {{ subCateg.name }} </v-card-title>
-
                 <!-- <v-card-subtitle> {{ subCateg.id }} </v-card-subtitle> -->
-
-                <!-- <v-card-actions>
-              <v-spacer></v-spacer>
-              <v-btn
-                text
-                color="deep-purple accent-4"
-                nuxt
-                :to="`/Service/${subCateg.id}`"
-              >
-                {{ subCateg.name }}
-              </v-btn>
-            </v-card-actions> -->
               </v-card>
             </nuxt-link>
           </v-hover>
         </v-col>
       </v-row>
     </v-container>
+
     </div>
   </section>
+
 </template>
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
 export default {
+
   computed: {
     ...mapGetters(['AllCategories']),
   },

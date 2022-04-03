@@ -3,6 +3,7 @@ const state = {
   loading: true,
   data: [],
   cites: [],
+  Updatecheck:false,
   progress: false,
   cityMSG:''
 }
@@ -30,6 +31,7 @@ const actions = {
   async UpdateCity({ state , dispatch }, id) {
 
     state.progress = true
+    state.Updatecheck = false;
     var data = new FormData()
     data.append('city_id', id)
     this.$cookies.set('city_id', id)
@@ -45,7 +47,9 @@ const actions = {
 
         // alert(res.data.msg)
        }
-       state.progress = false
+       state.progress = false;
+      state.Updatecheck = true;
+
      })
 
     // dispatch("getservices")
