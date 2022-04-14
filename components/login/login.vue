@@ -7,7 +7,7 @@
         <div class="form_login">
           <div class="form_title">
             <div class="mb-5">
-              {{ $t('Enter Phone Number') }}
+              {{ $t('Enter your login information to continue') }}
             </div>
           </div>
 
@@ -15,33 +15,33 @@
             <v-form ref="form" v-model="valid" lazy-validation>
               <v-text-field
                 v-model="data.phone"
-                :counter="11"
-                :rules="phoneRules"
+                :rules="[$rules.required, $rules.number]"
                 :label="$t('Phone')"
                 required
                 outlined
+                dense
               ></v-text-field>
 
               <v-text-field
                 v-model="data.password"
                 :append-icon="showPasswordLogin ? 'mdi-eye' : 'mdi-eye-off'"
-                :rules="[rules.required]"
+                :rules="[$rules.required]"
                 :type="showPasswordLogin ? 'text' : 'password'"
                 :label="$t('Password')"
                 @click:append="showPasswordLogin = !showPasswordLogin"
+                required
                 outlined
+                dense
               ></v-text-field>
 
-              <div class="msg" v-if="msg">
-                <p>{{ $t(msg) }}</p>
-              </div>
-
+              <Msg api="login"/>
               <v-btn
                 :disabled="!valid"
                 color="#30c88d"
                 class="button_login"
                 @click="OnLogin"
-                :loading="loading"
+                :loading="allAuth.loading"
+                type="submit"
               >
                 {{ $t('Login') }}
               </v-btn>
@@ -55,10 +55,14 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
+import Msg from '../tools/msgApi.vue'
 export default {
+  components: {
+    Msg,
+  },
   head() {
     return {
-      title: this.$i18n.t('Login-page'),
+      title: this.$i18n.t('Login'),
       meta: [
         // hid is used as unique identifier. Do not use `vmid` for it as it will not work
         {
@@ -69,42 +73,29 @@ export default {
       ],
     }
   },
-  data: () => ({
-    loading: false,
-    valid: false,
-    showPasswordLogin: false,
-    data:{
-      password: '',
-      phone: '',
-    },
-    msg: '',
-    msgStatus: true,
-    phoneRules: [
-      (v) => !!v || 'Phone is required',
-      (v) => (v && v.length <= 11) || 'Phone must be less than 11 Number',
-      (v) =>
-        Number.isInteger(Number(v)) || 'The value must be an integer number',
-    ],
-    rules: {
-      required: (value) => !!value || 'Required.',
-      min: (v) => v.length >= 8 || 'Min 8 characters',
-    },
-
-    emailRules: [
-      (v) => !!v || 'E-mail is required',
-      (v) => /.+@.+\..+/.test(v) || 'E-mail must be valid',
-    ],
-    items: ['Item 1', 'Item 2', 'Item 3', 'Item 4'],
-  }),
-computed: {
+  data() {
+    return {
+      loading: false,
+      valid: false,
+      showPasswordLogin: false,
+      data: {
+        password: '',
+        phone: '',
+      },
+    }
+  },
+  computed: {
     ...mapGetters(['allAuth']),
   },
   methods: {
     ...mapActions(['LoginAction']),
-    OnLogin() {
-    this.LoginAction(this.data)
-    },
 
+    OnLogin(e) {
+      e.preventDefault()
+      if (this.$refs.form.validate() === false) return false
+
+      this.LoginAction(this.data)
+    },
   },
 }
 </script>

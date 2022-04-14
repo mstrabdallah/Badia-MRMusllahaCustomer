@@ -9,17 +9,16 @@ const state = {
 }
 
 const getters = {
-  AllCityDeatils: (state) => state,
+  allCity: (state) => state,
 }
 
 const actions = {
    getCity({ state }) {
     // alert(id)
     state.loading = true
-    state.data = []
      this.$axios.get('/City' ).then((res) => {
-      // console.log(state.data);
-      state.data = res.data
+  
+      state.data = res.data.data
       state.loading = false
     })
   },
@@ -30,16 +29,15 @@ const actions = {
 
   async UpdateCity({ state , dispatch }, id) {
 
-    state.progress = true
-    state.Updatecheck = false;
     var data = new FormData()
     data.append('city_id', id)
-    this.$cookies.set('city_id', id)
-
+    this.$cookies.set('city_id', id, {path: '/',maxAge: 365 * 24 * 60 * 60,})
     state.loading = true
      await this.$axios.post('/me/CustomerUpdateCity', data).then((res) => {
        state.cites = res.data
        if (res.data.status === 200) {
+        dispatch("getCategories")
+
          state.cityMSG = res.data.msg;
         // alert(res.data.msg)
        } else {
@@ -47,13 +45,11 @@ const actions = {
 
         // alert(res.data.msg)
        }
-       state.progress = false;
+       state.loading = false;
       state.Updatecheck = true;
 
      })
 
-    // dispatch("getservices")
-      dispatch('getCity')
 
   },
 

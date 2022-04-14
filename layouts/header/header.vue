@@ -1,6 +1,12 @@
 <template>
-  <header class="header container_cc" :class="scrolled ? 'headerFixed' : ''">
+  <header class="header container_cc headerFixed">
+    
     <div class="header_p">
+      <v-app-bar-nav-icon
+        class="menuBtn"
+        @click.stop="showDrawer()"
+      ></v-app-bar-nav-icon>
+
       <NuxtLink :to="localePath('/')" class="logo">
         <img src="/logo.svg" />
       </NuxtLink>
@@ -8,112 +14,56 @@
       <div class="search">
         <!-- <input type="text" placeholder="Search For Services" /> -->
 
-        <v-select
-          class="select_head"
-          :items="AllCityDeatils.data.data"
-          :label="$t('Location')"
-          item-text="name"
-          item-value="id"
-          v-model="city"
-          outlined
-          dense
-          @change="onChangeCity"
-          prepend-inner-icon="mdi-map-marker"
-        >
-        </v-select>
       </div>
 
-      <div
-        class="text-center"
-        v-if="AllCityDeatils.progress == true"
-      >
-        <v-overlay>
-        <v-progress-circular
-          indeterminate
-          size="64"
-        ></v-progress-circular>
-      </v-overlay>
-      </div>
       <nav class="menu">
         <ul>
-          <li class="box_op_header d-none d-sm-block">
+          <li class="box_op_header">
             <NuxtLink :to="localePath('/')">
               <font-awesome-icon icon="house" class="fa" />
-              <span class="navM_">{{ $t("Home") }}</span>
+              <span class="navM_">{{ $t('Home') }}</span>
             </NuxtLink>
           </li>
 
-          <li v-if="this.$store.state.auth.checkAuth">
+          <li v-if="!allAuth.checkAuth">
             <NuxtLink :to="localePath('/about')">
               <font-awesome-icon icon="user-secret" class="fa" />
-              <span class="navM_">{{ $t("About") }}</span>
+              <span class="navM_">{{ $t('About') }}</span>
             </NuxtLink>
           </li>
 
-
-
-
-
-          <!-- <li v-if="!this.$store.state.auth.checkAuth">
-            <NuxtLink :to="localePath('/cart')">
-              <Checkout />
-            </NuxtLink>
-          </li> -->
-          <li v-if="this.$store.state.auth.checkAuth">
-            <NuxtLink :to="localePath('/cart')">
-              <v-badge
-                  overlap
-                  :content="`${$store.state.carts.cartLength}`"
-                >
-                  <v-btn icon>
-                    <v-icon  >mdi-cart-outline</v-icon>
-                  </v-btn>
-                </v-badge>
-            </NuxtLink>
-          </li>
-
-         <li v-if="!this.$store.state.auth.checkAuth">
-            <NuxtLink :to="localePath('/about')">
-              <font-awesome-icon icon="user-secret" class="fa" />
-              <span class="navM_">{{ $t("About") }}</span>
-            </NuxtLink>
-          </li>
-
-
-          <li v-if="this.$store.state.auth.checkAuth">
+          <li v-if="allAuth.checkAuth">
             <v-menu bottom left>
               <template v-slot:activator="{ on, attrs }">
-                <div v-bind="attrs" v-on="on"  >
+                <div v-bind="attrs" v-on="on">
                   <font-awesome-icon icon="user" class="fa" />
-                  {{ $t('My Account') }}
+                    <span class="navM_"> {{ $t('My Account') }}</span>
+                 
                 </div>
               </template>
 
               <v-list>
-                  <NuxtLink :to="localePath('/UserProfile')">
-                <v-list-item link>
-                  <v-list-item-title>
-                    {{$t('UserProfile')}}
-                  </v-list-item-title>
-                </v-list-item>
-                  </NuxtLink>
-              </v-list>
-
-              <v-list>
-                  <NuxtLink :to="localePath('/listOrder')">
+                <NuxtLink :to="localePath('/account')">
                   <v-list-item link>
-                  <v-list-item-title>
-                  {{
-                    $t('Order List')
-                  }}
-                  </v-list-item-title>
+                    <v-list-item-title>
+                      {{ $t('UserProfile') }}
+                    </v-list-item-title>
                   </v-list-item>
-                  </NuxtLink>
+                </NuxtLink>
+              </v-list>
 
+              <v-list>
+                <NuxtLink :to="localePath('/orders')">
+                  <v-list-item link>
+                    <v-list-item-title>
+                      {{ $t('Order List') }}
+                    </v-list-item-title>
+                  </v-list-item>
+                </NuxtLink>
               </v-list>
               <v-list>
                 <v-list-item link>
-                  <div style="margin:auto" @click="Logout">
+                  <div style="margin: auto" @click="Logout">
                     <v-list-item-title>{{ $t('Logout') }}</v-list-item-title>
                   </div>
                 </v-list-item>
@@ -121,68 +71,37 @@
             </v-menu>
           </li>
 
-          <li v-if="!this.$store.state.auth.checkAuth">
-            <NuxtLink class="login_" :to="localePath('/register')">{{
-              $t('Register')
-            }}</NuxtLink>
-          </li>
+          
 
-          <li v-if="!this.$store.state.auth.checkAuth">
+          <li v-if="!allAuth.checkAuth" class="navM_">
             <NuxtLink class="login_" :to="localePath('/login')">{{
               $t('Login')
             }}</NuxtLink>
           </li>
-          <li class="box_op_header">
-            <v-menu offset-y>
-              <template v-slot:activator="{ on, attrs }">
-                <div v-if="$i18n.locale === 'ar'" class="flex">
-                  <img
-                    v-bind="attrs"
-                    v-on="on"
-                    width="24px"
-                    src="/saflag.png"
-                  />
-                </div>
-                <div class="flex" v-else>
-                  <img
-                    v-bind="attrs"
-                    v-on="on"
-                    width="24px"
-                    src="/usflag.png"
-                  />
-                </div>
-              </template>
-              <v-list>
-                <v-list-item :disabled="this.$i18n.locale === 'ar'">
-                  <a @click="changeLanguage('ar')">
-                    <img width="24px" src="/saflag.png" />
-                  </a>
-                </v-list-item>
-                <v-list-item>
-                  <a @click="changeLanguage('en')">
-                    <img width="24px" src="/usflag.png" />
-                  </a>
-                </v-list-item>
-              </v-list>
-            </v-menu>
+
+      
+          <li v-if="allAuth.checkAuth">
+            <NuxtLink :to="localePath('/cart')">
+              <strong id="countCart" class="countCart" v-if="allCart.countOfCar > 0">{{
+                allCart.countOfCar
+              }}</strong>
+              <font-awesome-icon icon="cart-shopping" class="fa" />
+              <span class="navM_">
+                {{ $t('Cart') }}
+              </span>
+            </NuxtLink>
           </li>
         </ul>
       </nav>
-      <div class="mob_nav">
-        <Menu />
-      </div>
     </div>
   </header>
 </template>
 
 <script>
-import 'axios'
-
 import Menu from './menu.vue'
 import { mapActions, mapGetters } from 'vuex'
 export default {
   data: () => ({
-    // items: ['Foo', 'Bar', 'Fizz', 'Buzz'],
     city: null,
     scrolled: false,
     timeout: 2000,
@@ -190,34 +109,35 @@ export default {
   }),
 
   mounted() {
-    window.addEventListener('scroll', this.handleScroll)
-    // this.getCity()
-    // this.getAllUsers()
+    this.setCity()
+    this.getCart()
   },
 
-  // computed:{
-  // ...mapGetters(['all'])
-  // },
   methods: {
-    ...mapActions(['Logout', 'getCity', 'UpdateCity','changeLanguage']),
+    ...mapActions([
+      'getCart',
+      'Logout',
+      'getCity',
+      'changeLanguage',
+      'changeMenuHeader',
+    ]),
+
+    setCity() {
+      this.city = this.$cookies.get('city_id')
+    },
+
     handleClick(index) {
       this.items[index].click.call(this)
     },
 
-    handleScroll() {
-      if (window.scrollY < 41) {
-        this.scrolled = false
-      } else {
-        this.scrolled = true
-      }
+    showDrawer() {
+      this.changeMenuHeader(true)
     },
 
-    onChangeCity() {
-      this.UpdateCity(this.city)
-    },
+ 
   },
   computed: {
-    ...mapGetters(['AllCityDeatils']),
+    ...mapGetters(['allAuth', 'allCity', 'allCart']),
   },
   components: {
     Menu,
@@ -227,10 +147,9 @@ export default {
 
 <style scoped>
 .header {
-  /* padding: 0px 100px; */
   box-shadow: 0px 1px 4px 0 rgb(0 0 0 / 5%);
   border: 1px solid #efefef;
-  z-index: 3;
+  z-index: 99;
   background: #fff;
   width: 100%;
   position: fixed;
@@ -241,7 +160,11 @@ export default {
   width: 100%;
   top: 0px;
 }
-.stock-span{
+.headerFixed .header_p {
+  height: 65px;
+  transition: 1s;
+}
+.stock-span {
   position: relative;
   bottom: 20px;
   left: 1px;
@@ -254,10 +177,7 @@ export default {
   align-items: center;
   height: 80px;
 }
-.headerFixed .header_p {
-  height: 60px;
-  transition: 1s;
-}
+
 .header_p li a.nuxt-link-exact-active {
   color: #30c88c;
   padding-bottom: 10px;
@@ -284,7 +204,6 @@ a.nuxt-link-exact-active.login_ {
   display: flex;
   justify-content: flex-end;
   flex: 1;
-
 }
 
 .menu ul {
@@ -295,7 +214,6 @@ a.nuxt-link-exact-active.login_ {
 }
 .menu ul li:lang(en) {
   margin-left: 3em;
-
 }
 
 .menu ul li:lang(ar) {
@@ -307,7 +225,8 @@ a.nuxt-link-exact-active.login_ {
 }
 
 .logo img {
-  height: 50px;
+  min-width: 47px;
+  height: 40px;
   align-items: center;
   display: flex;
 }
@@ -351,10 +270,35 @@ a.nuxt-link-exact-active.login_ {
 .select_head[data-v-f21a83aa] {
   width: 200px;
 }
-.v-list-item .v-list-item__title, .v-list-item .v-list-item__subtitle{
+.v-list-item .v-list-item__title,
+.v-list-item .v-list-item__subtitle {
   text-align: center;
 }
+
+.countCart {
+  color: #fff;
+  position: absolute;
+  margin-top: -17px;
+  background: #30c88c;
+  padding: 4px;
+  border-radius: 50%;
+  height: 24px;
+  width: 24px;
+  border: 2px solid #fff;
+  font-size: 12px;
+}
+.countCart:lang(ar) {
+  margin-right: -4px;
+}
+.countCart:lang(en) {
+  margin-right: auto;
+  margin-right: auto;
+  margin-left: 9px;
+}
 @media (max-width: 768px) {
+  .navM_{
+    display: none;
+  }
   .search {
     display: none;
   }
@@ -362,7 +306,7 @@ a.nuxt-link-exact-active.login_ {
     display: block;
   }
   .menu ul {
-    display: none;
+    
   }
 }
 </style>

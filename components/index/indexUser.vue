@@ -1,91 +1,37 @@
 <template>
-  <v-container>
-    <section  class="head bg">
-    <h2>{{$t('service-on')}}</h2>
-    <p>
-      {{$t('Home-header')}}
-      {{$t('Home-header2')}}
-
-    </p>
-
-    <div class="groups_but">
-      <v-btn outlined >
-         <NuxtLink :to="localePath('/about')">
-         {{$t('About Us')}}
-         </NuxtLink>
-
-      </v-btn>
-
+  <div>
+    <div class="headcat_"></div>
+    <div class="container_cc page">
+      <div class="indexServices">
+        <Categories />
+      </div>
     </div>
-
-    <a class="but_down" href="#serv"><font-awesome-icon icon="angle-down" class="fa" /></a>
-
-  </section>
-      <Services />
-
-  </v-container>
+  </div>
 </template>
 
 <script>
-import Services from "./vue/Services.vue";
-import { mapGetters } from "vuex";
-
+import Services from '../categories/vue/listCategories.vue'
+import HeadServices from './vueUser/headServices.vue'
+import Categories from '../categories/categories.vue'
 export default {
-components: {
+  head() {
+    return {
+      title: this.$i18n.t('Home'),
+    }
+  },
+  components: {
     Services,
+    HeadServices,
+    Categories,
   },
-  computed: {
-    ...mapGetters(["allAuth", "AllCityDeatils"]),
-  },
+  computed: {},
 }
 </script>
-
-<style>
-.head {
-  /* min-height: calc(100vh - 120px); */
-  padding: 250px 0px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-      position: relative;
-}
-
-.bg {
-  /* background-image: url(https://sp-ao.shortpixel.ai/client/q_glossy,ret_img,w_2880,h_1368/https://motorarbitrage.com.au/wp-content/uploads/hero-image.jpg);   */
-  background-position: center;
-  background-repeat: no-repeat;
+ <style scoped>
+.headcat_ {
+  background: url(/images/lap2.jpg) no-repeat center center;
+  width: 100%;
+  height: 250px;
   background-size: cover;
-}
-
-.head h2{
-
-    margin-top: -200px;
- padding-bottom: 20px;
-    color: #444;
-    font-weight: 900;
-    font-size: 4.5em;
-}
-.head p{
-        text-align: center;
-}
-.groups_but{
-    margin-top: 30px;
-}
-
-.but_down{
- position: absolute;
-    bottom: 70px;
-    background: #cccccc24;
-    padding: 20px;
-    border-radius: 50%;
-
-}
-.but_down svg{
-    font-size: 20px;
 }
 </style>

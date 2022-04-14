@@ -7,7 +7,7 @@
         color="primary"
         class="subheading white--text"
         size="24"
-        v-text="this.$store.state.register.step"
+        v-text="allAuth.step"
       ></v-avatar>
     </h3>
     <!-- Form -->
@@ -20,7 +20,7 @@
         <div class="ma-auto position-relative" style="max-width: 300px">
           <v-otp-input
             v-model="otp"
-            :loading="this.$store.state.auth.loading"
+            :loading="allAuth.loading"
             @finish="onFinish"
           ></v-otp-input>
         </div>
@@ -29,28 +29,26 @@
         </v-snackbar>
       </div>
 
-      <!-- <div class="msg" v-if="msg">
-        <p>{{ $t(msg) }}</p>
-      </div> -->
-      <div class="buttons">
+ <div class="text-center">
+            <Msg api="verification_code" />
+
+ 
         <v-btn
-          :disabled="valid"
-          color="primary"
-          @click="onFinish"
-          :loading="this.$store.state.auth.loading"
+          text
+          :loading="allAuth.loading"
         >
-          {{ $t("Start") }}
         </v-btn>
-      </div>
+     </div>
     </v-form>
   </div>
 </template>
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
+import Msg from '../../tools/msgApi.vue'
 export default {
-  head() {
-    return { title: this.$i18n.t("Register") };
-  },
+   components:{
+     Msg
+   },
   data: () => ({
     valid: false,
     snackbar: false,
@@ -58,7 +56,9 @@ export default {
     otp: "",
     text: "",
   }),
-  computed: {},
+  computed: {
+    ...mapGetters(['allAuth'])
+  },
   methods: {
     ...mapActions(["registerAction"]),
     onFinish(e) {

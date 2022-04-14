@@ -1,37 +1,35 @@
 <template>
-  <div class="container_cc">
+  <div class="container_cc page">
     <div class="register">
-      <h1>{{ $t("Register") }}</h1>
-
-      <div class="loadingReg" v-if="this.$store.state.auth.loading">
-        <v-progress-circular
-          :size="50"
-          color="primary"
-          indeterminate
-        ></v-progress-circular>
+      <h1>{{ $t('Register') }}</h1>
+      <div v-if="allAuth.step === 1">
+        <Step1 />
       </div>
       <div v-else>
-        <Step1 v-if="this.$store.state.auth.step === 1" />
-        <Step2 v-else />
+        <Step2 />
       </div>
     </div>
   </div>
 </template>
 <script>
-import Step1 from "./steps/step1.vue";
-import Step2 from "./steps/step2.vue";
+import { mapGetters } from 'vuex'
+import Step1 from './steps/step1.vue'
+import Step2 from './steps/step2.vue'
 
 export default {
   head() {
     return {
-      title: this.$i18n.t("Register-page"),
-    };
+      title: this.$i18n.t('Register'),
+    }
   },
   components: {
     Step1,
     Step2,
   },
-};
+  computed: {
+    ...mapGetters(['allAuth']),
+  },
+}
 </script>
 <style>
 .register {
@@ -43,7 +41,8 @@ export default {
 }
 .form_register {
   margin: 15px auto;
-  width: 500px;
+  max-width: 500px;
+  width: 100%;
   border: 1px solid #ccc;
   padding: 15px;
   border-radius: 4px;

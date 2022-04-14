@@ -1,4 +1,4 @@
-export default function ({ $axios, app, store }, inject) {
+export default function ({ $axios, app }, inject) {
   // Create a custom axios instance
   const axios = $axios.create({
     headers: {
@@ -11,15 +11,7 @@ export default function ({ $axios, app, store }, inject) {
     }
   })
 
-  // Set baseURL to something different
-  // axios.setBaseURL('https://support.tecbadia.com/api')
-  //axios.setBaseURL('http://192.168.1.26/api')
    axios.setBaseURL('https://customer-api.mr-mussllaha.tecbadia.com/')
-  // axios.setBaseURL('http://192.168.1.26:81')
-
-
-  // axios.setBaseURL('https://fakestoreapi.com')
-
-  // Inject to context as $api
+  // axios.setBaseURL('http://192.168.88.225:81')
   inject('axios', axios)
 }

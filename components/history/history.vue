@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="page">
     <h1 class="text-center">History</h1>
     <v-item-group v-if="!show">
       <v-container>

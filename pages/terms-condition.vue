@@ -57,6 +57,6 @@ export default {};
 }
 .privacy p {
   width: 80%;
-  font-size: 18px;
+
 }
 </style>

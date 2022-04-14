@@ -17,7 +17,8 @@ export default {
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
     '@fortawesome/fontawesome-svg-core/styles.css',
-    '~assets/css/main.scss'
+    '~assets/css/main.scss',
+
   ],
 
   script: [
@@ -30,7 +31,10 @@ export default {
     '~/plugins/axios.js',
     '~/plugins/vuetify.js',
     '~/plugins/fontawesome.js',
-    '~/plugins/VuePhoneNumberInput.js'
+    '~/plugins/VuePhoneNumberInput.js',
+    '~/plugins/validation-rules.js',
+    '~/plugins/CxltToastr.js'
+
   ],
   router: {
     middleware: ['auth'],

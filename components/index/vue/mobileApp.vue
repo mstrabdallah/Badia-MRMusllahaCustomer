@@ -1,107 +1,76 @@
 <template>
-  <section class="container_cc mob">
-      <v-row class="row landing">
-        <div class="col-12 col-lg-6">
-            <div class="row pt-16 mt-16">
-                <div class="col-12 col-lg-6 landing-img2 d-block d-lg-none d-xl-none">
-                    <img src='/images/mobileapp.png' class='img-fluid' alt="frame"  />
-                </div>
-                <div class="col-12 text-center py-2">
-                    <h2 class="mesalah-h">{{$t('mrmusllaha')}}</h2>
-                    <h2> {{$t('service-on')}}</h2>
-                </div>
-
-                <div class="col-12 text-center">
-                    <p>{{$t('mobile-p')}}</p>
-                </div>
-                <div class="col-12 text-center">
-                    <img src='/images/googleapp.svg' alt="google-app-download"  />
-                    <img src='/images/apple.svg'  alt="ios-app-download"  />
-                </div>
-            </div>
-        </div>
-        <div class="col-12 col-lg-6 landing-img d-none d-sm-none d-md-none d-lg-block">
-            <img src='/images/mobileapp.png' class='img-fluid' alt="frame"  />
-        </div>
-    </v-row>
-
-
-    <!-- <div class="mob_body">
+  <section id="mobileApp" class="container_cc">
+    <div class="mob_body">
       <template>
-        <v-container>
           <v-row no-gutters>
-            <v-col>
+            <v-col cols="12" md="6">
               <div class="mob_imgs">
                 <img
-                  src="https://www.mrmusllaha.com/static/media/mobileapp1.b7b023d7.png"
+                  src="/images/mobileapp.png"
                 />
               </div>
             </v-col>
-            <v-divider class="mx-4" d-sm-none vertical></v-divider>
-            <v-col>
+            <v-col cols="12" md="6">
               <div class="mob_des">
                 <h3>
-                  We are the ideal platform to have a range of services at your
-                  doorstep.
-                </h3>
-                <p>
-                  Use our mobile app <br />For reference and get free service
-                </p>
+                  {{ $t("sections_m_t") }}
 
+                </h3>
+                <p v-html="$t('sections_m_p')"></p>
+ 
                 <div class="but_download">
-                  <a
-                    href="https://play.google.com/store/apps/details?id=com.Musllaha"
-                    target="_blank"
-                    rel="noreferrer"
-                    ><img
-                      src="https://www.mrmusllaha.com/app_store.png"
-                      alt=""
-                      style="max-height: 48px; max-width: 142px"
-                    /> </a
-                  ><a
-                    href="https://apps.apple.com/us/app/mr-musllaha/id1582292480"
-                    target="_blank"
-                    rel="noreferrer"
-                    ><img
-                      src="https://www.mrmusllaha.com/playstore.png"
-                      alt=""
-                      style="max-height: 48px; max-width: 142px"
+                  <a href="https://play.google.com/store/apps/details?id=com.Musllaha" target="_blank" rel="noreferrer">
+                  
+                  <img
+                      src="/images/googleapp.svg"
+                       alt="google-app-download"
+                      
+                    /> </a>
+                    
+                    <a href="https://apps.apple.com/us/app/mr-musllaha/id1582292480" target="_blank" rel="noreferrer" >
+                    
+                    <img
+                      src="/images/apple.svg"
+                     alt="ios-app-download" 
                     />
+ 
+
                   </a>
                 </div>
               </div>
             </v-col>
           </v-row>
-        </v-container>
+        
       </template>
-    </div> -->
+    </div>
   </section>
 </template>
 
 <style scoped>
-.mob {
-  padding: 20px;
-  margin-top: 100px;
-}
-.mob_body {
-}
 .mob_imgs {
   text-align: center;
 }
-.mob_des {
+#mobileApp{
+  margin-top: 30px;
 }
 
 h3 {
   display: block;
   padding-top: 50px;
-  font-size: 30px;
+    font-size: 18px;
 }
 p {
-  border-left: 1px solid #75df54;
+  border-left: 1px solid #dfb754;
   padding-left: 12px;
   line-height: 35px;
   margin-top: 40px;
   margin-left: 20px;
+}
+p:lang(ar) {
+  border-right: 1px solid #dfb754;
+  border-left: none;
+  padding-right: 12px;
+  margin-right: 20px;
 }
 
 .but_download {
@@ -112,5 +81,29 @@ p {
 }
 .but_download :nth-child(2):lang(ar) {
   margin-right: 40px;
+}
+
+@media(max-width:959px){
+  .mob {
+    border: 1px solid #f8f8f8;
+    margin: 20px;
+    border-radius: 5px;
+}
+h3{
+      text-align: center;
+    font-size: 1.6em;
+}
+.but_download{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.but_download a:nth-child(2){
+    margin-left: 0px!important;
+    margin-right: 0px!important;
+    margin-top: 20px;
+
+}
 }
 </style>

@@ -44,10 +44,7 @@ export default {};
 .privacy p {
   width: 80%;
 }
-.privacy p,
-.privacy ul li {
-  font-size: 18px;
-}
+
 .privacy ul {
   list-style: disc;
   list-style-position: inside;
