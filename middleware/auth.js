@@ -1,7 +1,7 @@
 
 export default function ({ route, store, redirect, app, i18n }) {
 
-   if (app.$cookies.get('lang')) i18n.setLocale(app.$cookies.get('lang'))
+  if (app.$cookies.get('lang')) i18n.setLocale(app.$cookies.get('lang'))
 
   const user = app.$cookies.get('user');
 
@@ -14,23 +14,27 @@ export default function ({ route, store, redirect, app, i18n }) {
     store.state.auth.checkAuth = true;
   }
 
-  return false;
-
-  // check cookie
-
-
 
   const checkUser = store.state.auth.checkAuth;
   //---------------
-
-
+  //console.log(route)
+  //params.id
   // Visitor Access
-  if (!checkUser && ['/login', '/', '/ar', '/ar/login'].includes(route.path)) {
+  if (!checkUser && [
+    "index___en", "/index___ar",
+    'login___en', '/login___ar',
+    'register___en', '/register___ar',
+    'terms-condition___en', 'terms-condition___ar',
+    "privcy-policy___en","privcy-policy___ar",
+    "about___en","about___ar",
+    "categories-id___en","categories-id___ar",
+    "service-id___en","service-id___ar"
+  ].includes(route.name)) {
     return false
   }
 
-  //  Invalid Access For Visitor
 
+  //  Invalid Access For Visitor
   if (!checkUser) {
     if (i18n.locale === 'en')
       return redirect('/login')
@@ -39,7 +43,12 @@ export default function ({ route, store, redirect, app, i18n }) {
   }
 
   //  Invalid Access For User
-  if (checkUser && ['/login', '/ar/login'].includes(route.path)) {
+
+
+  if (checkUser && [
+      'login___en', '/login___ar',
+      'register___en', '/register___ar',
+    ].includes(route.path)) {
     if (i18n.locale === 'en')
       return redirect('/')
     else

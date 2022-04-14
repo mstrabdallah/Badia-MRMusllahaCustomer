@@ -37,6 +37,8 @@ import HeadSub from './vue/headSubCategories.vue'
 import LoadingP from '../tools/loadingP.vue'
 import NoData from '../tools/no-data.vue'
 export default {
+    name: 'IndexPage',
+
   head() {
     return {
       title: this.$i18n.t('Subcategories'),
