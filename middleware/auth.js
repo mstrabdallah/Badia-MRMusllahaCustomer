@@ -17,13 +17,13 @@ export default function ({ route, store, redirect, app, i18n }) {
 
   const checkUser = store.state.auth.checkAuth;
   //---------------
-  //console.log(route)
+  console.log(route.name)
   //params.id
   // Visitor Access
   if (!checkUser && [
-    "index___en", "/index___ar",
-    'login___en', '/login___ar',
-    'register___en', '/register___ar',
+    "index___en", "index___ar",
+    'login___en', 'login___ar',
+    'register___en', 'register___ar',
     'terms-condition___en', 'terms-condition___ar',
     "privcy-policy___en","privcy-policy___ar",
     "about___en","about___ar",
@@ -33,7 +33,7 @@ export default function ({ route, store, redirect, app, i18n }) {
     return false
   }
 
-
+  
   //  Invalid Access For Visitor
   if (!checkUser) {
     if (i18n.locale === 'en')
@@ -46,8 +46,8 @@ export default function ({ route, store, redirect, app, i18n }) {
 
 
   if (checkUser && [
-      'login___en', '/login___ar',
-      'register___en', '/register___ar',
+      'login___en', 'login___ar',
+      'register___en', 'register___ar',
     ].includes(route.path)) {
     if (i18n.locale === 'en')
       return redirect('/')
