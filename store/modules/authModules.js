@@ -90,7 +90,7 @@ const actions = {
     else state.register = arrayData
 
     data.append('name', state.register.name)
-    data.append('phone', '+2' + state.register.phone.replace(/\s/g, ''))
+    data.append('phone', state.register.phone.replace(/\s/g, ''))
     data.append('email', state.register.email)
     data.append('referral', state.register.referral)
     data.append('password', state.register.password)
@@ -168,7 +168,7 @@ const actions = {
   },
   LoginAction({ app, state, dispatch }, arrayData) {
     var data = new FormData()
-    data.append('phone_number', '+2' + arrayData.phone.replace(/\s/g, ''))
+    data.append('phone_number', arrayData.phone.replace(/\s/g))
     data.append('password', arrayData.password)
     state.loading = true
     const response = this.$axios

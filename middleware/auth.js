@@ -17,7 +17,7 @@ export default function ({ route, store, redirect, app, i18n }) {
 
   const checkUser = store.state.auth.checkAuth;
   //---------------
-  console.log(route.name)
+  // console.log(route.name)
   //params.id
   // Visitor Access
   if (!checkUser && [
