@@ -2,14 +2,14 @@
   <v-container class="py-10">
       <h2 class="text-center my-10 about-h">{{$t('about-h')}}</h2>
     <v-row>
-      <v-col md="6">
+      <v-col cols="12" md="6">
         <div class="mt-12 about-p">
           <p>
             {{$t('about-p')}}
           </p>
         </div>
       </v-col>
-      <v-col md="6">
+      <v-col cols="12" md="6">
         <div >
           <img class="img-fluid" src="/images/output-onlinepngtools.png" alt="">
         </div>

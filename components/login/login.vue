@@ -15,13 +15,13 @@
             <v-form ref="form" v-model="valid" lazy-validation>
               <v-text-field
                 v-model="data.phone"
-                :rules="[$rules.required, $rules.number]"
+                :rules="[$rules.required]"
                 :label="$t('Phone')"
                 required
                 outlined
                 dense
               ></v-text-field>
-
+<!-- $rules.number -->
               <v-text-field
                 v-model="data.password"
                 :append-icon="showPasswordLogin ? 'mdi-eye' : 'mdi-eye-off'"

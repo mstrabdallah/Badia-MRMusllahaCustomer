@@ -40,7 +40,7 @@ const actions = {
 
     if (!this.$cookies.get('city_id')) this.$cookies.set('city_id', '1')
 
-    dispatch('getMe'),
+      dispatch('getMe'),
       dispatch('getCity'),
       dispatch('getCategories')
   },

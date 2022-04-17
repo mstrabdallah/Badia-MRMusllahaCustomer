@@ -12,14 +12,17 @@ const getters = {
 
 const actions = {
 
-  async getCategories({ state }) {
+  async getCategories({ dispatch,state }) {
     state.loading = true
 
     await this.$axios.get("/Category").then((res) => {
-      state.data = res.data;
-
-      // state.data = res.data.data;
       state.loading = false;
+
+      if(res.data.status === 200){
+        state.data = res.data;
+      }else if(res.data.status === 401){
+        if (this.$cookies.get("sId")) dispatch('Logout')
+      }
     });
   },
 
