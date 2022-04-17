@@ -21,7 +21,7 @@ const actions = {
       if(res.data.status === 200){
         state.data = res.data;
       }else if(res.data.status === 401){
-        if (this.$cookies.get("sId")) dispatch('Logout')
+       if (this.$cookies.get("token")) dispatch('Logout')
       }
     });
   },

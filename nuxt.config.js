@@ -1,5 +1,7 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
+  mode :'universal',
+  
   head: {
     title: 'Mr.Musllaha',
     htmlAttrs: {
@@ -20,16 +22,18 @@ export default {
     '~assets/css/main.scss',
 
   ],
-
   script: [
     {
 
     }
   ],
+   
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     '~/plugins/axios.js',
-    '~/plugins/vuetify.js',
+     '~/plugins/vuetify.js',
+    // { src: '~/plugins/vuetify.js', mode: 'server' },
+
     '~/plugins/fontawesome.js',
     '~/plugins/VuePhoneNumberInput.js',
     '~/plugins/validation-rules.js',
@@ -86,18 +90,8 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-    extractCSS: true,
-    // optimization: {
-    //   splitChunks: {
-    //     cacheGroups: {
-    //       styles: {
-    //         name: 'styles',
-    //         test: /\.(css|vue)$/,
-    //         chunks: 'all',
-    //         enforce: true
-    //       }
-    //     }
-    //   }
-    // }
-  }
+    extractCSS: {
+      ignoreOrder: false
+    }
+   }
 }

@@ -16,7 +16,7 @@
 import Header from './header/header.vue'
 import Footer from './footer/footer.vue'
 import Menu from './header/menu.vue'
-import  Overlays from '../components/overlays/overlays.vue'
+import Overlays from '../components/overlays/overlays.vue'
 import SessionExpired from '../components/overlays/Session-expired.vue'
 import { mapActions } from 'vuex'
 import { uuid } from 'vue-uuid'
@@ -30,7 +30,7 @@ export default {
     Footer,
     Menu,
     SessionExpired,
-    Overlays
+    Overlays,
   },
   async beforeCreate() {
     this.$vuetify.rtl = this.$i18n.locale === 'ar' ? true : false
@@ -121,12 +121,15 @@ img {
 }
 
 /* vuetify */
-
+.v-application .primary--text {
+  color: #2c4b4c !important;
+  caret-color: #2c4b4c !important;
+}
 .v-overlay {
-    z-index: 100;
+  z-index: 100;
 }
 .v-navigation-drawer--temporary {
-    z-index: 1001;
+  z-index: 1001;
 }
 .container {
   width: 100%;
@@ -181,21 +184,23 @@ p {
   font-size: 12px;
 }
 /* plugins */
-.toast:lang(ar){
+.toast:lang(ar) {
   direction: rtl;
 }
-.toast-close-button{
+.toast-close-button {
   display: none;
 }
-.toast-icon{
-      margin-top: -8px;
+.toast-icon {
+  margin-top: -8px;
 }
 .toast-message {
-    margin-top: 6px;
-    color: #ccc;
+  margin-top: 6px;
+  color: #ccc;
 }
-.country-selector__input,.input-tel,.input-tel__label{
-      font-family: 'Almarai'!important;
+.country-selector__input,
+.input-tel,
+.input-tel__label {
+  font-family: 'Almarai' !important;
 }
 .country-selector__input:lang(ar) {
   border-top-right-radius: 4px;
@@ -216,8 +221,8 @@ input.input-tel__input:lang(ar) {
   left: auto;
 }
 .input-tel__clear:lang(ar) {
-  left: 8px!important;
-  right: auto!important;
+  left: 8px !important;
+  right: auto !important;
 }
 .input-tel input,
 .country-selector__label {
