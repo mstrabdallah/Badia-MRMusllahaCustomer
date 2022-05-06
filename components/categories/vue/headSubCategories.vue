@@ -1,22 +1,23 @@
 <template>
   <div class="iServices_head">
     <h3>{{ $t('Subcategories') }}</h3>
-
-    <v-select
-      class="select_head"
-      :items="allCity.data"
-      :label="$t('Location')"
-      item-text="name"
-      item-value="id"
-      :disabled="allCity.loading"
-      :loading="allCity.loading"
-      v-model="city"
-      outlined
-      dense
-      @change="onChangeCity"
-      prepend-inner-icon="mdi-map-marker"
-    >
-    </v-select>
+    <div class="select_head_">
+      <v-select
+        class="select_head"
+        :items="allCity.data"
+        :label="$t('Location')"
+        item-text="name"
+        item-value="id"
+        :disabled="allCity.loading"
+        :loading="allCity.loading"
+        v-model="city"
+        outlined
+        dense
+        @change="onChangeCity"
+        prepend-inner-icon="mdi-map-marker"
+      >
+      </v-select>
+    </div>
   </div>
 </template>
 
@@ -38,7 +39,7 @@ export default {
     ...mapGetters(['allCity']),
   },
   methods: {
-      ...mapActions(['UpdateCity']),
+    ...mapActions(['UpdateCity']),
     onChangeCity() {
       this.UpdateCity(this.city)
     },
@@ -51,12 +52,13 @@ export default {
 </script>
 
 <style>
-
-
-.select_head{
-    max-width: 250px;
+.select_head {
+  max-width: 250px;
 }
-.iServices_head .v-text-field__details{
-    display: none;
+.iServices_head .v-text-field__details {
+  display: none;
+}
+.select_head_{
+  width: 250px;
 }
 </style>

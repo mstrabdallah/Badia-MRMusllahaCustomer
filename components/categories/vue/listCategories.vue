@@ -10,12 +10,12 @@
           :key="i"
           cols="12"
           sm="6"
-          md="4"
+          md="6"
           class="text-center"
         >
           <nuxt-link :to="localePath(`/categories/${Proudcts.id}`)">
             <div class="categorie_">
-              <v-img :src="Proudcts.image"  ></v-img>
+              <img :src="Proudcts.image"  /> 
               <h3>{{ Proudcts.name }}</h3>
             </div>
           </nuxt-link>
@@ -46,6 +46,7 @@ export default {
 .categorie_{
     border-radius: 4px;
     box-shadow: 0px 1px 4px 0 rgb(0 0 0 / 5%);
+    background: #fff;
     
 }
 .categorie_:hover{

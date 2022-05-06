@@ -79,7 +79,7 @@
 
             <div class="menu_language_">
               <v-btn text x-small :disabled="this.$i18n.locale === 'ar'">
-                <a @click="changeLanguage('ar')">
+                <a @click="changeLanguage('ar')" >
                   <img width="24px" src="/saflag.png" />
                 </a>
               </v-btn>
@@ -224,9 +224,9 @@ export default {
   position: absolute;
 }
   
-a.nuxt-link-exact-active {
-  color: #bf804b;
-  padding-bottom: 10px;
+a.nuxt-link-exact-active .v-list-item{
+     color: #fff;
+    background: #30c88c;
 }
 
 .menuBtn {

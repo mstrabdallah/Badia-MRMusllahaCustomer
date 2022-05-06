@@ -1,7 +1,7 @@
 <template>
   <div class="nodata_">
     <div class="noData" v-if="type === 1">
-      <div class="noDataImg"></div>
+      <font-awesome-icon icon="face-meh-blank" />
       <p>{{ $t(data) }}</p>
     </div>
 
@@ -36,5 +36,9 @@ export default {
 }
 .noData p {
   font-weight: bold;
+}
+.noData svg{
+      font-size: 29px;
+    margin-bottom: 11px;
 }
 </style>

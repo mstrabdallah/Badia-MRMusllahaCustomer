@@ -52,7 +52,7 @@
           <div class="links">
             <nuxt-link :to="localePath('/')">{{ $t('Home') }}</nuxt-link>
             <nuxt-link
-              :to="localePath('/UserProfile')"
+              :to="localePath('/account')"
               v-if="allAuth.checkAuth"
               >{{ $t('UserProfile') }}</nuxt-link
             >

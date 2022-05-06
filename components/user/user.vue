@@ -98,8 +98,17 @@ export default {
   position: relative;
 }
 .user_image {
-  margin-top: 20px;
-  font-size: 40px;
+margin: auto;
+    font-size: 47px;
+    background: #f8f8f8;
+    width: 150px;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    margin-bottom: 20px;
+    margin-top: 20px;
 }
 .user_info p {
   padding: 10px;

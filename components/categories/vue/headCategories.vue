@@ -1,34 +1,33 @@
 <template>
-<div> 
-  <div class="iServices_head">
-    <h3>{{ $t('Main Categories') }}</h3>
+  <div>
+    <div class="iServices_head">
+      <h3>{{ $t('Main Categories') }}</h3>
 
-    <v-select
-      class="select_head"
-      :items="allCity.data"
-      :label="$t('Location')"
-      item-text="name"
-      item-value="id"
-      :disabled="allCity.loading"
-      :loading="allCity.loading"
-      v-model="city"
-      outlined
-      dense
-      @change="onChangeCity"
-      prepend-inner-icon="mdi-map-marker"
-    >
-    </v-select>
+      <div class="select_head_">
+        <v-select
+          class="select_head"
+          :items="allCity.data"
+          :label="$t('Location')"
+          item-text="name"
+          item-value="id"
+          :disabled="allCity.loading"
+          :loading="allCity.loading"
+          v-model="city"
+          outlined
+          dense
+          @change="onChangeCity"
+          prepend-inner-icon="mdi-map-marker"
+        >
+        </v-select>
+      </div>
+    </div>
   </div>
-     
-
-</div>
 </template>
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
 export default {
-  components:{
-  },
+  components: {},
   data() {
     return {
       city: null,
@@ -43,7 +42,7 @@ export default {
     ...mapGetters(['allCity']),
   },
   methods: {
-      ...mapActions(['UpdateCity']),
+    ...mapActions(['UpdateCity']),
     onChangeCity() {
       this.UpdateCity(this.city)
     },
@@ -61,21 +60,24 @@ export default {
   border-radius: 4px;
   padding: 25px;
 }
-.indexServices .v-text-field__details{
-    display: none;
+.indexServices .v-text-field__details {
+  display: none;
 }
 
 .iServices_head {
-    display: flex;
-    justify-content: space-between;
-    border-bottom: 1px solid #ededed;
-    margin-bottom: 20px;
-    align-items: center;
-    
-    padding-bottom: 14px;
-    }
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #ededed;
+  margin-bottom: 20px;
+  align-items: center;
 
-.select_head{
-    max-width: 250px;
+  padding-bottom: 14px;
+}
+
+.select_head {
+  max-width: 250px;
+}
+.select_head_{
+  width: 250px;
 }
 </style>

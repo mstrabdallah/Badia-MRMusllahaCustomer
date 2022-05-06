@@ -1,7 +1,7 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
-  mode :'universal',
-  
+  // mode :'universal',
+   ssr:false,
   head: {
     title: 'Mr.Musllaha',
     htmlAttrs: {
@@ -31,8 +31,8 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     '~/plugins/axios.js',
-     '~/plugins/vuetify.js',
-    // { src: '~/plugins/vuetify.js', mode: 'server' },
+    //  '~/plugins/vuetify.js',
+    { src: '~/plugins/vuetify.js', mode: 'server' },
 
     '~/plugins/fontawesome.js',
     '~/plugins/VuePhoneNumberInput.js',
@@ -50,7 +50,20 @@ export default {
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
     // With options
-    ['@nuxtjs/vuetify']
+    ['@nuxtjs/vuetify', {
+      theme: {
+          light: true,
+          themes: {
+              light: {
+                primary: '#2b4749',
+                secondary: '#2b4749',
+                accent: '#2b4749',
+  
+              }
+          }
+      }
+
+     }]
 
   ],
 
@@ -61,6 +74,7 @@ export default {
     'cookie-universal-nuxt',
     '@nuxtjs/i18n',
     '@nuxtjs/style-resources',
+    
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -77,8 +91,13 @@ export default {
       { code: 'en',name: 'الانجليزية',  iso: 'en', file: 'en.json', dir: 'ltr' },
       { code: 'ar',name: 'Arabic', iso: 'ar', file: 'ar.json', dir: 'rtl' },
     ],
-    lazy: true,
+    
     langDir: 'lang/',
+    detectBrowserLanguage: {
+      useCookie: true,
+      cookieKey: 'i18n_redirected',
+      redirectOn: 'root',  // recommended
+    }
   },
 
   styleResources: {
@@ -94,4 +113,5 @@ export default {
       ignoreOrder: false
     }
    }
+   
 }

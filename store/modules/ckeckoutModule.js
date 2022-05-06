@@ -1,11 +1,11 @@
 const state = {
   loading: false,
-  loadingTime:true,
+  loadingTime: true,
   data: [],
   order: [],
-  DateMessage: '',
-  msg:'', 
+  msg: '',
   CartEmptyMessage: '',
+  time: []
 }
 
 const getters = {
@@ -22,12 +22,9 @@ const actions = {
     this.$axios.post('/cart/getListOfTime', data).then((res) => {
       state.loadingTime = false
 
-      state.time = res.data
       if (res.data.status === 200) {
-
-      } else {
-        state.DateMessage = res.data.msg
-      }
+        state.time = res.data
+      }  
       state.loading = false
     })
   },
@@ -43,7 +40,7 @@ const actions = {
 
     this.$axios.post('/Order/checkout', data).then((res) => {
       state.loading = false
-      state.order = res.data     
+      state.order = res.data
       if (res.data.status === 200) {
         state.msg = res.data.msg
 
@@ -54,7 +51,7 @@ const actions = {
           window.location.href = '/ar/orders'
         }
       } else {
-        dispatch('setMsg',{errors:res.data.errors,api:'checkout',type:'error'})
+        dispatch('setMsg', { errors: res.data.errors, api: 'checkout', type: 'error' })
       }
     })
   },

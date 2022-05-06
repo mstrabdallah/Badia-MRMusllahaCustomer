@@ -1,6 +1,5 @@
 <template>
   <header class="header container_cc headerFixed">
-    
     <div class="header_p">
       <v-app-bar-nav-icon
         class="menuBtn"
@@ -13,7 +12,6 @@
 
       <div class="search">
         <!-- <input type="text" placeholder="Search For Services" /> -->
-
       </div>
 
       <nav class="menu">
@@ -37,8 +35,7 @@
               <template v-slot:activator="{ on, attrs }">
                 <div v-bind="attrs" v-on="on">
                   <font-awesome-icon icon="user" class="fa" />
-                    <span class="navM_"> {{ $t('My Account') }}</span>
-                 
+                  <span class="navM_"> {{ $t('My Account') }}</span>
                 </div>
               </template>
 
@@ -71,20 +68,20 @@
             </v-menu>
           </li>
 
-          
-
           <li v-if="!allAuth.checkAuth" class="navM_">
-            <NuxtLink class="login_" :to="localePath('/login')">{{
-              $t('Login')
-            }}</NuxtLink>
+            <NuxtLink :to="localePath('/login')">
+              <div class="header_but">{{ $t('Login') }}</div>
+            </NuxtLink>
           </li>
 
-      
           <li v-if="allAuth.checkAuth">
             <NuxtLink :to="localePath('/cart')">
-              <strong id="countCart" class="countCart" v-if="allCart.countOfCar > 0">{{
-                allCart.countOfCar
-              }}</strong>
+              <strong
+                id="countCart"
+                class="countCart"
+                v-if="allCart.countOfCar > 0"
+                >{{ allCart.countOfCar }}</strong
+              >
               <font-awesome-icon icon="cart-shopping" class="fa" />
               <span class="navM_">
                 {{ $t('Cart') }}
@@ -133,8 +130,6 @@ export default {
     showDrawer() {
       this.changeMenuHeader(true)
     },
-
- 
   },
   computed: {
     ...mapGetters(['allAuth', 'allCity', 'allCart']),
@@ -179,20 +174,25 @@ export default {
 }
 
 .header_p li a.nuxt-link-exact-active {
-  color: #30c88c;
-  padding-bottom: 10px;
+  border-bottom: 1px solid #30c88c;
+  padding-bottom: 24px;
 }
 .menu ul li[data-v-f21a83aa] {
   text-align: center;
   line-height: normal;
 }
-a.nuxt-link-exact-active.login_ {
-  border: 1px solid #30c88c;
+a.nuxt-link-exact-active .header_but {
+    border: 1px solid #30c88c;
+    background: #30c88c;
+    color: #fff;
 }
-.login_ {
+
+.header_but {
   border: 1px solid #ccc;
   padding: 7px 30px;
-  border-radius: 5px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
 }
 
 .signup_ {
@@ -276,6 +276,10 @@ a.nuxt-link-exact-active.login_ {
 }
 
 .countCart {
+      line-height: 13px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   color: #fff;
   position: absolute;
   margin-top: -17px;
@@ -296,7 +300,7 @@ a.nuxt-link-exact-active.login_ {
   margin-left: 9px;
 }
 @media (max-width: 768px) {
-  .navM_{
+  .navM_ {
     display: none;
   }
   .search {
@@ -306,7 +310,6 @@ a.nuxt-link-exact-active.login_ {
     display: block;
   }
   .menu ul {
-    
   }
 }
 </style>

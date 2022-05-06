@@ -24,13 +24,13 @@ const getters = {
 
 const actions = {
   async setApi({ state, dispatch }, data) {
+    
     await this.$axios.setHeader('session-id', data)
     await this.$axios.setHeader('device', state.device)
     await this.$axios.setHeader('lang', this.$i18n.locale)
     if (this.$cookies.get('token'))
       await this.$axios.setHeader('token', this.$cookies.get('token'))
     if (!this.$cookies.get('token')) await dispatch('getToken')
-
     //sId = session-id  -- for check if user agent changed
     if (!this.$cookies.get('sId'))
       this.$cookies.set('sId', data, { path: '/', maxAge: 365 * 24 * 60 * 60 })

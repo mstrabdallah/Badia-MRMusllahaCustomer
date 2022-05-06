@@ -28,10 +28,13 @@ export default {
 }
 </script>
  <style scoped>
-.headcat_ {
+/* .headcat_ {
   background: url(/images/lap2.jpg) no-repeat center center;
   width: 100%;
   height: 250px;
   background-size: cover;
+} */
+.headcat_{
+  height: 100px;
 }
 </style>

@@ -6,7 +6,7 @@
         <v-expansion-panel-header>
           <template>
             <v-row no-gutters>
-              {{ $t("General Information") }}
+              {{ $t('General Information') }}
             </v-row>
           </template>
         </v-expansion-panel-header>
@@ -19,7 +19,7 @@
       <v-expansion-panel>
         <v-expansion-panel-header>
           <template>
-            <v-row no-gutters> {{ $t("Change Password") }} </v-row>
+            <v-row no-gutters> {{ $t('Change Password') }} </v-row>
           </template>
         </v-expansion-panel-header>
 
@@ -28,10 +28,10 @@
         </v-expansion-panel-content>
       </v-expansion-panel>
 
-            <v-expansion-panel>
+      <v-expansion-panel>
         <v-expansion-panel-header>
           <template>
-            <v-row no-gutters> {{ $t("Address") }} </v-row>
+            <v-row no-gutters> {{ $t('Address') }} </v-row>
           </template>
         </v-expansion-panel-header>
 
@@ -39,30 +39,42 @@
           <Address />
         </v-expansion-panel-content>
       </v-expansion-panel>
-   
- 
+
+      <!-- <v-expansion-panel>
+        <v-expansion-panel-header>
+          <template>
+            <v-row no-gutters> {{ $t('Companies') }} </v-row>
+          </template>
+        </v-expansion-panel-header>
+
+        <v-expansion-panel-content>
+          <Companies />
+        </v-expansion-panel-content>
+      </v-expansion-panel> -->
     </v-expansion-panels>
   </div>
 </template>
 
 <script>
-import ChangePassword from "./forms/changePassword.vue";
-import ChangeInfo from "./forms/changeInfo.vue";
+import ChangePassword from './forms/changePassword.vue'
+import ChangeInfo from './forms/changeInfo.vue'
 import Address from '../vue/user-address.vue'
+import Companies from '../vue/forms/companies.vue'
 export default {
   data: () => ({
     date: null,
     trip: {
-      name: "",
+      name: '',
       location: null,
       start: null,
       end: null,
     },
   }),
   components: {
+    Companies,
     ChangePassword,
     ChangeInfo,
-Address
- },
-};
+    Address,
+  },
+}
 </script>

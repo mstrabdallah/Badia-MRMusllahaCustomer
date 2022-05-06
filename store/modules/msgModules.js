@@ -18,7 +18,17 @@ const actions = {
     state.errors = data.errors;
     state.api = data.api
     state.type=data.type
-  }
+  },
+  setToast({state},data){
+    this.$toast.success({
+      title:this.$i18n.t(data.title),
+      message:this.$i18n.t(data.des),
+      position: 'top center',
+      showMethod:'zoomInDown',
+      hideMethod:'zoomOutUp',
+      timeOut:3000
+  })
+  },
 
 }
 

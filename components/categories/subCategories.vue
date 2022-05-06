@@ -3,12 +3,16 @@
     <div class="subCat_ page">
       <HeadSub />
 
+      <!-- <div class="sub_comp">
+        <v-btn elevation="2" >{{$t('I Company Client')}}</v-btn>
+      </div> -->
+
       <template v-if="AllCategories.loading">
         <LoadingP />
       </template>
       <v-row v-else>
         <template v-if="AllCategories.subCat.length === 0">
-          <NoData data="There are no subcategories here" :type="1"/>
+          <NoData data="There are no subcategories here"   />
         </template>
         <v-col
           v-else
@@ -37,8 +41,6 @@ import HeadSub from './vue/headSubCategories.vue'
 import LoadingP from '../tools/loadingP.vue'
 import NoData from '../tools/no-data.vue'
 export default {
-    name: 'IndexPage',
-
   head() {
     return {
       title: this.$i18n.t('Subcategories'),
@@ -61,6 +63,11 @@ export default {
 }
 </script>
 <style scoped>
+.sub_comp{
+      display: flex;
+    justify-content: center;
+    margin-bottom: 21px;
+}
 .subCat_ {
   border: 1px solid #ededed;
   border-radius: 4px;
@@ -71,6 +78,7 @@ export default {
   border-radius: 4px;
   box-shadow: 0px 1px 4px 0 rgb(0 0 0 / 5%);
   padding-top: 20px;
+  
 }
 .subCategorie_:hover {
   transition: 0.5ms;

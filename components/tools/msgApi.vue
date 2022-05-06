@@ -7,9 +7,9 @@
         </v-alert>
       </div>
       <div class="msg_error_" v-else-if="allMsg.type === 'error'">
-          <div class="msgEror__" v-if="allMsg.msg != null">
-            {{ $t(allMsg.msg) }}
-          </div>
+        <div class="msgEror__" v-if="allMsg.msg != null && msg != false">
+          {{ $t(allMsg.msg) }}
+        </div>
         <div v-if="Array.isArray(allMsg.errors)">
           <div v-if="allMsg.errors.length > 0">
             <div v-for="item in allMsg.errors" :key="item">
@@ -40,7 +40,7 @@ export default {
   computed: {
     ...mapGetters(['allMsg']),
   },
-  props: ['api'],
+  props: ['api', 'msg'],
 }
 </script>
 

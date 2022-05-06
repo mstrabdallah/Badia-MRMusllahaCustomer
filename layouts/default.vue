@@ -119,11 +119,25 @@ img {
   display: flex;
   align-items: center;
 }
-
+.box_page {
+  border: 1px solid #ededed;
+  border-radius: 4px;
+  padding: 15px;
+  background: #fff;
+  box-shadow: 0px 1px 4px 0 rgb(0 0 0 / 5%);
+}
 /* vuetify */
+.v-application a {
+  color: #444 !important;
+}
+
 .v-application .primary--text {
   color: #2c4b4c !important;
   caret-color: #2c4b4c !important;
+}
+.v-application .primary {
+  background-color: #2c4b4c !important;
+  border-color: #2c4b4c !important;
 }
 .v-overlay {
   z-index: 100;
